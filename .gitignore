@@ -1,0 +1,146 @@
+# ============================================================
+# ROOT .gitignore — School CMS (FastAPI backend + Next.js frontend)
+# ============================================================
+
+
+# ──────────────────────────────────────────
+# macOS
+# ──────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+
+# ──────────────────────────────────────────
+# Editor / IDE
+# ──────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.kiro/
+
+
+# ──────────────────────────────────────────
+# Python — Backend
+# ──────────────────────────────────────────
+
+# Byte-compiled / optimised files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env_backup/
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+sdist/
+wheels/
+pip-wheel-metadata/
+*.whl
+
+# Unit test / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# mypy / pyright type checkers
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyright/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+logs/
+
+# Local SQLite databases (dev only)
+*.db
+*.sqlite
+*.sqlite3
+
+
+# ──────────────────────────────────────────
+# Environment / Secrets  ← NEVER commit these
+# ──────────────────────────────────────────
+.env
+.env.*
+!.env.example
+!.env.local.example
+!.env.*.example
+
+
+# ──────────────────────────────────────────
+# Alembic
+# ──────────────────────────────────────────
+# Keep migration scripts; ignore only generated artefacts
+backend/alembic/__pycache__/
+backend/alembic/versions/__pycache__/
+
+
+# ──────────────────────────────────────────
+# Uploaded / generated files
+# ──────────────────────────────────────────
+backend/uploads/
+backend/media/
+backend/static/collected/
+
+
+# ──────────────────────────────────────────
+# Node.js — Frontend
+# ──────────────────────────────────────────
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.vercel/
+
+# TypeScript build info
+*.tsbuildinfo
+frontend/next-env.d.ts
+
+# Testing
+coverage/
+frontend/coverage/
+
+# ──────────────────────────────────────────
+# Misc
+# ──────────────────────────────────────────
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+Thumbs.db
