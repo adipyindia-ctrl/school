@@ -17,6 +17,7 @@ const DEFAULT_NAV = [
 
 export function WebsiteShell({ data, children }: WebsiteShellProps) {
   const { branding, name, slug, phone, email, address } = data;
+  const established_year = data.established_year;
   const primary = branding.primary_color;
   const isWhiteLabel = data.enabled_modules?.includes("white_label") ?? false;
 
@@ -39,7 +40,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
       {/* Sticky Navbar */}
       <nav
         style={{ backgroundColor: primary }}
-        className="sticky top-0 z-50 shadow-md relative"
+        className="sticky top-0 z-50 shadow-md relative backdrop-blur-sm bg-opacity-95 border-b border-white/20"
       >
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo + School Name */}
@@ -52,7 +53,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
                 className="h-10 w-10 object-contain rounded-lg bg-white p-0.5"
               />
             )}
-            <a href="/" className="text-white font-bold text-xl hover:opacity-90 transition-opacity">
+            <a href="/" className="text-white font-bold text-xl hover:opacity-90 transition-opacity shadow-md">
               {name}
             </a>
           </div>
@@ -63,7 +64,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
               <a
                 key={item.id}
                 href={item.url ?? "#"}
-                className="hover:text-white transition-colors"
+                className="hover:opacity-100 opacity-80 transition-opacity duration-200"
               >
                 {item.label}
               </a>
@@ -88,31 +89,101 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
       <main>{children}</main>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: primary }} className="px-6 py-10 text-white">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+      <footer style={{ backgroundColor: primary }} className="text-white">
+        {/* Main footer content */}
+        <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-10">
+
+          {/* Column 1: School name, tagline, social links */}
           <div>
-            <p className="font-bold text-lg mb-1">{name}</p>
-            <p className="text-white/70 text-sm">
-              {branding.footer_text || `© ${new Date().getFullYear()} ${name}. All rights reserved.`}
+            {branding.logo_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={branding.logo_url}
+                alt={name}
+                className="h-12 w-12 object-contain rounded-lg bg-white p-1 mb-4"
+              />
+            )}
+            <h3 className="font-bold text-xl mb-2">{name}</h3>
+            <p className="text-white/70 text-sm leading-relaxed mb-6">
+              {branding.footer_text ||
+                `Committed to academic excellence and holistic development since ${established_year ?? "our founding"}.`}
             </p>
+            {/* Social links placeholders */}
+            <div className="flex gap-3">
+              {["f", "in", "tw", "yt"].map((s) => (
+                <a
+                  key={s}
+                  href="#"
+                  className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/40 transition-colors flex items-center justify-center text-xs font-bold"
+                >
+                  {s}
+                </a>
+              ))}
+            </div>
           </div>
+
+          {/* Column 2: Quick links */}
           <div>
-            <p className="font-semibold mb-2">Contact</p>
-            {address && <p className="text-white/70 text-sm">{address}</p>}
-            {phone && <p className="text-white/70 text-sm mt-0.5">{phone}</p>}
-            {email && <p className="text-white/70 text-sm">{email}</p>}
+            <h4 className="font-semibold text-lg mb-4 pb-2 border-b border-white/20">Quick Links</h4>
+            <ul className="space-y-2">
+              {navItems.slice(0, 6).map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={item.url ?? "#"}
+                    className="text-white/70 text-sm hover:text-white transition-colors flex items-center gap-1"
+                  >
+                    <span className="text-white/40">›</span> {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
+
+          {/* Column 3: Contact info */}
           <div>
-            <p className="font-semibold mb-2">Quick Links</p>
-            {navItems.slice(0, 5).map((item) => (
-              <a
-                key={item.id}
-                href={item.url ?? "#"}
-                className="block text-white/70 text-sm hover:text-white transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+            <h4 className="font-semibold text-lg mb-4 pb-2 border-b border-white/20">Get In Touch</h4>
+            <div className="space-y-3 text-sm text-white/70">
+              {address && (
+                <div className="flex items-start gap-2">
+                  <span className="mt-0.5">📍</span>
+                  <span>{address}</span>
+                </div>
+              )}
+              {phone && (
+                <div className="flex items-center gap-2">
+                  <span>📞</span>
+                  <span>{phone}</span>
+                </div>
+              )}
+              {email && (
+                <div className="flex items-center gap-2">
+                  <span>✉️</span>
+                  <span>{email}</span>
+                </div>
+              )}
+              {branding.support_phone && (
+                <div className="flex items-center gap-2">
+                  <span>🛠️</span>
+                  <span>Support: {branding.support_phone}</span>
+                </div>
+              )}
+              {branding.support_email && (
+                <div className="flex items-center gap-2">
+                  <span>📧</span>
+                  <span>Support: {branding.support_email}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright bar */}
+        <div className="border-t border-white/20">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-white/60 text-xs">
+            <p>© {new Date().getFullYear()} {name}. All rights reserved.</p>
+            {!isWhiteLabel && (
+              <p>Powered by SchoolCMS</p>
+            )}
           </div>
         </div>
       </footer>
