@@ -18,8 +18,10 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
   const hero = getSection(data, "hero");
   const about = getSection(data, "about");
   const stats = getSection(data, "stats");
+  const academics = getSection(data, "academics");
   const gallery = getSection(data, "gallery");
   const admissions = getSection(data, "admissions");
+  const contact = getSection(data, "contact");
 
   return (
     <WebsiteShell data={data}>
@@ -27,13 +29,28 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
       {hero.show && (
         <section
           style={{ background: `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)` }}
-          className="text-white py-28 px-6"
+          className="relative overflow-hidden min-h-[85vh] flex items-center justify-center text-white px-6"
         >
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-white/20 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+          {/* Decorative floating circles */}
+          <div
+            className="absolute opacity-20 rounded-full blur-3xl bg-white w-72 h-72"
+            style={{ position: "absolute", top: "-2rem", left: "-2rem" }}
+          />
+          <div
+            className="absolute opacity-20 rounded-full blur-3xl bg-white w-96 h-96"
+            style={{ position: "absolute", bottom: "-3rem", right: "-3rem" }}
+          />
+          <div
+            className="absolute opacity-20 rounded-full blur-3xl w-48 h-48"
+            style={{ position: "absolute", top: "30%", right: "10%", backgroundColor: "rgba(255,255,255,0.3)" }}
+          />
+
+          {/* Content */}
+          <div className="max-w-4xl mx-auto text-center relative z-10 pb-16">
+            <div className="inline-block backdrop-blur-sm bg-white/20 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
               Est. {established_year ?? "—"}
             </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+            <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 drop-shadow-lg">
               {hero.heading || branding.welcome_message || `Welcome to ${name}`}
             </h1>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
@@ -44,17 +61,24 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
               <a
                 href="#admissions"
                 style={{ backgroundColor: branding.accent_color }}
-                className="px-8 py-3 rounded-full font-bold text-white hover:opacity-90 transition-opacity"
+                className="px-8 py-3 rounded-full font-bold text-white hover:opacity-90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Apply Now
               </a>
               <a
                 href="#about"
-                className="px-8 py-3 rounded-full font-bold border-2 border-white text-white hover:bg-white/10 transition-colors"
+                className="px-8 py-3 rounded-full font-bold border-2 border-white text-white hover:bg-white/10 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Learn More
               </a>
             </div>
+          </div>
+
+          {/* SVG wave at bottom */}
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
+            <svg viewBox="0 0 1440 60" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" />
+            </svg>
           </div>
         </section>
       )}
@@ -69,7 +93,10 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
               ["20+", "Courses"],
               ["100%", "Results"],
             ].map(([num, label]) => (
-              <div key={label}>
+              <div
+                key={label}
+                className="rounded-xl bg-white/10 backdrop-blur-sm p-4 hover:-translate-y-1 transition-all duration-300"
+              >
                 <p className="text-3xl font-extrabold">{num}</p>
                 <p className="text-sm opacity-80">{label}</p>
               </div>
@@ -80,7 +107,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* About */}
       {about.show && (
-        <section id="about" className="py-20 px-6 bg-white">
+        <section id="about" className="py-20 px-6 bg-gradient-to-br from-white to-gray-50">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 style={{ color: primary }} className="text-3xl font-bold mb-4">
@@ -107,10 +134,60 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
                 <div
                   key={label}
                   style={{ borderColor: primary }}
-                  className="p-4 rounded-xl border-2 text-center"
+                  className="p-4 rounded-2xl border-2 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <p className="text-xs text-gray-500 mb-1">{label}</p>
                   <p className="font-bold text-gray-800 text-sm">{value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Academics */}
+      {academics.show && (
+        <section id="academics" className="py-20 px-6 bg-gray-50">
+          <div className="max-w-5xl mx-auto">
+            <h2 style={{ color: primary }} className="text-3xl font-bold mb-2 text-center">
+              {academics.heading || "Academics"}
+            </h2>
+            {/* Section header accent line */}
+            <div className="w-16 h-1 mx-auto mb-4 rounded-full" style={{ backgroundColor: primary }} />
+            <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+              {academics.description ||
+                "Our comprehensive academic programs are designed to nurture intellectual curiosity and build a strong foundation for lifelong learning."}
+            </p>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Primary School",
+                  desc: "A strong foundation in literacy, numeracy, and creative thinking for young learners.",
+                  icon: "📖",
+                },
+                {
+                  title: "Middle School",
+                  desc: "An engaging curriculum that builds critical thinking, scientific inquiry, and leadership skills.",
+                  icon: "🔬",
+                },
+                {
+                  title: "Senior School",
+                  desc: "Advanced coursework preparing students for board examinations and higher education.",
+                  icon: "🎓",
+                },
+              ].map(({ title, desc, icon }) => (
+                <div
+                  key={title}
+                  className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-2 transition-all duration-300"
+                >
+                  <div
+                    className="w-16 h-16 rounded-full flex items-center justify-center mb-4 shadow-sm"
+                    style={{ backgroundColor: `${primary}15` }}
+                  >
+                    <span className="text-2xl">{icon}</span>
+                  </div>
+                  <h3 className="font-bold text-gray-800 text-lg mb-2">{title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
                 </div>
               ))}
             </div>
@@ -129,7 +206,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
               {data.gallery_items.map((img) => (
                 <div
                   key={img.id}
-                  className="aspect-square overflow-hidden rounded-xl bg-gray-200 shadow-sm"
+                  className="aspect-square group relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 bg-gray-200"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -137,6 +214,9 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
                     alt={img.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                    <p className="text-white text-sm font-semibold">{img.title}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -146,23 +226,97 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* Admissions CTA */}
       {admissions.show && (
-        <section id="admissions" style={{ backgroundColor: `${primary}10` }} className="py-20 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 style={{ color: primary }} className="text-3xl font-bold mb-4">
+        <section
+          id="admissions"
+          style={{ background: `linear-gradient(135deg, ${primary}, ${secondary})` }}
+          className="relative overflow-hidden py-20 px-6"
+        >
+          {/* Decorative circle */}
+          <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-white/10" />
+
+          <div className="max-w-3xl mx-auto text-center relative z-10">
+            <h2 className="text-3xl font-bold mb-4 text-white">
               {admissions.heading || "Admissions Open"}
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-white/80 mb-8">
               {admissions.description ||
                 `Join ${name} and be part of a community dedicated to academic excellence.
                 Applications for the upcoming session are now open.`}
             </p>
             <a
               href="/login"
-              style={{ backgroundColor: primary }}
-              className="inline-block px-10 py-4 rounded-full text-white font-bold text-lg hover:opacity-90 transition-opacity"
+              style={{ backgroundColor: branding.accent_color }}
+              className="inline-block px-10 py-4 rounded-full text-white font-bold text-lg hover:opacity-90 transition-all duration-300 hover:scale-105 shadow-xl"
             >
               Apply for Admission
             </a>
+          </div>
+        </section>
+      )}
+
+      {/* Contact Us */}
+      {contact.show && (
+        <section id="contact" className="py-20 px-6 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <h2 style={{ color: primary }} className="text-3xl font-bold mb-4 text-center">
+              {contact.heading || "Contact Us"}
+            </h2>
+            <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+              {contact.description ||
+                `Have questions? We'd love to hear from you. Reach out to us and we'll get back to you as soon as possible.`}
+            </p>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Address */}
+              <div
+                className="text-center p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                style={{ borderTop: `3px solid ${primary}` }}
+              >
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: `${primary}15` }}
+                >
+                  <span className="text-2xl">📍</span>
+                </div>
+                <h3 className="font-bold text-gray-800 mb-2">Our Address</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {address || `${city}, ${state}`}
+                </p>
+              </div>
+              {/* Phone */}
+              <div
+                className="text-center p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                style={{ borderTop: `3px solid ${primary}` }}
+              >
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: `${primary}15` }}
+                >
+                  <span className="text-2xl">📞</span>
+                </div>
+                <h3 className="font-bold text-gray-800 mb-2">Phone</h3>
+                <p className="text-gray-600 text-sm">{phone || "—"}</p>
+                {branding.support_phone && (
+                  <p className="text-gray-500 text-xs mt-1">Support: {branding.support_phone}</p>
+                )}
+              </div>
+              {/* Email */}
+              <div
+                className="text-center p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                style={{ borderTop: `3px solid ${primary}` }}
+              >
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: `${primary}15` }}
+                >
+                  <span className="text-2xl">✉️</span>
+                </div>
+                <h3 className="font-bold text-gray-800 mb-2">Email</h3>
+                <p className="text-gray-600 text-sm">{email || "—"}</p>
+                {branding.support_email && (
+                  <p className="text-gray-500 text-xs mt-1">Support: {branding.support_email}</p>
+                )}
+              </div>
+            </div>
           </div>
         </section>
       )}
