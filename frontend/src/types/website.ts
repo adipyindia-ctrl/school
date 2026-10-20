@@ -12,6 +12,14 @@ export interface SchoolWebsiteData {
   website: string;
   layout_template: number; // 1–5
   enabled_modules: string[]; // list of enabled module keys, e.g. ["white_label", "website", ...]
+  hero_banner_url?: string | null;
+  hero_banners?: Array<{
+    id: string;
+    image_url: string;
+    title: string | null;
+    subtitle: string | null;
+    display_order: number;
+  }>;
   branding: {
     primary_color: string;
     secondary_color: string;

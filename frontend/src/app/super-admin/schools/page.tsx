@@ -129,11 +129,11 @@ export default function SchoolsPage() {
       key: "actions",
       header: "Actions",
       render: (row) => (
-        <TooltipProvider delayDuration={200}>
+        <TooltipProvider>
           <div className="flex items-center gap-1">
             {/* View */}
             <Tooltip>
-              <TooltipTrigger asChild>
+              <TooltipTrigger>
                 <Button
                   size="sm"
                   variant="ghost"
@@ -149,7 +149,7 @@ export default function SchoolsPage() {
             {/* Suspend / Activate */}
             {row.status !== "suspended" ? (
               <Tooltip>
-                <TooltipTrigger asChild>
+                <TooltipTrigger asChild={true as never}>
                   <Button
                     size="sm"
                     variant="ghost"
@@ -165,7 +165,7 @@ export default function SchoolsPage() {
               </Tooltip>
             ) : (
               <Tooltip>
-                <TooltipTrigger asChild>
+                <TooltipTrigger asChild={true as never}>
                   <Button
                     size="sm"
                     variant="ghost"
@@ -182,7 +182,7 @@ export default function SchoolsPage() {
 
             {/* Seed Demo Data */}
             <Tooltip>
-              <TooltipTrigger asChild>
+              <TooltipTrigger asChild={true as never}>
                 <Button
                   size="sm"
                   variant="ghost"
@@ -203,7 +203,7 @@ export default function SchoolsPage() {
 
             {/* Delete */}
             <Tooltip>
-              <TooltipTrigger asChild>
+              <TooltipTrigger asChild={true as never}>
                 <Button
                   size="sm"
                   variant="ghost"
@@ -241,7 +241,7 @@ export default function SchoolsPage() {
               </div>
             )}
             <Tooltip>
-              <TooltipTrigger asChild>
+              <TooltipTrigger asChild={true as never}>
                 <span>
                   <Button
                     onClick={() => router.push("/super-admin/schools/new")}

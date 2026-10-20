@@ -68,7 +68,7 @@ export default function SuperAdminAuditPage() {
   const handleClear = () => { setDraft(EMPTY); setApplied(EMPTY); setPage(1); };
   const hasFilters = Object.values(applied).some(Boolean);
 
-  const columns: { key: string; header: string; render?: (row: AuditEntry) => React.ReactNode }[] = [
+  const columns: { key: string; header: string; className?: string; render?: (row: AuditEntry) => React.ReactNode }[] = [
     {
       key: "created_at", header: "Timestamp",
       render: (row) => <span className="text-xs text-muted-foreground whitespace-nowrap">{new Date(row.created_at).toLocaleString()}</span>,
@@ -155,7 +155,7 @@ export default function SuperAdminAuditPage() {
                   <tr key={row.id} className="border-b last:border-0 hover:bg-muted/30">
                     {columns.map((col) => (
                       <td key={col.key} className="px-4 py-3 align-middle">
-                        {col.render ? col.render(row) : String((row as Record<string, unknown>)[col.key] ?? "")}
+                        {col.render ? col.render(row) : String((row as unknown as Record<string, unknown>)[col.key] ?? "")}
                       </td>
                     ))}
                   </tr>
