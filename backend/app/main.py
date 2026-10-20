@@ -1,5 +1,13 @@
 from __future__ import annotations
 
+import sys
+import os
+
+# Vercel path fix — add backend root so all app.* imports resolve
+_backend_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _backend_root not in sys.path:
+    sys.path.insert(0, _backend_root)
+
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
