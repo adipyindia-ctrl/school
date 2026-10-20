@@ -149,7 +149,7 @@ export default function SchoolsPage() {
             {/* Suspend / Activate */}
             {row.status !== "suspended" ? (
               <Tooltip>
-                <TooltipTrigger asChild={true as never}>
+                <TooltipTrigger>
                   <Button
                     size="sm"
                     variant="ghost"
@@ -165,7 +165,7 @@ export default function SchoolsPage() {
               </Tooltip>
             ) : (
               <Tooltip>
-                <TooltipTrigger asChild={true as never}>
+                <TooltipTrigger>
                   <Button
                     size="sm"
                     variant="ghost"
@@ -182,7 +182,7 @@ export default function SchoolsPage() {
 
             {/* Seed Demo Data */}
             <Tooltip>
-              <TooltipTrigger asChild={true as never}>
+              <TooltipTrigger>
                 <Button
                   size="sm"
                   variant="ghost"
@@ -203,7 +203,7 @@ export default function SchoolsPage() {
 
             {/* Delete */}
             <Tooltip>
-              <TooltipTrigger asChild={true as never}>
+              <TooltipTrigger>
                 <Button
                   size="sm"
                   variant="ghost"
@@ -241,7 +241,7 @@ export default function SchoolsPage() {
               </div>
             )}
             <Tooltip>
-              <TooltipTrigger asChild={true as never}>
+              <TooltipTrigger>
                 <span>
                   <Button
                     onClick={() => router.push("/super-admin/schools/new")}
