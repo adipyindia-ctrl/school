@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.models.subscription import SchoolModule, Module
 from app.models.school import School, SchoolBranding
-from app.models.website import NavigationMenu, WebsiteSetting, Gallery as GalleryModel, WebsiteSection
+from app.models.website import NavigationMenu, WebsiteSetting, Gallery as GalleryModel, WebsiteSection, HeroBanner
 from app.schemas.common import SuccessResponse
 from app.schemas.school import BrandingResponse
 from app.services.school_service import get_school_by_slug, get_school_by_custom_domain
@@ -162,6 +162,14 @@ def get_school_website(slug: str, db: Session = Depends(get_db)):
     )
     enabled_module_keys = [m.key for m in school_modules]
 
+    # Fetch active hero banners
+    hero_banners = (
+        db.query(HeroBanner)
+        .filter(HeroBanner.school_id == school.id, HeroBanner.is_active == True)
+        .order_by(HeroBanner.display_order, HeroBanner.created_at)
+        .all()
+    )
+
     return SuccessResponse(data={
         "school_id": str(school.id),
         "name": school.name,
@@ -189,6 +197,17 @@ def get_school_website(slug: str, db: Session = Depends(get_db)):
             "support_email": branding.support_email if branding else None,
         },
         "navigation_menu": nav_menu,
+        "hero_banner_url": ws.hero_banner_url if ws else None,
+        "hero_banners": [
+            {
+                "id": str(b.id),
+                "image_url": b.image_url,
+                "title": b.title,
+                "subtitle": b.subtitle,
+                "display_order": b.display_order,
+            }
+            for b in hero_banners
+        ],
         "gallery_items": [
             {"id": str(g.id), "title": g.title, "image_url": g.image_url, "category": g.category}
             for g in gallery_items
