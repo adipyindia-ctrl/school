@@ -466,3 +466,124 @@ def delete_gallery_item(
 ):
     gallery_service.delete_gallery_item(db, school_id=current_user.school_id, item_id=item_id)
     return SuccessResponse(data={}, message="Gallery item deleted")
+
+
+# ── Hero Banner Pydantic Schemas ──────────────────────────────────────────────
+
+class HeroBannerCreate(BaseModel):
+    image_url: str
+    title: Optional[str] = None
+    subtitle: Optional[str] = None
+    display_order: int = 0
+
+
+class HeroBannerUpdate(BaseModel):
+    image_url: Optional[str] = None
+    title: Optional[str] = None
+    subtitle: Optional[str] = None
+    display_order: Optional[int] = None
+    is_active: Optional[bool] = None
+
+
+class HeroBannerReorderItem(BaseModel):
+    id: UUID
+    display_order: int
+
+
+class HeroBannerBulkReorder(BaseModel):
+    order: list[HeroBannerReorderItem]
+
+
+def _banner_to_dict(b: Any) -> dict:
+    return {
+        "id": str(b.id),
+        "school_id": str(b.school_id),
+        "image_url": b.image_url,
+        "title": b.title,
+        "subtitle": b.subtitle,
+        "display_order": b.display_order,
+        "is_active": b.is_active,
+        "created_at": b.created_at.isoformat() if b.created_at else None,
+    }
+
+
+# ── Hero Banner Routes ────────────────────────────────────────────────────────
+
+@router.get("/banners", response_model=SuccessResponse[list])
+def list_banners(
+    db: Session = Depends(get_db),
+    current_user: CurrentUser = Depends(require_permission(Permissions.WEBSITE_VIEW)),
+):
+    from app.models.website import HeroBanner
+    banners = (
+        db.query(HeroBanner)
+        .filter(HeroBanner.school_id == current_user.school_id)
+        .order_by(HeroBanner.display_order, HeroBanner.created_at)
+        .all()
+    )
+    return SuccessResponse(data=[_banner_to_dict(b) for b in banners])
+
+
+@router.post("/banners", response_model=SuccessResponse[dict], status_code=201)
+def create_banner(
+    payload: HeroBannerCreate,
+    db: Session = Depends(get_db),
+    current_user: CurrentUser = Depends(require_permission(Permissions.WEBSITE_MANAGE)),
+):
+    import uuid as _uuid
+    from app.models.website import HeroBanner
+    banner = HeroBanner(
+        id=_uuid.uuid4(),
+        school_id=current_user.school_id,
+        image_url=payload.image_url,
+        title=payload.title,
+        subtitle=payload.subtitle,
+        display_order=payload.display_order,
+        is_active=True,
+    )
+    db.add(banner)
+    db.commit()
+    db.refresh(banner)
+    return SuccessResponse(data=_banner_to_dict(banner), message="Banner created")
+
+
+@router.patch("/banners/{banner_id}", response_model=SuccessResponse[dict])
+def update_banner(
+    banner_id: UUID,
+    payload: HeroBannerUpdate,
+    db: Session = Depends(get_db),
+    current_user: CurrentUser = Depends(require_permission(Permissions.WEBSITE_MANAGE)),
+):
+    from app.models.website import HeroBanner
+    from fastapi import HTTPException
+    banner = db.query(HeroBanner).filter(
+        HeroBanner.id == banner_id,
+        HeroBanner.school_id == current_user.school_id,
+    ).first()
+    if not banner:
+        raise HTTPException(status_code=404, detail="Banner not found")
+    for field, value in payload.model_dump(exclude_unset=True).items():
+        setattr(banner, field, value)
+    db.commit()
+    db.refresh(banner)
+    return SuccessResponse(data=_banner_to_dict(banner), message="Banner updated")
+
+
+@router.delete("/banners/{banner_id}", response_model=SuccessResponse[dict])
+def delete_banner(
+    banner_id: UUID,
+    payload: None = None,
+    db: Session = Depends(get_db),
+    current_user: CurrentUser = Depends(require_permission(Permissions.WEBSITE_MANAGE)),
+):
+    from app.models.website import HeroBanner
+    from fastapi import HTTPException
+    banner = db.query(HeroBanner).filter(
+        HeroBanner.id == banner_id,
+        HeroBanner.school_id == current_user.school_id,
+    ).first()
+    if not banner:
+        raise HTTPException(status_code=404, detail="Banner not found")
+    db.delete(banner)
+    db.commit()
+    return SuccessResponse(data={}, message="Banner deleted")
