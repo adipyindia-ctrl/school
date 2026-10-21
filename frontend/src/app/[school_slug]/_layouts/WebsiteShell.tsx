@@ -72,13 +72,13 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
           </div>
 
           {/* Student Login — desktop */}
-          <a
+          {/* <a
             href="/login"
             style={{ backgroundColor: "white", color: primary }}
             className="hidden md:block px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             Student Login
-          </a>
+          </a> */}
 
           {/* Mobile hamburger menu — client component */}
           <MobileNav navItems={navItems} slug={slug} primaryColor={primary} />

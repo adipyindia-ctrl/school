@@ -116,13 +116,13 @@ export default async function CmsPageRenderer({ params }: Props) {
           </nav>
 
           {/* Student Login */}
-          <a
+          {/* <a
             href="/login"
             style={{ backgroundColor: "white", color: primaryColor }}
             className="hidden md:block px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             Student Login
-          </a>
+          </a> */}
         </div>
       </header>
 

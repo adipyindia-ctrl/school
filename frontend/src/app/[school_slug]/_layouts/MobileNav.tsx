@@ -67,16 +67,16 @@ export function MobileNav({ navItems, slug, primaryColor }: MobileNavProps) {
               {item.label}
             </a>
           ))}
-          <div className="border-t border-white/20 mt-2 pt-2 px-6 pb-3">
-            <a
+          {/* <div className="border-t border-white/20 mt-2 pt-2 px-6 pb-3"> */}
+            {/* <a
               href="/login"
               onClick={() => setOpen(false)}
               className="block text-center py-2 rounded-full bg-white text-sm font-semibold hover:opacity-90 transition-opacity"
               style={{ color: primaryColor }}
             >
               Student Login
-            </a>
-          </div>
+            </a> */}
+          {/* </div> */}
         </div>
       )}
     </div>
