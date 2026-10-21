@@ -17,7 +17,9 @@ import {
   Trash2,
   FileText,
   Pencil,
+  Upload,
 } from "lucide-react";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -359,6 +361,26 @@ function HeroBannersManager() {
   const [newUrl, setNewUrl] = useState("");
   const [newTitle, setNewTitle] = useState("");
   const [preview, setPreview] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const bannerFileRef = useRef<HTMLInputElement>(null);
+
+  // Convert local file to base64
+  const handleBannerFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const dataUrl = ev.target?.result as string;
+      setNewUrl(dataUrl);
+      setPreview(dataUrl);
+      if (!newTitle) setNewTitle(file.name.replace(/\.[^.]+$/, ""));
+      setUploading(false);
+    };
+    reader.onerror = () => setUploading(false);
+    reader.readAsDataURL(file);
+    e.target.value = "";
+  };
 
   const { data: banners = [], isLoading } = useQuery({
     queryKey: ["hero-banners"],
@@ -434,8 +456,22 @@ function HeroBannersManager() {
         <div className="border-t pt-4 space-y-3">
           <p className="text-xs font-medium">Add New Banner</p>
           <div className="space-y-2">
-            <Input placeholder="Image URL (https://...)" value={newUrl}
+            <Input placeholder="Image URL (https://...)" value={newUrl.startsWith("data:") ? "" : newUrl}
               onChange={(e) => { setNewUrl(e.target.value); setPreview(e.target.value.trim() || null); }} />
+            {/* Divider */}
+            <div className="flex items-center gap-2">
+              <div className="flex-1 h-px bg-border" />
+              <span className="text-xs text-muted-foreground">or upload from device</span>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+            {/* File upload */}
+            <input ref={bannerFileRef} type="file" accept="image/*" className="hidden" onChange={handleBannerFileUpload} />
+            <Button type="button" variant="outline" size="sm" className="w-full" onClick={() => bannerFileRef.current?.click()} disabled={uploading}>
+              {uploading ? <><Loader2 className="mr-2 h-3.5 w-3.5 animate-spin" />Processing...</> : <><Upload className="mr-2 h-3.5 w-3.5" />Choose Image from Device</>}
+            </Button>
+            {newUrl.startsWith("data:") && (
+              <p className="text-xs text-green-600 font-medium">✓ Image selected from device</p>
+            )}
             <Input placeholder="Title (optional)" value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)} />
           </div>
