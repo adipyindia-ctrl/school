@@ -50,10 +50,11 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.allowed_origins_list,
-    allow_credentials=len(settings.allowed_origins_list) > 0 and "*" not in settings.allowed_origins_list,
+    allow_origins=settings.allowed_origins_list if "*" not in settings.allowed_origins_list else ["*"],
+    allow_credentials="*" not in settings.allowed_origins_list,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # ── Exception handlers ────────────────────────────────────────────────────────

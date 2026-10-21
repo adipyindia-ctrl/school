@@ -37,6 +37,7 @@ class Settings(BaseSettings):
         # If wildcard is set, return it as-is
         if "*" in origins:
             return ["*"]
+        # Always include common Vercel patterns
         return origins
 
     # Super Admin bootstrap
