@@ -761,28 +761,18 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
                 </div>
               </div>
 
-              {/* Right — map placeholder */}
-              <div className="rounded-sm overflow-hidden bg-gray-200 border border-gray-200 flex flex-col items-center justify-center min-h-[320px] relative">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 40px), repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 40px)",
-                  }}
+              {/* Right — Google Map */}
+              <div className="rounded-sm overflow-hidden border border-gray-200 min-h-[320px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572.8608563176817!2d82.52597947222179!3d26.427966480760162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3990928e2ecacf07%3A0x45812ae7e2c0ee77!2sDOYEN%20INTERNATIONAL%20SCHOOL!5e0!3m2!1sen!2sin!4v1792572714179!5m2!1sen!2sin"
+                  width="100%"
+                  height="320"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  title="Doyen International School Location"
                 />
-                <div className="relative z-10 flex flex-col items-center text-center px-8">
-                  <div
-                    className="w-14 h-14 rounded-sm flex items-center justify-center mb-4"
-                    style={{ backgroundColor: `${primary}18` }}
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: primary }}>
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                  </div>
-                  <p className="font-bold text-gray-600 text-base">Map Coming Soon</p>
-                  <p className="text-gray-400 text-sm mt-1">{address || `${city}, ${state}`}</p>
-                </div>
               </div>
             </div>
           </div>
