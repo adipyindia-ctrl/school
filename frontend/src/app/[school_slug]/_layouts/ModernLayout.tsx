@@ -39,26 +39,33 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
         const heroContent = (
           <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center min-h-[90vh] py-24">
-            {/* Left — school name / tagline / CTAs */}
+            {/* Left — accent pill + heading + CTAs */}
             <div>
-              {/* Breadcrumb pill */}
+              {/* CBSE pill */}
               <div
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm text-xs font-bold mb-6 tracking-[0.15em] uppercase border-l-2"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm text-xs font-bold mb-6 tracking-[0.15em] uppercase border-l-4"
                 style={{
-                  backgroundColor: "rgba(255,255,255,0.12)",
+                  backgroundColor: "rgba(0,0,0,0.45)",
                   borderLeftColor: accent,
-                  color: "rgba(255,255,255,0.85)",
+                  color: "rgba(255,255,255,0.90)",
                   backdropFilter: "blur(8px)",
                 }}
               >
-                Est. {established_year ?? "—"}&nbsp;&nbsp;·&nbsp;&nbsp;{data.school_type.toUpperCase()}
+                CBSE AFFILIATED&nbsp;•&nbsp;EST. {established_year ?? "—"}
               </div>
 
               <h1
-                className="font-extrabold leading-[1.1] mb-5 text-white"
+                className="font-extrabold leading-[1.1] mb-5"
                 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}
               >
-                {hero.heading || branding.welcome_message || name}
+                {hero.heading ? (
+                  <span className="text-white">{hero.heading}</span>
+                ) : (
+                  <>
+                    <span className="text-white block">A Brighter Future</span>
+                    <span className="block" style={{ color: accent }}>Starts Here</span>
+                  </>
+                )}
               </h1>
 
               {/* Accent divider */}
@@ -78,50 +85,79 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
                   className="px-8 py-3.5 rounded-sm font-bold text-white shadow-xl hover:opacity-90 active:scale-95 transition-all duration-150 text-sm uppercase tracking-widest"
                   style={{ backgroundColor: accent }}
                 >
-                  Apply Now
+                  Apply for Admission →
                 </a>
                 <a
                   href="#about"
                   className="px-8 py-3.5 rounded-sm font-bold border-2 border-white/70 text-white hover:bg-white/15 active:scale-95 transition-all duration-150 text-sm uppercase tracking-widest"
                 >
-                  Learn More
+                  Explore Our School
                 </a>
               </div>
             </div>
 
-            {/* Right — clean info card (desktop only) */}
+            {/* Right — floating admissions card (desktop only) */}
             <div className="hidden md:flex justify-end">
-              <div
-                className="w-72 rounded-sm overflow-hidden shadow-2xl"
-                style={{ backgroundColor: "rgba(255,255,255,0.97)" }}
-              >
+              <div className="w-80 rounded-xl overflow-hidden shadow-2xl bg-white">
                 {/* Card header */}
-                <div className="px-6 py-4" style={{ backgroundColor: primary }}>
-                  <p className="text-white/70 text-xs font-bold uppercase tracking-widest mb-0.5">School Profile</p>
-                  <p className="text-white font-extrabold text-base truncate">{name}</p>
+                <div className="px-6 py-5" style={{ backgroundColor: accent }}>
+                  <p className="text-white/80 text-xs font-bold uppercase tracking-widest mb-1">Admissions Open</p>
+                  <p className="font-extrabold text-2xl text-white">2026-27</p>
                 </div>
                 {/* Card body */}
-                <div className="px-6 py-5 divide-y divide-gray-100">
-                  {[
-                    { label: "Board Affiliation", value: data.school_type.toUpperCase() },
-                    { label: "Established", value: String(established_year ?? "—") },
-                    { label: "Location", value: `${city}, ${state}` },
-                    { label: "Contact", value: phone || email || "—" },
-                  ].map(({ label, value }) => (
-                    <div key={label} className="py-3 flex items-center justify-between gap-4">
-                      <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex-shrink-0">{label}</span>
-                      <span className="font-bold text-gray-800 text-sm text-right truncate" style={{ color: primary }}>{value}</span>
+                <div className="px-6 py-5">
+                  <p className="text-gray-500 text-sm mb-5 font-medium">
+                    Nurturing Excellence Since {established_year ?? "—"}
+                  </p>
+                  <div className="space-y-4">
+                    {/* Board row */}
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: `${primary}15` }}
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: primary }}>
+                          <rect x="3" y="3" width="18" height="18" rx="2" />
+                          <path d="M3 9h18M9 21V9" />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700 text-sm font-semibold">{data.school_type.toUpperCase()}</span>
                     </div>
-                  ))}
+                    {/* Location row */}
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: `${primary}15` }}
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: primary }}>
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700 text-sm font-semibold">{city}, {state}</span>
+                    </div>
+                    {/* Phone / email row */}
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: `${primary}15` }}
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: primary }}>
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.27-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                        </svg>
+                      </div>
+                      <span className="text-gray-700 text-sm font-semibold">{phone || email || "—"}</span>
+                    </div>
+                  </div>
                 </div>
                 {/* Card footer */}
-                <div className="px-6 pb-5">
+                <div className="px-6 pb-6">
                   <a
-                    href="#admissions"
-                    className="block w-full text-center py-2.5 rounded-sm text-sm font-bold text-white uppercase tracking-widest hover:opacity-90 transition-opacity"
+                    href="#contact"
+                    className="block w-full text-center py-3 rounded-lg text-sm font-bold text-white uppercase tracking-widest hover:opacity-90 transition-opacity shadow-md"
                     style={{ backgroundColor: accent }}
                   >
-                    Enquire Now
+                    Request a Callback →
                   </a>
                 </div>
               </div>
@@ -158,46 +194,23 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
         );
       })()}
 
-      {/* ── Affiliation Bar ── */}
-      {hero.show && (
-        <div
-          className="w-full py-3 px-6"
-          style={{ backgroundColor: "#0f172a" }}
-        >
-          <div className="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-x-6 gap-y-1 text-center">
-            {[
-              `CBSE Affiliated`,
-              `Affiliation No. 2130XXX`,
-              `Est. ${established_year ?? "—"}`,
-              `${city}, ${state}`,
-            ].map((item, i, arr) => (
-              <span key={item} className="flex items-center gap-6">
-                <span
-                  className="text-xs font-bold uppercase tracking-[0.15em]"
-                  style={{ color: "rgba(255,255,255,0.80)" }}
-                >
-                  {item}
-                </span>
-                {i < arr.length - 1 && (
-                  <span
-                    className="w-1 h-1 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: accent }}
-                  />
-                )}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* ── Stats ── */}
+      {/* ── Features / Stats Bar ── */}
       {stats.show && (
-        <section className="py-14 px-6 bg-white border-b border-gray-100">
-          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+        <section className="bg-white border-b border-gray-100 shadow-sm">
+          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-100">
             {[
               {
-                num: "1200+",
-                label: "Students Enrolled",
+                label: "Academic Excellence",
+                desc: "CBSE curriculum, smart classrooms & top board results",
+                svg: (
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Experienced Faculty",
+                desc: "Qualified & dedicated educators with proven expertise",
                 svg: (
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -208,49 +221,36 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
                 ),
               },
               {
-                num: "80+",
-                label: "Qualified Faculty",
+                label: "Sports & Activities",
+                desc: "Co-curricular programs that nurture every talent",
                 svg: (
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 8v4l3 3" />
                   </svg>
                 ),
               },
               {
-                num: `${established_year ? new Date().getFullYear() - established_year : 20}+`,
-                label: "Years of Excellence",
+                label: "Safe Campus",
+                desc: "Secure, child-friendly environment with 24/7 care",
                 svg: (
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="21" y2="10" />
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
                 ),
               },
-              {
-                num: "98%",
-                label: "Board Pass Rate",
-                svg: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                  </svg>
-                ),
-              },
-            ].map(({ num, label, svg }) => (
+            ].map(({ label, desc, svg }) => (
               <div
                 key={label}
-                className="bg-white rounded-sm border border-gray-100 pt-5 pb-6 px-6 flex flex-col items-center text-center shadow-sm"
-                style={{ borderTop: `3px solid ${primary}` }}
+                className="flex items-start gap-4 px-7 py-8"
               >
-                <span className="mb-3" style={{ color: primary }}>
+                <span className="flex-shrink-0 mt-0.5" style={{ color: accent }}>
                   {svg}
                 </span>
-                <p className="text-3xl font-extrabold leading-none mb-1" style={{ color: primary }}>
-                  {num}
-                </p>
-                <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mt-1">{label}</p>
+                <div>
+                  <p className="font-extrabold text-gray-900 text-sm mb-1">{label}</p>
+                  <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -259,133 +259,94 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── About ── */}
       {about.show && (
-        <section id="about" className="py-24 px-6 bg-white">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-            {/* Left */}
-            <div>
+        <section id="about" className="py-24 px-6" style={{ backgroundColor: "#f8fafc" }}>
+          <div className="max-w-7xl mx-auto">
+            {/* Section heading */}
+            <div className="text-center mb-14">
               <p
                 className="text-xs font-bold uppercase tracking-[0.18em] mb-3"
                 style={{ color: accent }}
               >
                 About Us
               </p>
-              <h2
-                className="text-3xl md:text-4xl font-extrabold leading-tight mb-4"
-                style={{ color: primary }}
-              >
-                {about.heading || `Welcome to ${name}`}
+              <h2 className="text-3xl md:text-4xl font-extrabold leading-tight mb-4">
+                {about.heading ? (
+                  <span style={{ color: "#0f172a" }}>{about.heading}</span>
+                ) : (
+                  <>
+                    <span style={{ color: "#0f172a" }}>Discover </span>
+                    <span style={{ color: accent }}>What Makes Us Different</span>
+                  </>
+                )}
               </h2>
-              <div className="flex items-center gap-2 mb-7">
-                <div className="w-10 h-0.5" style={{ backgroundColor: primary }} />
-                <div className="w-3 h-0.5" style={{ backgroundColor: accent }} />
-              </div>
-              <p className="text-gray-600 leading-relaxed mb-5 text-base">
+              <div className="w-10 h-0.5 mx-auto mb-5" style={{ backgroundColor: accent }} />
+              <p className="text-gray-500 max-w-2xl mx-auto text-base leading-relaxed">
                 {about.description ||
-                  `${name} is a premier CBSE-affiliated institution dedicated to academic excellence and the all-round development of every student. With state-of-the-art facilities and a team of experienced educators, we create an environment where young minds flourish.`}
+                  `${name} is a premier CBSE-affiliated institution dedicated to academic excellence and the all-round development of every student.`}
               </p>
-              <p className="text-gray-600 leading-relaxed text-base mb-9">
-                Our curriculum blends traditional values with modern pedagogical practices, equipping
-                students with the knowledge, skills, and character to thrive in a rapidly changing world.
-              </p>
-
-              {/* Why Choose Us */}
-              <p className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: primary }}>
-                Why Choose Us
-              </p>
-              <div className="space-y-4 mb-9">
-                {[
-                  {
-                    title: "CBSE Curriculum",
-                    desc: "Rigorous, nationally recognised syllabus aligned to NEP 2020 guidelines.",
-                  },
-                  {
-                    title: "Experienced Faculty",
-                    desc: "Qualified educators with decades of combined teaching experience.",
-                  },
-                  {
-                    title: "Modern Infrastructure",
-                    desc: "Smart classrooms, science labs, library, and multi-purpose sports facilities.",
-                  },
-                  {
-                    title: "Holistic Development",
-                    desc: "Arts, sports, and co-curricular activities that nurture every talent.",
-                  },
-                ].map(({ title, desc }) => (
-                  <div key={title} className="flex items-start gap-4">
-                    <span
-                      className="mt-1.5 flex-shrink-0 w-2.5 h-2.5 rounded-sm"
-                      style={{ backgroundColor: accent }}
-                    />
-                    <div>
-                      <p className="font-bold text-gray-800 text-sm">{title}</p>
-                      <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <a
-                href="#admissions"
-                className="inline-block px-7 py-3 rounded-sm text-white font-bold text-sm uppercase tracking-widest shadow-md hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: primary }}
-              >
-                Join Our School &rarr;
-              </a>
             </div>
 
-            {/* Right — Principal's Message */}
-            <div className="flex flex-col gap-6">
-              {/* Quote box */}
-              <div
-                className="rounded-sm p-8 relative border border-gray-100"
-                style={{
-                  backgroundColor: "#f8fafc",
-                  borderLeft: `4px solid ${primary}`,
-                }}
-              >
-                {/* Large decorative quote */}
+            {/* 3-card grid */}
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                    </svg>
+                  ),
+                  title: "Academic Excellence",
+                  desc: "Our CBSE-aligned curriculum combined with experienced faculty and modern infrastructure consistently delivers outstanding board results and prepares students for higher education.",
+                  link: "Learn More →",
+                  href: "#academics",
+                },
+                {
+                  icon: (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 8v4l3 3" />
+                    </svg>
+                  ),
+                  title: "Beyond the Classroom",
+                  desc: "From sports and performing arts to community service and technology clubs — we nurture every dimension of a student's personality through rich co-curricular programs.",
+                  link: "Explore Activities →",
+                  href: "#gallery",
+                },
+                {
+                  icon: (
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  ),
+                  title: "A Safe, Caring Campus",
+                  desc: "We maintain a secure, inclusive, and nurturing environment where every child feels valued, respected, and empowered to explore their full potential every single day.",
+                  link: "Take a Campus Tour →",
+                  href: "#contact",
+                },
+              ].map(({ icon, title, desc, link, href }) => (
                 <div
-                  className="absolute top-3 right-6 text-7xl font-serif leading-none select-none pointer-events-none"
-                  style={{ color: `${primary}18` }}
+                  key={title}
+                  className="bg-white rounded-xl border border-gray-100 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
                 >
-                  &rdquo;
-                </div>
-
-                <p className="text-xs font-bold uppercase tracking-[0.18em] mb-5" style={{ color: accent }}>
-                  Principal&apos;s Message
-                </p>
-
-                <p className="text-gray-700 leading-relaxed italic text-base relative z-10 mb-6">
-                  {`Education is not merely the acquisition of knowledge — it is the development of character, resilience, and a lifelong love of learning. At ${name}, we are committed to nurturing every student as a complete individual, ready to make a meaningful contribution to society.`}
-                </p>
-
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
-                  <div className="w-8 h-0.5 rounded-full" style={{ backgroundColor: primary }} />
-                  <div>
-                    <p className="font-extrabold text-gray-800 text-sm">Principal</p>
-                    <p className="text-gray-400 text-xs">{name}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick info grid */}
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { label: "Board", value: data.school_type.toUpperCase() },
-                  { label: "Established", value: String(established_year ?? "—") },
-                  { label: "City", value: city },
-                  { label: "State", value: state },
-                ].map(({ label, value }) => (
+                  {/* Icon square */}
                   <div
-                    key={label}
-                    className="bg-gray-50 rounded-sm p-4 border border-gray-100"
-                    style={{ borderTop: `2px solid ${accent}` }}
+                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 flex-shrink-0"
+                    style={{ backgroundColor: `${accent}15` }}
                   >
-                    <p className="text-xs font-bold uppercase tracking-widest mb-1 text-gray-400">{label}</p>
-                    <p className="font-extrabold text-sm" style={{ color: primary }}>{value}</p>
+                    <span style={{ color: accent }}>{icon}</span>
                   </div>
-                ))}
-              </div>
+                  <h3 className="font-extrabold text-gray-900 text-lg mb-3">{title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-5">{desc}</p>
+                  <a
+                    href={href}
+                    className="text-sm font-bold hover:underline transition-colors"
+                    style={{ color: accent }}
+                  >
+                    {link}
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </section>
