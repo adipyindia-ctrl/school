@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Plus, Pencil, Trash2, Image as ImageIcon, Loader2 } from "lucide-react";
+import { Plus, Pencil, Trash2, Image as ImageIcon, Loader2, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -163,6 +163,25 @@ export default function GalleryManagementPage() {
   const [editingItem, setEditingItem] = useState<GalleryItem | null>(null);
   const [form, setForm] = useState<GalleryForm>(EMPTY_FORM);
   const [deleteTarget, setDeleteTarget] = useState<GalleryItem | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Convert local file to base64 data URL
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const dataUrl = ev.target?.result as string;
+      setForm((f) => ({ ...f, image_url: dataUrl, title: f.title || file.name.replace(/\.[^.]+$/, "") }));
+      setUploading(false);
+    };
+    reader.onerror = () => setUploading(false);
+    reader.readAsDataURL(file);
+    // Reset input so same file can be selected again
+    e.target.value = "";
+  };
 
   const filteredItems = useMemo(() => {
     if (activeCategory === "all") return items;
@@ -218,10 +237,29 @@ export default function GalleryManagementPage() {
         title="Gallery Management"
         description="Manage photos displayed on your school website."
         actions={
-          <Button onClick={openNew}>
-            <Plus className="mr-2 h-4 w-4" />
-            Add Image
-          </Button>
+          <div className="flex items-center gap-2">
+            {/* Hidden file input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => {
+                handleFileUpload(e);
+                setEditingItem(null);
+                setForm(EMPTY_FORM);
+                setDialogOpen(true);
+              }}
+            />
+            <Button variant="outline" onClick={() => fileInputRef.current?.click()}>
+              <Upload className="mr-2 h-4 w-4" />
+              Upload Image
+            </Button>
+            <Button onClick={openNew}>
+              <Plus className="mr-2 h-4 w-4" />
+              Add Image
+            </Button>
+          </div>
         }
       />
 
@@ -312,9 +350,31 @@ export default function GalleryManagementPage() {
               <Input
                 id="gallery-url"
                 placeholder="https://example.com/photo.jpg"
-                value={form.image_url}
+                value={form.image_url.startsWith("data:") ? "" : form.image_url}
                 onChange={(e) => setForm((f) => ({ ...f, image_url: e.target.value }))}
               />
+              <div className="flex items-center gap-2 mt-2">
+                <div className="flex-1 h-px bg-border" />
+                <span className="text-xs text-muted-foreground">or</span>
+                <div className="flex-1 h-px bg-border" />
+              </div>
+              {/* File upload inside dialog */}
+              <label className="flex items-center justify-center gap-2 p-3 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted/50 transition-colors text-sm text-muted-foreground">
+                {uploading ? (
+                  <><Loader2 className="h-4 w-4 animate-spin" />Processing...</>
+                ) : (
+                  <><Upload className="h-4 w-4" />Upload from device (JPG, PNG, WEBP)</>
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleFileUpload}
+                />
+              </label>
+              {form.image_url.startsWith("data:") && (
+                <p className="text-xs text-green-600 font-medium">✓ Image uploaded from device</p>
+              )}
             </div>
 
             {/* Preview */}
