@@ -223,16 +223,19 @@ export function DashboardSidebar() {
   const isWhiteLabel = isModuleEnabled("white_label");
   const [query, setQuery] = useState("");
 
+  const sidebarColor = (tenant?.branding as { sidebar_color?: string })?.sidebar_color || "#0f172a";
+  const primaryColor = (tenant?.branding as { primary_color?: string })?.primary_color || "#1a73e8";
+
   return (
     <aside
       className="flex flex-col w-64 min-h-screen shrink-0 text-white"
-      style={{ backgroundColor: "var(--color-sidebar, #0f172a)" }}
+      style={{ backgroundColor: sidebarColor }}
     >
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-5 py-5 border-b border-white/10">
         <div
           className="h-8 w-8 rounded-lg flex items-center justify-center font-bold text-sm text-white"
-          style={{ backgroundColor: "var(--color-primary, #1a73e8)" }}
+          style={{ backgroundColor: primaryColor }}
         >
           {tenant?.name?.[0] ?? "S"}
         </div>

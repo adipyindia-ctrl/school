@@ -224,3 +224,49 @@ export async function reorderGalleryItems(
   const res = await api.post<ApiResponse<GalleryItem[]>>(`${BASE}/gallery/reorder`, { order });
   return res.data.data;
 }
+
+// ── Hero Banners ──────────────────────────────────────────────────────────────
+
+export interface HeroBannerItem {
+  id: string;
+  school_id: string;
+  image_url: string;
+  title: string | null;
+  subtitle: string | null;
+  display_order: number;
+  is_active: boolean;
+  created_at: string;
+}
+
+export async function listHeroBanners(): Promise<HeroBannerItem[]> {
+  const res = await api.get<ApiResponse<HeroBannerItem[]>>(`${BASE}/banners`);
+  return res.data.data;
+}
+
+export async function createHeroBanner(payload: {
+  image_url: string;
+  title?: string;
+  subtitle?: string;
+  display_order?: number;
+}): Promise<HeroBannerItem> {
+  const res = await api.post<ApiResponse<HeroBannerItem>>(`${BASE}/banners`, payload);
+  return res.data.data;
+}
+
+export async function updateHeroBanner(
+  id: string,
+  payload: Partial<{
+    image_url: string;
+    title: string | null;
+    subtitle: string | null;
+    display_order: number;
+    is_active: boolean;
+  }>,
+): Promise<HeroBannerItem> {
+  const res = await api.patch<ApiResponse<HeroBannerItem>>(`${BASE}/banners/${id}`, payload);
+  return res.data.data;
+}
+
+export async function deleteHeroBanner(id: string): Promise<void> {
+  await api.delete(`${BASE}/banners/${id}`);
+}

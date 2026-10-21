@@ -59,6 +59,11 @@ import {
   updateCmsPage,
   deleteCmsPage,
   type CmsPage,
+  listHeroBanners,
+  createHeroBanner,
+  updateHeroBanner,
+  deleteHeroBanner,
+  type HeroBannerItem,
 } from "@/lib/api/website";
 
 const SECTION_LABELS: Record<string, { label: string; icon: string; description: string }> = {
@@ -338,7 +343,115 @@ function WebsiteSettingsTab() {
           </Button>
         </CardContent>
       </Card>
+
+      {/* Hero Banners Slider */}
+      <HeroBannersManager />
+
     </div>
+  );
+}
+
+// ── Hero Banners Manager ──────────────────────────────────────────────────────
+
+function HeroBannersManager() {
+  const qc = useQueryClient();
+  const [newUrl, setNewUrl] = useState("");
+  const [newTitle, setNewTitle] = useState("");
+  const [preview, setPreview] = useState<string | null>(null);
+
+  const { data: banners = [], isLoading } = useQuery({
+    queryKey: ["hero-banners"],
+    queryFn: listHeroBanners,
+  });
+
+  const createMutation = useMutation({
+    mutationFn: createHeroBanner,
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["hero-banners"] });
+      setNewUrl(""); setNewTitle(""); setPreview(null);
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteHeroBanner,
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["hero-banners"] }),
+  });
+
+  const toggleMutation = useMutation({
+    mutationFn: ({ id, is_active }: { id: string; is_active: boolean }) =>
+      updateHeroBanner(id, { is_active }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["hero-banners"] }),
+  });
+
+  if (isLoading) return <div className="h-24 bg-muted animate-pulse rounded-lg" />;
+
+  return (
+    <Card>
+      <CardHeader className="pb-3">
+        <CardTitle className="text-sm font-semibold">🖼️ Hero Banners Slider</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <p className="text-xs text-muted-foreground">
+          Add multiple banners — they auto-slide on your public website hero section every 5 seconds.
+        </p>
+
+        {banners.length > 0 && (
+          <div className="space-y-2">
+            {banners.map((banner, index) => (
+              <div key={banner.id} className={`flex items-center gap-3 p-2 rounded-lg border ${!banner.is_active ? "opacity-50" : ""}`}>
+                <span className="text-xs text-muted-foreground font-mono w-5 shrink-0">{index + 1}</span>
+                <div className="w-16 h-10 rounded overflow-hidden bg-muted shrink-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={banner.image_url} alt={banner.title ?? "Banner"} className="w-full h-full object-cover" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-medium truncate">{banner.title || "Untitled Banner"}</p>
+                  <p className="text-xs text-muted-foreground truncate font-mono">{banner.image_url}</p>
+                </div>
+                <Badge variant={banner.is_active ? "default" : "secondary"} className="text-xs shrink-0">
+                  {banner.is_active ? "Active" : "Hidden"}
+                </Badge>
+                <Button size="sm" variant="outline" className="h-7 text-xs shrink-0"
+                  disabled={toggleMutation.isPending}
+                  onClick={() => toggleMutation.mutate({ id: banner.id, is_active: !banner.is_active })}>
+                  {banner.is_active ? <><EyeOff className="h-3 w-3 mr-1" />Hide</> : <><Eye className="h-3 w-3 mr-1" />Show</>}
+                </Button>
+                <Button size="sm" variant="ghost" className="h-7 w-7 p-0 text-destructive hover:text-destructive shrink-0"
+                  disabled={deleteMutation.isPending}
+                  onClick={() => { if (window.confirm("Delete this banner?")) deleteMutation.mutate(banner.id); }}>
+                  <Trash2 className="h-3.5 w-3.5" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {banners.length === 0 && (
+          <p className="text-xs text-muted-foreground text-center py-4">No banners yet. Add one below.</p>
+        )}
+
+        <div className="border-t pt-4 space-y-3">
+          <p className="text-xs font-medium">Add New Banner</p>
+          <div className="space-y-2">
+            <Input placeholder="Image URL (https://...)" value={newUrl}
+              onChange={(e) => { setNewUrl(e.target.value); setPreview(e.target.value.trim() || null); }} />
+            <Input placeholder="Title (optional)" value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)} />
+          </div>
+          {preview && (
+            <div className="rounded-lg overflow-hidden border h-32 bg-muted">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={preview} alt="Preview" className="w-full h-full object-cover" onError={() => setPreview(null)} />
+            </div>
+          )}
+          <Button size="sm" className="w-full" disabled={!newUrl.trim() || createMutation.isPending}
+            onClick={() => createMutation.mutate({ image_url: newUrl.trim(), title: newTitle.trim() || undefined, display_order: banners.length + 1 })}>
+            {createMutation.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Plus className="mr-2 h-4 w-4" />}
+            Add Banner
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
