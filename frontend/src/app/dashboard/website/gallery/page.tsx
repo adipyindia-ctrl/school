@@ -327,12 +327,12 @@ export default function GalleryManagementPage() {
 
       {/* Add / Edit Dialog */}
       <Dialog open={dialogOpen} onOpenChange={(open) => { if (!open) closeDialog(); }}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
+        <DialogContent className="sm:max-w-md max-h-[90vh] flex flex-col overflow-hidden">
+          <DialogHeader className="shrink-0">
             <DialogTitle>{editingItem ? "Edit Image" : "Add Image"}</DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-4 py-2">
+          <div className="space-y-4 py-2 overflow-y-auto flex-1 pr-1">
             {/* Title */}
             <div className="space-y-1.5">
               <Label htmlFor="gallery-title">Title *</Label>
@@ -433,7 +433,7 @@ export default function GalleryManagementPage() {
             </div>
           </div>
 
-          <DialogFooter>
+          <DialogFooter className="shrink-0 pt-2 border-t">
             <Button variant="outline" onClick={closeDialog} disabled={isPending}>
               Cancel
             </Button>
