@@ -22,6 +22,7 @@ class WebsiteSetting(Base, UUIDMixin):
     is_published: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     seo_title: Mapped[str | None] = mapped_column(String(300), nullable=True)
     seo_description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    hero_banner_url: Mapped[str | None] = mapped_column(Text, nullable=True)
     updated_at: Mapped[datetime] = mapped_column(
         nullable=False, server_default=func.now(), onupdate=func.now()
     )
