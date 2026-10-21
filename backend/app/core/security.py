@@ -7,27 +7,28 @@ from typing import Any, Optional
 from uuid import UUID
 
 from jose import JWTError, jwt
-from passlib.context import CryptContext
+import bcrypt
 
 from app.core.config import settings
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto", bcrypt__rounds=12)
 
 
 # ── Password helpers ──────────────────────────────────────────────────────────
 
 def hash_password(plain: str) -> str:
-    # bcrypt has a 72-byte limit — truncate safely
+    """Hash password using bcrypt directly — bypasses passlib's 72-byte bug."""
     plain_bytes = plain.encode("utf-8")[:72]
-    plain = plain_bytes.decode("utf-8", errors="ignore")
-    return pwd_context.hash(plain)
+    salt = bcrypt.gensalt(rounds=12)
+    return bcrypt.hashpw(plain_bytes, salt).decode("utf-8")
 
 
 def verify_password(plain: str, hashed: str) -> bool:
-    # bcrypt has a 72-byte limit — truncate safely
+    """Verify password using bcrypt directly — bypasses passlib's 72-byte bug."""
     plain_bytes = plain.encode("utf-8")[:72]
-    plain = plain_bytes.decode("utf-8", errors="ignore")
-    return pwd_context.verify(plain, hashed)
+    hashed_bytes = hashed.encode("utf-8") if isinstance(hashed, str) else hashed
+    try:
+        return bcrypt.checkpw(plain_bytes, hashed_bytes)
+    except Exception:
+        return False
 
 
 # ── JWT helpers ───────────────────────────────────────────────────────────────
