@@ -228,8 +228,8 @@ export function DashboardSidebar() {
 
   return (
     <aside
-      className="flex flex-col w-64 h-screen overflow-y-auto shrink-0 text-white sticky top-0"
-      style={{ backgroundColor: sidebarColor }}
+      className="flex flex-col w-64 h-screen overflow-y-auto shrink-0 text-white sticky top-0 scrollbar-hide"
+      style={{ backgroundColor: sidebarColor, scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
     >
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-5 py-5 border-b border-white/10">
