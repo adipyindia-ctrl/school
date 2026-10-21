@@ -75,6 +75,20 @@ class Gallery(Base, UUIDMixin, TimestampMixin):
     display_order: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
 
+class HeroBanner(Base, UUIDMixin, TimestampMixin):
+    __tablename__ = "hero_banners"
+
+    school_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("schools.id", ondelete="CASCADE"),
+        nullable=False, index=True,
+    )
+    image_url: Mapped[str] = mapped_column(Text, nullable=False)
+    title: Mapped[str | None] = mapped_column(String(300), nullable=True)
+    subtitle: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    display_order: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+
+
 class WebsitePage(Base, UUIDMixin, TimestampMixin):
     __tablename__ = "website_pages"
 
