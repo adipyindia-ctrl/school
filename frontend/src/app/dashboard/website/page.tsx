@@ -351,6 +351,101 @@ function WebsiteSettingsTab() {
   );
 }
 
+// ── Layout Template Tab ───────────────────────────────────────────────────────
+
+function LayoutTemplateTab() {
+  const qc = useQueryClient();
+  const { data: settings, isLoading } = useQuery({ queryKey: ["website-settings"], queryFn: getWebsiteSettings });
+  const updateMutation = useMutation({ mutationFn: updateWebsiteSettings, onSuccess: () => qc.invalidateQueries({ queryKey: ["website-settings"] }) });
+  if (isLoading) return <div className="h-32 bg-muted animate-pulse rounded-lg" />;
+  return (
+    <div className="space-y-4 max-w-2xl">
+      <p className="text-sm text-muted-foreground">Choose a layout template for your public school website.</p>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        {TEMPLATE_OPTIONS.map((t) => (
+          <button key={t.id} onClick={() => updateMutation.mutate({ layout_template: t.id })} disabled={updateMutation.isPending}
+            className={`p-4 rounded-lg border-2 text-left transition-colors ${settings?.layout_template === t.id ? "border-primary bg-primary/5" : "border-muted hover:border-muted-foreground/30"}`}>
+            <p className="font-semibold text-sm">{t.label}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{t.desc}</p>
+            {settings?.layout_template === t.id && <p className="text-xs text-primary font-medium mt-2">✓ Active</p>}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Website Status Tab ────────────────────────────────────────────────────────
+
+function WebsiteStatusTab() {
+  const qc = useQueryClient();
+  const { tenant } = useTenantStore();
+  const { data: settings, isLoading } = useQuery({ queryKey: ["website-settings"], queryFn: getWebsiteSettings });
+  const updateMutation = useMutation({ mutationFn: updateWebsiteSettings, onSuccess: () => qc.invalidateQueries({ queryKey: ["website-settings"] }) });
+  if (isLoading) return <div className="h-32 bg-muted animate-pulse rounded-lg" />;
+  return (
+    <div className="max-w-2xl space-y-4">
+      <p className="text-sm text-muted-foreground">Control whether your school website is visible to the public.</p>
+      <Card>
+        <CardContent className="p-6 flex items-center justify-between gap-4">
+          <div>
+            <p className="font-medium">Website Status</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              {settings?.is_published ? "Your website is live and visible to the public." : "Your website is currently unpublished (draft mode)."}
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <Badge variant={settings?.is_published ? "default" : "secondary"}>
+              {settings?.is_published ? "Published" : "Draft"}
+            </Badge>
+            <Button variant={settings?.is_published ? "destructive" : "default"} size="sm" disabled={updateMutation.isPending}
+              onClick={() => updateMutation.mutate({ is_published: !settings?.is_published })}>
+              {updateMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : settings?.is_published ? "Unpublish" : "Publish"}
+            </Button>
+            {settings?.is_published && tenant?.slug && (
+              <a href={`/${tenant.slug}`} target="_blank" rel="noreferrer" className="text-sm text-primary flex items-center gap-1 hover:underline">
+                View Site <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ── SEO Settings Tab ──────────────────────────────────────────────────────────
+
+function SeoSettingsTab() {
+  const qc = useQueryClient();
+  const { data: settings, isLoading } = useQuery({ queryKey: ["website-settings"], queryFn: getWebsiteSettings });
+  const updateMutation = useMutation({ mutationFn: updateWebsiteSettings, onSuccess: () => qc.invalidateQueries({ queryKey: ["website-settings"] }) });
+  const [seoTitle, setSeoTitle] = useState("");
+  const [seoDesc, setSeoDesc] = useState("");
+  if (isLoading) return <div className="h-32 bg-muted animate-pulse rounded-lg" />;
+  return (
+    <div className="max-w-2xl space-y-4">
+      <p className="text-sm text-muted-foreground">Optimize your school website for search engines.</p>
+      <Card>
+        <CardHeader className="pb-3"><CardTitle className="text-sm font-semibold">SEO Settings</CardTitle></CardHeader>
+        <CardContent className="space-y-3">
+          <FieldWrapper label="SEO Title">
+            <Input placeholder={settings?.seo_title ?? "Your school name - tagline"} value={seoTitle} onChange={(e) => setSeoTitle(e.target.value)} />
+          </FieldWrapper>
+          <FieldWrapper label="SEO Description">
+            <Input placeholder={settings?.seo_description ?? "Brief description for search engines"} value={seoDesc} onChange={(e) => setSeoDesc(e.target.value)} />
+          </FieldWrapper>
+          <Button size="sm" disabled={updateMutation.isPending || (!seoTitle && !seoDesc)}
+            onClick={() => updateMutation.mutate({ seo_title: seoTitle || undefined, seo_description: seoDesc || undefined })}>
+            {updateMutation.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+            Save SEO Settings
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
 // ── Hero Banners Manager ──────────────────────────────────────────────────────
 
 function HeroBannersManager() {
@@ -1108,12 +1203,21 @@ export default function WebsitePage() {
       />
 
       <Tabs defaultValue="sections">
-        <TabsList className="mb-5">
+        <TabsList className="mb-5 flex-wrap h-auto gap-1">
           <TabsTrigger value="sections">
             <Globe className="mr-2 h-4 w-4" />Section Manager
           </TabsTrigger>
-          <TabsTrigger value="settings">
-            <Settings2 className="mr-2 h-4 w-4" />Website Settings
+          <TabsTrigger value="layout">
+            <Settings2 className="mr-2 h-4 w-4" />Layout Template
+          </TabsTrigger>
+          <TabsTrigger value="banners">
+            <Plus className="mr-2 h-4 w-4" />Hero Banners
+          </TabsTrigger>
+          <TabsTrigger value="status">
+            <Eye className="mr-2 h-4 w-4" />Website Status
+          </TabsTrigger>
+          <TabsTrigger value="seo">
+            <FileText className="mr-2 h-4 w-4" />SEO Settings
           </TabsTrigger>
           <TabsTrigger value="navigation">
             <Menu className="mr-2 h-4 w-4" />Navigation
@@ -1127,8 +1231,20 @@ export default function WebsitePage() {
           <SectionManager />
         </TabsContent>
 
-        <TabsContent value="settings">
-          <WebsiteSettingsTab />
+        <TabsContent value="layout">
+          <LayoutTemplateTab />
+        </TabsContent>
+
+        <TabsContent value="banners">
+          <HeroBannersManager />
+        </TabsContent>
+
+        <TabsContent value="status">
+          <WebsiteStatusTab />
+        </TabsContent>
+
+        <TabsContent value="seo">
+          <SeoSettingsTab />
         </TabsContent>
 
         <TabsContent value="navigation">

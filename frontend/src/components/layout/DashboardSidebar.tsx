@@ -228,7 +228,7 @@ export function DashboardSidebar() {
 
   return (
     <aside
-      className="flex flex-col w-64 min-h-screen shrink-0 text-white"
+      className="flex flex-col w-64 h-screen overflow-y-auto shrink-0 text-white sticky top-0"
       style={{ backgroundColor: sidebarColor }}
     >
       {/* Logo */}
