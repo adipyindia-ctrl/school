@@ -50,7 +50,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
           const hasBanner = banners.length > 0;
 
           const heroContent = (
-            <div className="max-w-3xl mx-auto relative z-10 py-16 px-6 text-center w-full min-h-[88vh] flex flex-col items-center justify-center">
+            <div className="max-w-3xl mx-auto relative z-10 py-12 px-4 sm:px-6 text-center w-full min-h-[60vh] md:min-h-[88vh] flex flex-col items-center justify-center">
 
               {/* School Name — large colorful heading */}
               <h1
@@ -154,7 +154,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
         })()}
 
         {/* ── Stats ── */}
-        <section className="py-10 px-6 bg-white">
+        <section className="py-8 md:py-10 px-4 sm:px-6 bg-white">
           <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-5">
             {[
               { emoji: "👩‍🎓", num: "1200+", label: "Happy Students" },
@@ -177,7 +177,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── Activities ── */}
         {activities.show && (
-          <section id="activities" className="py-14 px-6 bg-yellow-50">
+          <section id="activities" className="py-10 md:py-14 px-4 sm:px-6 bg-yellow-50">
             <div className="max-w-5xl mx-auto">
               <h2 className="text-center text-3xl font-black mb-2" style={{ color: bg1 }}>
                 {activities.heading || "Fun Activities for Every Child 🎉"}
@@ -213,7 +213,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── Academics ── */}
         {academics.show && (
-          <section id="academics" className="py-14 px-6 bg-white">
+          <section id="academics" className="py-10 md:py-14 px-4 sm:px-6 bg-white">
             <div className="max-w-5xl mx-auto">
               <h2 className="text-center text-3xl font-black mb-2" style={{ color: bg1 }}>
                 {academics.heading || "Our Classes 🎓"}
@@ -357,7 +357,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── Gallery ── */}
         {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
-          <section id="gallery" className="py-14 px-6 bg-white">
+          <section id="gallery" className="py-10 md:py-14 px-4 sm:px-6 bg-white">
             <div className="max-w-5xl mx-auto">
               <h2 className="text-center text-3xl font-black mb-2" style={{ color: bg1 }}>
                 {gallery.heading || "Our Happy Moments 📸 🎉"}
@@ -416,7 +416,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
         {admissions.show && (
           <section
             id="admissions"
-            className="py-20 px-6 text-center min-h-[50vh] flex items-center justify-center relative overflow-hidden"
+            className="py-14 md:py-20 px-4 sm:px-6 text-center min-h-[50vh] flex items-center justify-center relative overflow-hidden"
             style={{ background: `linear-gradient(135deg, ${bg1}, ${bg2}, ${bg3})` }}
           >
             {/* Floating decorations */}
@@ -470,7 +470,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── Contact ── */}
         {contact.show && (
-          <section id="contact" className="py-16 px-6 bg-yellow-50">
+          <section id="contact" className="py-12 md:py-16 px-4 sm:px-6 bg-yellow-50">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-10">
                 <div className="text-5xl mb-3">📬</div>
