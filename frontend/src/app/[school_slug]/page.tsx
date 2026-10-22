@@ -6,6 +6,10 @@ import { PremiumLayout } from "./_layouts/PremiumLayout";
 import { MinimalLayout } from "./_layouts/MinimalLayout";
 import { KidsLayout } from "./_layouts/KidsLayout";
 
+// Force dynamic rendering on Vercel — never use static/cached HTML
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface Props {
   params: Promise<{ school_slug: string }>;
 }

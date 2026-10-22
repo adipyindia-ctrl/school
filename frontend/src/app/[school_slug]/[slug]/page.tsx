@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
 
+// Force dynamic rendering on Vercel
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface NavItem {
   id: string;
   label: string;
