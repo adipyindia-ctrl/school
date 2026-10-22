@@ -28,6 +28,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
 
   return (
     <div
+      className="overflow-x-hidden"
       style={
         {
           fontFamily: branding.font_family || "Inter, sans-serif",
@@ -42,7 +43,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
         style={{ backgroundColor: primary }}
         className="sticky top-0 z-50 shadow-md relative backdrop-blur-sm bg-opacity-95 border-b border-white/20"
       >
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           {/* Logo + School Name */}
           <div className="flex items-center gap-3">
             {branding.logo_url && (
@@ -91,7 +92,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
       {/* Footer */}
       <footer style={{ backgroundColor: primary }} className="text-white">
         {/* Main footer content */}
-        <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-10">
 
           {/* Column 1: School name, tagline, social links */}
           <div>
@@ -179,7 +180,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
 
         {/* Copyright bar */}
         <div className="border-t border-white/20">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-white/60 text-xs">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-white/60 text-xs">
             <p>© {new Date().getFullYear()} {name}. All rights reserved.</p>
             {!isWhiteLabel && (
               <p>Powered by SchoolCMS</p>
