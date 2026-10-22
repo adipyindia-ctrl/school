@@ -1,4 +1,4 @@
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 /**
@@ -31,10 +31,8 @@ export async function POST(req: NextRequest) {
     if (slug) {
       revalidatePath(`/${slug}`, "page");
       revalidatePath(`/`, "page");
-      revalidateTag(`school-${slug}`);
     } else {
       revalidatePath("/", "layout");
-      revalidateTag("school-data");
     }
 
     return NextResponse.json({
@@ -70,10 +68,8 @@ export async function GET(req: NextRequest) {
   if (slug) {
     revalidatePath(`/${slug}`, "page");
     revalidatePath(`/`, "page");
-    revalidateTag(`school-${slug}`);
   } else {
     revalidatePath("/", "layout");
-    revalidateTag("school-data");
   }
 
   return NextResponse.json({
