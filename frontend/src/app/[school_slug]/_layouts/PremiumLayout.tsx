@@ -11,6 +11,116 @@ function getSection(data: SchoolWebsiteData, key: string) {
   return { show: s.is_enabled, heading: s.heading, description: s.description, content: s.content };
 }
 
+// ── Inline SVG icons ──────────────────────────────────────────────────────────
+function IconMapPin() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function IconPhone() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18 2 2 0 0 1 2.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16l.92.92z" />
+    </svg>
+  );
+}
+
+function IconMail() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  );
+}
+
+function IconClock() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
+
+function IconStar() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
+  );
+}
+
+function IconAward() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="8" r="6" />
+      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+    </svg>
+  );
+}
+
+function IconShield() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  );
+}
+
+function IconHeart() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    </svg>
+  );
+}
+
+function IconBook() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    </svg>
+  );
+}
+
+function IconFlask() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M9 3h6l1 9H8L9 3z" />
+      <path d="M6.5 12c0 0-2.5 2.5-2.5 5a7 7 0 0 0 14 0c0-2.5-2.5-5-2.5-5" />
+    </svg>
+  );
+}
+
+function IconPalette() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+      <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+      <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+      <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+    </svg>
+  );
+}
+
+function IconUsers() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  );
+}
+
 export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
   const { branding, name, phone, email, address, city, state, established_year } = data;
   const accent = branding.accent_color || "#C9A84C";
@@ -25,9 +135,9 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
 
   return (
     <WebsiteShell data={data}>
-      <div className="bg-black text-white" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>
+      <div className="bg-zinc-950 text-white" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>
 
-        {/* ── HERO ── */}
+        {/* ── 1. HERO ── */}
         {hero.show && (() => {
           const banners: Array<{ id: string; image_url: string; title: string | null; subtitle: string | null }> =
             data.hero_banners && data.hero_banners.length > 0
@@ -38,73 +148,45 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           const hasBanner = banners.length > 0;
 
           const heroContent = (
-            <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-12 md:py-24 min-h-[60vh] md:min-h-[95vh] text-center">
-              {/* Top thin gold line */}
-              <div className="mb-8 flex items-center gap-4">
-                <div className="h-px w-16" style={{ backgroundColor: accent }} />
-                <div
-                  className="w-2 h-2 rotate-45"
-                  style={{ backgroundColor: accent }}
-                />
-                <div className="h-px w-16" style={{ backgroundColor: accent }} />
-              </div>
-
-              {/* Est. line */}
-              <p
-                className="text-xs font-light mb-5 tracking-[0.45em] uppercase"
-                style={{ color: accent }}
-              >
-                Est.&nbsp;{established_year ?? "—"}&nbsp;&nbsp;·&nbsp;&nbsp;{city}, {state}
+            <div
+              className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 min-h-[60vh] md:min-h-[95vh] flex flex-col items-start justify-center text-left py-12 md:py-24"
+              style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
+            >
+              {/* Eyebrow */}
+              <p className="text-xs tracking-[0.3em] uppercase mb-5 font-semibold" style={{ color: accent }}>
+                LEARN &middot; GROW &middot; ACHIEVE
               </p>
 
-              {/* School name */}
+              {/* Heading */}
               <h1
-                className="text-5xl md:text-7xl lg:text-8xl font-bold leading-none mb-6 tracking-tight text-white"
-                style={{ fontFamily: "'Georgia', serif", textShadow: "0 2px 40px rgba(0,0,0,0.9)" }}
-              >
-                {hero.heading || branding.welcome_message || name}
-              </h1>
-
-              {/* Thin gold divider */}
-              <div className="my-6 flex items-center gap-4">
-                <div className="h-px w-24" style={{ backgroundColor: `${accent}60` }} />
-                <div
-                  className="w-1.5 h-1.5 rotate-45 border"
-                  style={{ borderColor: `${accent}80` }}
-                />
-                <div className="h-px w-24" style={{ backgroundColor: `${accent}60` }} />
-              </div>
-
-              {/* Subtitle */}
-              <p
-                className="text-white/55 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-light tracking-wide"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-white"
                 style={{ fontFamily: "'Georgia', serif" }}
               >
+                <span className="block">{hero.heading || branding.welcome_message || name}</span>
+                <span className="block italic" style={{ color: accent }}>for a Brighter Future</span>
+              </h1>
+
+              {/* Description */}
+              <p className="text-zinc-300 text-base md:text-lg max-w-xl mb-10 leading-relaxed">
                 {hero.description ||
-                  "Where tradition meets excellence — forging leaders of tomorrow with the wisdom of generations."}
+                  `A tradition of excellence in education since ${established_year ?? "our founding"}. Committed to shaping future leaders with knowledge, integrity, and character.`}
               </p>
 
-              {/* CTAs */}
-              <div className="flex gap-4 justify-center flex-wrap">
+              {/* Buttons — NO admission enquiry form */}
+              <div className="flex flex-wrap gap-4">
                 <a
                   href="#admissions"
-                  className="px-10 py-3.5 text-sm font-semibold tracking-[0.15em] uppercase transition-all duration-300 hover:opacity-85"
+                  className="px-8 py-3.5 text-sm font-semibold tracking-wide transition-opacity hover:opacity-90"
                   style={{ backgroundColor: accent, color: "#000" }}
                 >
-                  Apply Now
+                  Apply for Admission →
                 </a>
                 <a
                   href="#about"
-                  className="px-10 py-3.5 text-sm font-semibold tracking-[0.15em] uppercase border border-white/40 hover:border-white/80 transition-all duration-300 text-white/80 hover:text-white"
+                  className="px-8 py-3.5 text-sm font-semibold tracking-wide border border-white/40 hover:border-white text-white/90 transition-colors"
                 >
-                  Discover More
+                  Watch Campus Tour
                 </a>
-              </div>
-
-              {/* Scroll indicator */}
-              <div className="mt-14 flex flex-col items-center gap-2 opacity-40">
-                <span className="text-xs tracking-[0.4em] uppercase text-white">Scroll</span>
-                <div className="w-px h-8" style={{ backgroundColor: accent }} />
               </div>
             </div>
           );
@@ -113,7 +195,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
             return (
               <HeroSlider
                 banners={banners}
-                overlayStyle={{ background: "rgba(0,0,0,0.70)" }}
+                overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.2) 100%)" }}
                 className="min-h-[60vh] md:min-h-[95vh] flex flex-col"
               >
                 {heroContent}
@@ -122,11 +204,11 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           }
 
           return (
-            <section className="relative min-h-[60vh] md:min-h-[95vh] flex flex-col bg-black">
+            <section className="relative min-h-[60vh] md:min-h-[95vh] flex flex-col bg-zinc-950">
               <div
                 className="absolute inset-0"
                 style={{
-                  background: "radial-gradient(ellipse at 50% 60%, rgba(201,168,76,0.08) 0%, transparent 65%), black",
+                  background: `radial-gradient(ellipse at 50% 60%, ${accent}12 0%, transparent 65%), #09090b`,
                 }}
               />
               {heroContent}
@@ -134,31 +216,26 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           );
         })()}
 
-        {/* ── THIN GOLD DIVIDER ── */}
-        <div className="relative overflow-hidden" style={{ backgroundColor: "#0a0a0a" }}>
-          <div className="h-px w-full" style={{ backgroundColor: `${accent}40` }} />
-        </div>
-
-        {/* ── STATS ── */}
+        {/* ── 2. STATS BAR ── */}
         {stats.show && (
-          <section className="py-10 md:py-16 px-4 sm:px-6" style={{ backgroundColor: "#0a0a0a" }}>
-            <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-zinc-800/60">
+          <section className="bg-zinc-900">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
                 {[
-                  { num: "1200+", label: "Students Enrolled" },
-                  { num: "80+", label: "Expert Faculty" },
-                  { num: `${established_year ? new Date().getFullYear() - established_year : 25}+`, label: "Years of Legacy" },
-                  { num: "100%", label: "Board Results" },
-                ].map(({ num, label }) => (
-                  <div key={label} className="text-center py-10 px-6 group">
+                  { icon: <IconAward />, num: `${established_year ?? "—"}+`, label: "Years of Excellence" },
+                  { icon: <IconUsers />, num: "1000+", label: "Students Enrolled" },
+                  { icon: <IconBook />, num: "50+", label: "Expert Faculty" },
+                  { icon: <IconStar />, num: "100%", label: "Success Rate" },
+                ].map(({ icon, num, label }) => (
+                  <div key={label} className="text-center py-10 px-6">
+                    <div className="flex items-center justify-center mb-3" style={{ color: accent }}>{icon}</div>
                     <p
-                      className="text-5xl md:text-6xl font-bold mb-3 tracking-tight"
+                      className="text-4xl md:text-5xl font-bold mb-3"
                       style={{ color: accent, fontFamily: "'Georgia', serif" }}
                     >
                       {num}
                     </p>
-                    <div className="h-px w-8 mx-auto mb-3" style={{ backgroundColor: `${accent}50` }} />
-                    <p className="text-white/40 text-xs uppercase tracking-[0.25em] font-light">{label}</p>
+                    <p className="text-zinc-400 text-xs uppercase tracking-[0.25em]">{label}</p>
                   </div>
                 ))}
               </div>
@@ -166,255 +243,258 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           </section>
         )}
 
-        {/* ── ABOUT ── */}
+        {/* ── 3. ABOUT ── */}
         {about.show && (
-          <section id="about" className="bg-zinc-950">
-            {/* Top editorial quote block */}
-            <div
-              className="py-12 md:py-20 px-4 sm:px-6 border-t border-b"
-              style={{ borderColor: `${accent}20` }}
-            >
-              <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
-                {/* Left — school story with gold accent border */}
-                <div
-                  className="pl-8 border-l-2"
-                  style={{ borderColor: accent }}
-                >
-                  <p
-                    className="text-xs uppercase tracking-[0.35em] font-light mb-5"
-                    style={{ color: accent }}
-                  >
-                    Our Story
-                  </p>
-                  <h2
-                    className="text-4xl md:text-5xl font-bold mb-8 leading-tight text-white"
-                    style={{ fontFamily: "'Georgia', serif" }}
-                  >
-                    {about.heading || "A Legacy of\nExcellence"}
-                  </h2>
-                  <p className="text-white/55 leading-loose text-sm mb-8 font-light">
-                    {about.description ||
-                      `${name} has stood as a beacon of academic distinction since ${established_year ?? "its founding"}. Our commitment to holistic development, ethical leadership, and intellectual rigour has produced generations of distinguished alumni who shape the world.`}
-                  </p>
-
-                  {/* Gold rule + quote */}
-                  <div className="relative mt-8 pt-8" style={{ borderTop: `1px solid ${accent}25` }}>
-                    <span
-                      className="absolute -top-5 left-0 text-7xl font-bold leading-none opacity-20 select-none"
-                      style={{ color: accent, fontFamily: "'Georgia', serif" }}
-                    >
-                      &ldquo;
-                    </span>
-                    <blockquote
-                      className="text-white/60 text-sm leading-loose italic font-light pl-4"
-                      style={{ fontFamily: "'Georgia', serif" }}
-                    >
-                      The goal of education is not merely knowledge, but action and character.
-                    </blockquote>
-                    <p className="text-xs mt-3 pl-4" style={{ color: `${accent}90` }}>
-                      — Principal&apos;s Vision
-                    </p>
-                  </div>
-                </div>
-
-                {/* Right — 4 info cards */}
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { label: "Board", value: "CBSE, New Delhi", icon: "🎓" },
-                    { label: "City", value: `${city}, ${state}`, icon: "📍" },
-                    { label: "Phone", value: phone || "—", icon: "📞" },
-                    { label: "Email", value: email || "—", icon: "✉️" },
-                  ].map(({ label, value, icon }) => (
-                    <div
-                      key={label}
-                      className="bg-zinc-900 p-6 border border-zinc-800 hover:border-zinc-600 transition-all duration-300"
-                    >
-                      <div className="text-lg mb-2">{icon}</div>
-                      <p
-                        className="text-xs uppercase tracking-[0.25em] mb-2 font-light"
-                        style={{ color: accent }}
-                      >
-                        {label}
-                      </p>
-                      <p className="text-white/75 text-sm font-light leading-relaxed break-all">{value}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Facilities row */}
-            <div className="py-10 md:py-16 px-4 sm:px-6">
-              <div className="max-w-6xl mx-auto">
-                <p
-                  className="text-xs uppercase tracking-[0.35em] mb-8 text-center font-light"
-                  style={{ color: accent }}
-                >
-                  Our Facilities
-                </p>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 divide-x divide-y md:divide-y-0 divide-zinc-800/60">
-                  {[
-                    { name: "Library" },
-                    { name: "Science Labs" },
-                    { name: "Sports Complex" },
-                    { name: "Auditorium" },
-                    { name: "Hostel" },
-                    { name: "Computer Centre" },
-                  ].map(({ name: fname }) => (
-                    <div
-                      key={fname}
-                      className="py-8 px-4 text-center group hover:bg-zinc-900 transition-colors duration-200"
-                    >
-                      <div className="h-px w-6 mx-auto mb-4" style={{ backgroundColor: `${accent}60` }} />
-                      <p className="text-white/60 text-xs uppercase tracking-[0.2em] group-hover:text-white/90 transition-colors duration-200">
-                        {fname}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* ── ACADEMICS ── */}
-        {academics.show && (
-          <section id="academics" className="py-14 md:py-28 px-4 sm:px-6 bg-zinc-900">
+          <section id="about" className="bg-zinc-950 py-12 md:py-24 px-4 sm:px-6">
             <div className="max-w-6xl mx-auto">
-              {/* Section header */}
-              <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+              <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>ABOUT US</p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
+                {/* Left: gallery image */}
                 <div>
-                  <p
-                    className="text-xs uppercase tracking-[0.35em] mb-4 font-light"
-                    style={{ color: accent }}
-                  >
-                    Academic Programmes
-                  </p>
+                  {data.gallery_items && data.gallery_items.length > 0 ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={data.gallery_items[0].image_url}
+                      alt={data.gallery_items[0].title}
+                      className="w-full h-72 md:h-[420px] object-cover"
+                      style={{ border: `1px solid ${accent}30` }}
+                    />
+                  ) : (
+                    <div
+                      className="w-full h-72 md:h-[420px]"
+                      style={{ background: `linear-gradient(135deg, #18181b 0%, ${accent}15 100%)` }}
+                    />
+                  )}
+                </div>
+
+                {/* Right: text + feature tiles */}
+                <div>
                   <h2
-                    className="text-4xl md:text-5xl font-bold leading-tight text-white"
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
                     style={{ fontFamily: "'Georgia', serif" }}
                   >
-                    {academics.heading || "Curriculum of\nDistinction"}
+                    {about.heading || name}
                   </h2>
-                </div>
-                <p className="text-white/40 text-sm font-light max-w-sm leading-relaxed">
-                  {academics.description ||
-                    "A world-class curriculum designed to cultivate critical thinkers and future leaders."}
-                </p>
-              </div>
+                  <p className="text-zinc-400 leading-relaxed mb-8">
+                    {about.description ||
+                      `${name} has been a beacon of quality education, nurturing young minds with a blend of academic rigour and strong moral values since ${established_year ?? "its founding"}. Our institution has consistently produced leaders across every field.`}
+                  </p>
 
-              {/* Grade cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {[
-                  {
-                    num: "01",
-                    title: "Pre-Primary",
-                    range: "Nursery – KG",
-                    desc: "Play-based early childhood education nurturing curiosity and foundational skills.",
-                  },
-                  {
-                    num: "02",
-                    title: "Primary",
-                    range: "Classes I – V",
-                    desc: "Strong foundational learning across core subjects with experiential methods.",
-                  },
-                  {
-                    num: "03",
-                    title: "Middle School",
-                    range: "Classes VI – VIII",
-                    desc: "Inquiry-driven curriculum deepening conceptual understanding across disciplines.",
-                  },
-                  {
-                    num: "04",
-                    title: "Secondary",
-                    range: "Classes IX – X",
-                    desc: "Rigorous CBSE board preparation with structured academic mentorship.",
-                  },
-                  {
-                    num: "05",
-                    title: "Sr. Secondary",
-                    range: "Classes XI – XII",
-                    desc: "Specialised streams preparing students for competitive examinations and higher studies.",
-                  },
-                ].map(({ num, title, range, desc }) => (
-                  <div
-                    key={num}
-                    className="bg-zinc-950 p-7 flex flex-col border-l-2 border border-zinc-800 hover:border-zinc-600 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/80 transition-all duration-300"
-                    style={{ borderLeftColor: accent }}
-                  >
-                    {/* Number badge */}
-                    <span
-                      className="text-4xl font-bold mb-5 leading-none opacity-20"
-                      style={{ color: accent, fontFamily: "'Georgia', serif" }}
-                    >
-                      {num}
-                    </span>
-                    <p className="text-white font-semibold text-sm mb-1 tracking-wide">{title}</p>
-                    <p
-                      className="text-xs uppercase tracking-[0.2em] mb-4 font-light"
-                      style={{ color: accent }}
-                    >
-                      {range}
-                    </p>
-                    <div className="h-px mb-4" style={{ backgroundColor: `${accent}20` }} />
-                    <p className="text-white/45 text-xs leading-relaxed flex-1 font-light">{desc}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                    {[
+                      { icon: <IconAward />, title: "Academic Excellence", sub: "Consistent top results and curriculum depth" },
+                      { icon: <IconShield />, title: "Safe Campus", sub: "Secure environment for holistic growth" },
+                      { icon: <IconHeart />, title: "Holistic Development", sub: "Sports, arts, and character building" },
+                    ].map(({ icon, title, sub }) => (
+                      <div key={title} className="bg-zinc-900 p-5 border border-zinc-800">
+                        <div
+                          className="w-10 h-10 rounded-full flex items-center justify-center mb-3"
+                          style={{ backgroundColor: `${accent}18`, color: accent }}
+                        >
+                          {icon}
+                        </div>
+                        <p className="text-white text-sm font-semibold mb-1">{title}</p>
+                        <p className="text-zinc-500 text-xs">{sub}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
+
+                  <a
+                    href="#academics"
+                    className="inline-block px-6 py-2.5 text-sm font-semibold border transition-colors hover:bg-white/5"
+                    style={{ borderColor: accent, color: accent }}
+                  >
+                    Learn More →
+                  </a>
+                </div>
               </div>
             </div>
           </section>
         )}
 
-        {/* ── GALLERY ── */}
-        {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
-          <section id="gallery" className="py-14 md:py-28 px-4 sm:px-6 bg-zinc-950">
+        {/* ── 4. ACADEMICS ── */}
+        {academics.show && (
+          <section id="academics" className="bg-zinc-900 py-12 md:py-24 px-4 sm:px-6">
             <div className="max-w-6xl mx-auto">
-              {/* Header */}
-              <div className="text-center mb-14">
-                <p
-                  className="text-xs uppercase tracking-[0.35em] mb-4 font-light"
-                  style={{ color: accent }}
-                >
-                  Gallery
-                </p>
+              <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>OUR ACADEMICS</p>
+
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
                 <h2
-                  className="text-4xl md:text-5xl font-bold text-white"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
                   style={{ fontFamily: "'Georgia', serif" }}
                 >
-                  {gallery.heading || "Our World in Focus"}
+                  {academics.heading || "Academic Programs"}
                 </h2>
-                <div className="mt-6 flex items-center justify-center gap-3">
-                  <div className="h-px w-12" style={{ backgroundColor: `${accent}50` }} />
-                  <div className="w-1.5 h-1.5 rotate-45" style={{ backgroundColor: `${accent}80` }} />
-                  <div className="h-px w-12" style={{ backgroundColor: `${accent}50` }} />
+                <div className="md:text-right">
+                  <p className="text-zinc-400 text-sm max-w-sm mb-2">
+                    {academics.description ||
+                      "Comprehensive education from Pre-Primary through Senior Secondary, designed for every stage of your child's growth."}
+                  </p>
+                  <a href="#contact" className="text-sm font-semibold" style={{ color: accent }}>View All Programs →</a>
                 </div>
               </div>
 
-              {/* Images grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {[
+                  { num: "01", title: "Pre-Primary", range: "Nursery–KG", tagline: "Play · Learn · Grow" },
+                  { num: "02", title: "Primary", range: "Class I–V", tagline: "Think · Create · Achieve" },
+                  { num: "03", title: "Middle School", range: "Class VI–VIII", tagline: "Explore · Debate · Read" },
+                  { num: "04", title: "Secondary", range: "Class IX–X", tagline: "Analyse · Perform · Excel" },
+                  { num: "05", title: "Sr. Secondary", range: "Class XI–XII", tagline: "Focus · Prepare · Succeed" },
+                ].map(({ num, title, range, tagline }, idx) => {
+                  const thumbUrl =
+                    data.gallery_items && data.gallery_items.length > 0
+                      ? data.gallery_items[idx % data.gallery_items.length].image_url
+                      : null;
+                  return (
+                    <div
+                      key={num}
+                      className="relative bg-zinc-950 p-5 border border-zinc-800 hover:border-zinc-600 hover:-translate-y-1 transition"
+                      style={{ borderTop: `3px solid ${accent}` }}
+                    >
+                      <span
+                        className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-black"
+                        style={{ backgroundColor: accent }}
+                      >
+                        {num}
+                      </span>
+
+                      {thumbUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={thumbUrl} alt={title} className="w-full h-24 object-cover mb-3" loading="lazy" />
+                      ) : (
+                        <div
+                          className="w-full h-24 mb-3"
+                          style={{ background: `linear-gradient(135deg, #18181b 0%, ${accent}22 100%)` }}
+                        />
+                      )}
+
+                      <p className="text-white text-sm font-semibold">{title}</p>
+                      <p className="text-zinc-500 text-xs mb-1">{range}</p>
+                      <p className="italic text-xs mb-3" style={{ color: accent }}>{tagline}</p>
+                      <a href="#contact" className="text-xs font-semibold" style={{ color: accent }}>Explore Classes →</a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ── 5. CAMPUS LIFE ── */}
+        <section className="bg-zinc-950 py-12 md:py-24 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>CAMPUS LIFE</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+              {/* Left */}
+              <div>
+                <h2
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6"
+                  style={{ fontFamily: "'Georgia', serif" }}
+                >
+                  Life Beyond the Classroom
+                </h2>
+                <p className="text-zinc-400 leading-relaxed mb-8">
+                  At {name}, we believe education extends far beyond textbooks. Our vibrant campus life ensures
+                  every student discovers their passion, builds lifelong friendships, and develops the skills
+                  needed for a fulfilling future.
+                </p>
+                <a
+                  href="#about"
+                  className="inline-block px-6 py-3 text-sm font-semibold transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: accent, color: "#000" }}
+                >
+                  Explore Campus Life →
+                </a>
+              </div>
+
+              {/* Right: 2×2 dark tiles */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: <IconUsers />, title: "Sports", desc: "Inter-school competitions and athletics" },
+                  { icon: <IconFlask />, title: "Science Labs", desc: "State-of-the-art laboratory facilities" },
+                  { icon: <IconBook />, title: "Library", desc: "10,000+ books and digital resources" },
+                  { icon: <IconPalette />, title: "Arts & Culture", desc: "Music, dance, drama and fine arts" },
+                ].map(({ icon, title, desc }) => (
+                  <div key={title} className="bg-zinc-900 p-5 border border-zinc-800 flex gap-4 items-start">
+                    <div
+                      className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: `${accent}18`, color: accent }}
+                    >
+                      {icon}
+                    </div>
+                    <div>
+                      <p className="text-white text-sm font-semibold mb-1">{title}</p>
+                      <p className="text-zinc-500 text-xs">{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 6. GALLERY ── */}
+        {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
+          <section id="gallery" className="bg-zinc-900 py-12 md:py-24 px-4 sm:px-6">
+            <div className="max-w-6xl mx-auto">
+              <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>OUR GALLERY</p>
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+                <h2
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
+                  style={{ fontFamily: "'Georgia', serif" }}
+                >
+                  {gallery.heading || "Moments That Matter"}
+                </h2>
+                <a
+                  href="#gallery"
+                  className="text-sm font-semibold border px-4 py-2 inline-block flex-shrink-0"
+                  style={{ borderColor: accent, color: accent }}
+                >
+                  View All Photos →
+                </a>
+              </div>
+
+              <p className="text-zinc-400 text-sm max-w-lg mb-8">
+                {gallery.description || `A glimpse into the vibrant life at ${name}.`}
+              </p>
+
+              {/* Filter tabs — CSS-only presentational */}
+              <div className="flex flex-wrap gap-3 mb-8">
+                {["All", "Events", "Sports", "Academics"].map((cat) => (
+                  <span
+                    key={cat}
+                    className="px-5 py-2 text-xs uppercase tracking-widest cursor-default select-none"
+                    style={{
+                      backgroundColor: cat === "All" ? accent : "transparent",
+                      color: cat === "All" ? "#000" : accent,
+                      border: `1px solid ${accent}`,
+                    }}
+                  >
+                    {cat}
+                  </span>
+                ))}
+              </div>
+
+              {/* Image grid */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
                 {data.gallery_items.map((img) => (
                   <div
                     key={img.id}
-                    className="aspect-[4/3] overflow-hidden bg-zinc-900 group relative"
-                    style={{ border: `1px solid ${accent}15` }}
+                    className="aspect-[4/3] overflow-hidden bg-zinc-950 relative group"
+                    style={{ border: `1px solid ${accent}18` }}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={img.image_url}
                       alt={img.title}
-                      className="w-full h-full object-cover object-center opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500"
                       loading="lazy"
-                      decoding="async"
                     />
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
                       {img.category && (
-                        <p
-                          className="text-xs uppercase tracking-[0.25em] mb-1.5 font-light"
-                          style={{ color: accent }}
-                        >
-                          {img.category}
-                        </p>
+                        <p className="text-xs uppercase tracking-widest mb-1" style={{ color: accent }}>{img.category}</p>
                       )}
                       <p className="text-white text-sm font-semibold">{img.title}</p>
                     </div>
@@ -425,190 +505,189 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           </section>
         )}
 
-        {/* ── ADMISSIONS ── */}
-        {admissions.show && (
-          <section id="admissions" className="py-14 md:py-28 px-4 sm:px-6 bg-zinc-900">
-            <div className="max-w-6xl mx-auto">
-              {/* Gold top accent line */}
-              <div className="h-px w-full mb-20" style={{ backgroundColor: `${accent}35` }} />
+        {/* ── 7. TESTIMONIALS ── */}
+        <section className="bg-zinc-950 py-12 md:py-24 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>TESTIMONIALS</p>
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-12"
+              style={{ fontFamily: "'Georgia', serif" }}
+            >
+              What Parents Say
+            </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
-                {/* Left */}
-                <div>
-                  <p
-                    className="text-xs uppercase tracking-[0.35em] mb-5 font-light"
-                    style={{ color: accent }}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  quote: "The academic environment here is truly exceptional. My daughter has grown in both her studies and her character — I couldn't be happier with our choice.",
+                  name: "Anjali Sharma",
+                  role: "Parent · Grade 5",
+                },
+                {
+                  quote: "The teachers are deeply dedicated and the school genuinely cares about each child's progress. My son looks forward to school every single day.",
+                  name: "Rohit Mehta",
+                  role: "Parent · Grade 8",
+                },
+                {
+                  quote: "Excellent infrastructure, holistic approach, and a warm community. This school has shaped my daughter into a confident young leader.",
+                  name: "Priya Nair",
+                  role: "Parent · Grade 10",
+                },
+              ].map(({ quote, name: tName, role }) => (
+                <div key={tName} className="bg-zinc-900 p-7 border border-zinc-800 flex flex-col">
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-4" style={{ color: accent }}>
+                    <IconStar /><IconStar /><IconStar /><IconStar /><IconStar />
+                  </div>
+                  {/* Large gold quote mark */}
+                  <div
+                    className="text-7xl leading-none mb-2 select-none font-serif"
+                    style={{ color: `${accent}50` }}
+                    aria-hidden="true"
                   >
-                    Admissions
-                  </p>
-                  <h2
-                    className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white"
-                    style={{ fontFamily: "'Georgia', serif" }}
-                  >
-                    {admissions.heading || "Begin Your\nJourney Here"}
-                  </h2>
-                  <div className="h-px w-16 mb-6" style={{ backgroundColor: `${accent}50` }} />
-                  <p className="text-white/50 leading-loose text-sm font-light mb-10">
-                    {admissions.description ||
-                      `${name} welcomes applications for the upcoming academic year. Join a community committed to excellence, integrity, and lifelong learning.`}
-                  </p>
-                  <a
-                    href="/login"
-                    className="inline-block px-12 py-4 text-sm font-semibold tracking-[0.2em] uppercase transition-all duration-300 hover:opacity-85 shadow-xl"
-                    style={{ backgroundColor: accent, color: "#000" }}
-                  >
-                    Apply Now
-                  </a>
-                </div>
-
-                {/* Right — 4-step process */}
-                <div className="space-y-0">
-                  {[
-                    {
-                      num: "01",
-                      title: "Application",
-                      desc: "Fill out the online application form with all required academic and personal details.",
-                    },
-                    {
-                      num: "02",
-                      title: "Document Verification",
-                      desc: "Submit academic records, birth certificate, and valid identity proof for review.",
-                    },
-                    {
-                      num: "03",
-                      title: "Assessment & Interview",
-                      desc: "Attend a personal interaction session with our academic panel.",
-                    },
-                    {
-                      num: "04",
-                      title: "Confirmation",
-                      desc: "Receive your offer letter and complete the fee payment process.",
-                    },
-                  ].map(({ num, title, desc }, i, arr) => (
+                    &ldquo;
+                  </div>
+                  <p className="italic text-zinc-300 text-sm leading-relaxed mb-6 flex-1">{quote}</p>
+                  <div className="flex items-center gap-3">
                     <div
-                      key={num}
-                      className="flex items-start gap-6 py-7"
-                      style={{
-                        borderBottom: i < arr.length - 1 ? `1px solid ${accent}15` : "none",
-                      }}
+                      className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm"
+                      style={{ backgroundColor: `${accent}22`, color: accent }}
                     >
-                      {/* Gold numbered circle */}
-                      <div
-                        className="flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center text-xs font-bold text-black"
-                        style={{ backgroundColor: accent }}
-                      >
-                        {num}
-                      </div>
-                      <div>
-                        <p className="text-white font-semibold text-sm mb-1.5 tracking-wide">{title}</p>
-                        <p className="text-white/40 text-xs leading-relaxed font-light">{desc}</p>
-                      </div>
+                      {tName.charAt(0)}
                     </div>
-                  ))}
+                    <div>
+                      <p className="text-white text-sm font-semibold">{tName}</p>
+                      <p className="text-zinc-500 text-xs">{role}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
+          </div>
+        </section>
+
+        {/* ── 8. CTA BAND (ADMISSIONS) ── */}
+        {admissions.show && (
+          <section
+            id="admissions"
+            className="py-14 md:py-20 px-4 sm:px-6 text-center"
+            style={{ backgroundColor: accent }}
+          >
+            <p className="text-xs tracking-[0.3em] uppercase font-semibold mb-3" style={{ color: "#00000088" }}>
+              Take the Next Step
+            </p>
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-black"
+              style={{ fontFamily: "'Georgia', serif" }}
+            >
+              {admissions.heading || "Give Your Child a Brighter Future"}
+            </h2>
+            <a
+              href="/login"
+              className="inline-block px-8 py-3.5 text-sm font-semibold transition-opacity hover:opacity-90"
+              style={{ backgroundColor: "#0a0a0a", color: "#fff" }}
+            >
+              Apply Now →
+            </a>
           </section>
         )}
 
-        {/* ── CONTACT ── */}
+        {/* ── 9. CONTACT ── */}
         {contact.show && (
-          <section id="contact" className="py-14 md:py-28 px-4 sm:px-6 bg-zinc-950">
+          <section id="contact" className="bg-zinc-950 py-12 md:py-24 px-4 sm:px-6">
             <div className="max-w-6xl mx-auto">
-              {/* Header */}
-              <div className="text-center mb-16">
-                <p
-                  className="text-xs uppercase tracking-[0.35em] mb-4 font-light"
-                  style={{ color: accent }}
-                >
-                  Get In Touch
-                </p>
-                <h2
-                  className="text-4xl md:text-5xl font-bold text-white mb-4"
-                  style={{ fontFamily: "'Georgia', serif" }}
-                >
-                  {contact.heading || "Contact Us"}
-                </h2>
-                <p className="text-white/40 max-w-md mx-auto text-sm font-light leading-relaxed">
-                  {contact.description ||
-                    "We welcome your enquiries. Reach out to us for admissions guidance or any other information."}
-                </p>
-              </div>
+              <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>GET IN TOUCH</p>
+              <h2
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+                style={{ fontFamily: "'Georgia', serif" }}
+              >
+                {contact.heading || "Contact Us"}
+              </h2>
+              <p className="text-zinc-400 max-w-md mb-12 text-sm leading-relaxed">
+                {contact.description ||
+                  "We welcome your enquiries. Reach out to us for admissions guidance or any other information."}
+              </p>
 
-              {/* Cards + Map */}
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                {/* Left — 3 contact cards stacked */}
-                <div className="md:col-span-2 flex flex-col gap-4">
-                  {/* Address */}
-                  <div
-                    className="bg-zinc-900 p-7 border border-zinc-800 hover:border-zinc-600 hover:-translate-y-0.5 transition-all duration-200"
-                  >
-                    <p
-                      className="text-xs uppercase tracking-[0.25em] mb-1 font-light"
-                      style={{ color: accent }}
-                    >
-                      Address
-                    </p>
-                    <div className="h-px w-8 mb-3" style={{ backgroundColor: `${accent}35` }} />
-                    <p className="text-white/70 text-sm leading-relaxed font-light">
-                      {address || `${city}, ${state}`}
-                    </p>
-                  </div>
-
-                  {/* Phone */}
-                  <div
-                    className="bg-zinc-900 p-7 border border-zinc-800 hover:border-zinc-600 hover:-translate-y-0.5 transition-all duration-200"
-                  >
-                    <p
-                      className="text-xs uppercase tracking-[0.25em] mb-1 font-light"
-                      style={{ color: accent }}
-                    >
-                      Phone
-                    </p>
-                    <div className="h-px w-8 mb-3" style={{ backgroundColor: `${accent}35` }} />
-                    <p className="text-white/70 text-sm font-light">{phone || "—"}</p>
-                    {branding.support_phone && (
-                      <p className="text-white/35 text-xs mt-2 font-light">
-                        Support: {branding.support_phone}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Email */}
-                  <div
-                    className="bg-zinc-900 p-7 border border-zinc-800 hover:border-zinc-600 hover:-translate-y-0.5 transition-all duration-200"
-                  >
-                    <p
-                      className="text-xs uppercase tracking-[0.25em] mb-1 font-light"
-                      style={{ color: accent }}
-                    >
-                      Email
-                    </p>
-                    <div className="h-px w-8 mb-3" style={{ backgroundColor: `${accent}35` }} />
-                    <p className="text-white/70 text-sm font-light break-all">{email || "—"}</p>
-                    {branding.support_email && (
-                      <p className="text-white/35 text-xs mt-2 font-light">
-                        Support: {branding.support_email}
-                      </p>
-                    )}
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                {/* Col 1: contact info with SVG icons */}
+                <div className="space-y-5">
+                  {[
+                    { icon: <IconMapPin />, text: address || `${city ?? ""}, ${state ?? ""}` },
+                    { icon: <IconPhone />, text: phone || "—" },
+                    { icon: <IconMail />, text: email || "—" },
+                    { icon: <IconClock />, text: "Mon–Sat: 8:00 AM – 4:00 PM" },
+                  ].map(({ icon, text }, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div
+                        className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                        style={{ backgroundColor: `${accent}18`, color: accent }}
+                      >
+                        {icon}
+                      </div>
+                      <p className="text-zinc-300 text-sm pt-2">{text}</p>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Right — Google Map */}
+                {/* Col 2: Google Maps iframe */}
                 <div
-                  className="md:col-span-3 overflow-hidden min-h-[380px]"
-                  style={{ border: `1px solid ${accent}25` }}
+                  className="overflow-hidden"
+                  style={{ border: `1px solid ${accent}25`, minHeight: "300px" }}
                 >
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572.8608563176817!2d82.52597947222179!3d26.427966480760162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3990928e2ecacf07%3A0x45812ae7e2c0ee77!2sDOYEN%20INTERNATIONAL%20SCHOOL!5e0!3m2!1sen!2sin!4v1792572714179!5m2!1sen!2sin"
                     width="100%"
-                    height="100%"
-                    style={{ border: 0, display: "block", minHeight: "380px" }}
+                    height="300"
+                    style={{ border: 0, display: "block" }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="strict-origin-when-cross-origin"
-                    title="Doyen International School Location"
+                    title="School Location"
                   />
+                </div>
+
+                {/* Col 3: Send Us a Message form */}
+                <div>
+                  <h3 className="text-white font-bold text-lg mb-5" style={{ fontFamily: "'Georgia', serif" }}>
+                    Send Us a Message
+                  </h3>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      className="w-full bg-zinc-900 border border-zinc-800 px-3 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email Address"
+                      className="w-full bg-zinc-900 border border-zinc-800 px-3 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
+                    />
+                    <input
+                      type="tel"
+                      placeholder="Phone Number"
+                      className="w-full bg-zinc-900 border border-zinc-800 px-3 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600"
+                    />
+                    <select className="w-full bg-zinc-900 border border-zinc-800 px-3 py-2.5 text-sm text-zinc-400 focus:outline-none focus:border-zinc-600">
+                      <option value="">Select Program</option>
+                      <option value="pre-primary">Pre-Primary</option>
+                      <option value="primary">Primary</option>
+                      <option value="middle">Middle School</option>
+                      <option value="secondary">Secondary</option>
+                      <option value="senior">Senior Secondary</option>
+                    </select>
+                    <textarea
+                      rows={3}
+                      placeholder="Your Message"
+                      className="w-full bg-zinc-900 border border-zinc-800 px-3 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 resize-none"
+                    />
+                    <button
+                      type="button"
+                      className="w-full py-3 text-sm font-semibold transition-opacity hover:opacity-90"
+                      style={{ backgroundColor: accent, color: "#000" }}
+                    >
+                      Submit Message →
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
