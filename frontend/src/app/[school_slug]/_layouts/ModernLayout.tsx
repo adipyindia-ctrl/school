@@ -523,7 +523,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
               #gf-campus:checked ~ .gfilter-labels label[for="gf-campus"],
               #gf-events:checked ~ .gfilter-labels label[for="gf-events"],
               #gf-sports:checked ~ .gfilter-labels label[for="gf-sports"] {
-                color: #fff;
+                color: #ffffff !important;
                 border-color: transparent;
                 background-color: var(--gf-primary);
               }
@@ -553,12 +553,12 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
               ))}
             </div>
 
-            <div className="gallery-grid grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="gallery-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {data.gallery_items.map((img) => (
                 <div
                   key={img.id}
                   data-category={img.category ?? undefined}
-                  className="aspect-square group relative overflow-hidden rounded-lg shadow-sm bg-gray-200"
+                  className="aspect-video group relative overflow-hidden rounded-lg shadow-sm bg-gray-200"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
