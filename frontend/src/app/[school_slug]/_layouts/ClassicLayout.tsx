@@ -214,54 +214,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
               </div>
             </div>
 
-            {/* Right: Admission Enquiry card */}
-            <div
-              className="hidden md:flex md:flex-col md:w-80 lg:w-96 flex-shrink-0 bg-white rounded-lg shadow-2xl p-6 lg:p-8"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              <h3 className="text-xl font-bold mb-2" style={{ color: primary, fontFamily: "Georgia, serif" }}>
-                Admission Enquiry
-              </h3>
-              <div className="w-12 h-0.5 mb-5" style={{ backgroundColor: accent }} />
-              <div className="mb-4">
-                <label className="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wide">Your Name</label>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none"
-                  style={{ fontFamily: "Georgia, serif" }}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wide">Phone Number</label>
-                <input
-                  type="text"
-                  placeholder="Phone Number"
-                  className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none"
-                  style={{ fontFamily: "Georgia, serif" }}
-                />
-              </div>
-              <div className="mb-6">
-                <label className="block text-xs font-semibold text-gray-600 mb-1 uppercase tracking-wide">Select Program</label>
-                <select
-                  className="w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none"
-                  style={{ fontFamily: "Georgia, serif" }}
-                >
-                  <option value="">Select Program</option>
-                  <option value="pre-primary">Pre-Primary</option>
-                  <option value="primary">Primary</option>
-                  <option value="middle">Middle School</option>
-                  <option value="secondary">Secondary</option>
-                  <option value="senior">Senior Secondary</option>
-                </select>
-              </div>
-              <button
-                className="w-full py-3 font-semibold text-sm text-white rounded hover:opacity-90 transition-opacity"
-                style={{ backgroundColor: accent }}
-              >
-                Enquire Now →
-              </button>
-            </div>
+            {/* Admission Enquiry card removed from hero */}
           </div>
         );
 
