@@ -14,7 +14,7 @@ async function fetchSchoolData(slug: string): Promise<SchoolWebsiteData | null> 
   try {
     const apiBase = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000") + "/api/v1";
     const res = await fetch(`${apiBase}/public/school/${slug}`, {
-      next: { revalidate: 0 }, // no cache — always fresh
+      cache: 'no-store', // bypass Vercel CDN cache — always fresh
     });
     if (!res.ok) return null;
     const json = await res.json();
