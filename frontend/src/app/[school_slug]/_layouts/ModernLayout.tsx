@@ -38,9 +38,9 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
         const hasBanner = banners.length > 0;
 
         const heroContent = (
-          <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center min-h-[90vh] py-24">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[60vh] md:min-h-[90vh] py-12 md:py-24">
             {/* Left — accent pill + heading + CTAs */}
-            <div>
+            <div className="text-center md:text-left">
               {/* CBSE pill */}
               <div
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm text-xs font-bold mb-6 tracking-[0.15em] uppercase border-l-4"
@@ -79,7 +79,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
                   "A premier CBSE-affiliated institution committed to academic excellence, character building, and holistic development of every child."}
               </p>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <a
                   href="#admissions"
                   className="px-8 py-3.5 rounded-sm font-bold text-white shadow-xl hover:opacity-90 active:scale-95 transition-all duration-150 text-sm uppercase tracking-widest"
@@ -170,7 +170,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
             <HeroSlider
               banners={banners}
               overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 45%, rgba(0,0,0,0.05) 100%)" }}
-              className="min-h-[90vh]"
+              className="min-h-[60vh] md:min-h-[90vh]"
             >
               {heroContent}
             </HeroSlider>
@@ -179,7 +179,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
         return (
           <section
-            className="relative overflow-hidden min-h-[90vh] flex items-center text-white"
+            className="relative overflow-hidden min-h-[60vh] md:min-h-[90vh] flex items-center text-white"
             style={{ background: `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)` }}
           >
             <div
@@ -196,7 +196,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── Stats Bar ── */}
       {stats.show && (
-        <section className="bg-white border-b border-gray-100 shadow-sm py-8">
+        <section className="bg-white border-b border-gray-100 shadow-sm py-8 overflow-x-hidden">
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-100">
             {/* Col 1 — Established */}
             <div className="flex flex-col items-center text-center gap-2 py-8 px-4">
@@ -267,8 +267,8 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── About ── */}
       {about.show && (
-        <section id="about" className="py-24 px-6" style={{ backgroundColor: "#f8fafc" }}>
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+        <section id="about" className="py-12 md:py-24 px-4 sm:px-6" style={{ backgroundColor: "#f8fafc" }}>
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
             {/* Left — image */}
             <div className="relative aspect-[4/3]">
               {data.gallery_items && data.gallery_items.length > 0 ? (
@@ -405,7 +405,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── Academics ── */}
       {academics.show && (
-        <section id="academics" className="py-24 px-6 bg-white">
+        <section id="academics" className="py-12 md:py-24 px-4 sm:px-6 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-14">
               <p
@@ -494,7 +494,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── Gallery ── */}
       {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
-        <section id="gallery" className="py-24 px-6" style={{ backgroundColor: "#f8fafc" }}>
+        <section id="gallery" className="py-12 md:py-24 px-4 sm:px-6" style={{ backgroundColor: "#f8fafc" }}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <p
@@ -589,7 +589,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
       {admissions.show && (
         <section
           id="admissions"
-          className="relative overflow-hidden py-20 px-6"
+          className="relative overflow-hidden py-12 md:py-20 px-4 sm:px-6"
           style={{ background: `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)` }}
         >
           {/* Diagonal pattern overlay */}
@@ -632,7 +632,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── Contact ── */}
       {contact.show && (
-        <section id="contact" className="py-24 px-6 bg-gray-50">
+        <section id="contact" className="py-12 md:py-24 px-4 sm:px-6 bg-gray-50">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-14">
               <p
@@ -651,7 +651,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {/* Left — contact info card */}
               <div
                 className="bg-white rounded-sm border border-gray-100 shadow-sm overflow-hidden"
