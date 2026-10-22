@@ -169,7 +169,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
           return (
             <HeroSlider
               banners={banners}
-              overlayStyle={{ background: "linear-gradient(105deg, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.30) 100%)" }}
+              overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 45%, rgba(0,0,0,0.05) 100%)" }}
               className="min-h-[90vh]"
             >
               {heroContent}
@@ -194,65 +194,73 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
         );
       })()}
 
-      {/* ── Features / Stats Bar ── */}
+      {/* ── Stats Bar ── */}
       {stats.show && (
-        <section className="bg-white border-b border-gray-100 shadow-sm">
+        <section className="bg-white border-b border-gray-100 shadow-sm py-8">
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-            {[
-              {
-                label: "Academic Excellence",
-                desc: "CBSE curriculum, smart classrooms & top board results",
-                svg: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                ),
-              },
-              {
-                label: "Experienced Faculty",
-                desc: "Qualified & dedicated educators with proven expertise",
-                svg: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
-                ),
-              },
-              {
-                label: "Sports & Activities",
-                desc: "Co-curricular programs that nurture every talent",
-                svg: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 8v4l3 3" />
-                  </svg>
-                ),
-              },
-              {
-                label: "Safe Campus",
-                desc: "Secure, child-friendly environment with 24/7 care",
-                svg: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  </svg>
-                ),
-              },
-            ].map(({ label, desc, svg }) => (
+            {/* Col 1 — Established */}
+            <div className="flex flex-col items-center text-center gap-2 py-8 px-4">
               <div
-                key={label}
-                className="flex items-start gap-4 px-7 py-8"
+                className="w-12 h-12 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: `${accent}15` }}
               >
-                <span className="flex-shrink-0 mt-0.5" style={{ color: accent }}>
-                  {svg}
-                </span>
-                <div>
-                  <p className="font-extrabold text-gray-900 text-sm mb-1">{label}</p>
-                  <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
-                </div>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: accent }}>
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
               </div>
-            ))}
+              <p className="font-extrabold text-lg" style={{ color: primary }}>
+                EST. {established_year ?? "—"}
+              </p>
+              <p className="text-xs text-gray-500 uppercase tracking-wider">Established</p>
+            </div>
+
+            {/* Col 2 — Board */}
+            <div className="flex flex-col items-center text-center gap-2 py-8 px-4">
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: `${accent}15` }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: accent }}>
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                </svg>
+              </div>
+              <p className="font-extrabold text-lg" style={{ color: primary }}>
+                {data.school_type.toUpperCase()} Curriculum
+              </p>
+              <p className="text-xs text-gray-500 uppercase tracking-wider">Board Affiliated</p>
+            </div>
+
+            {/* Col 3 — Academic Excellence */}
+            <div className="flex flex-col items-center text-center gap-2 py-8 px-4">
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: `${accent}15` }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: accent }}>
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              </div>
+              <p className="font-extrabold text-lg" style={{ color: primary }}>Academic Excellence</p>
+              <p className="text-xs text-gray-500 uppercase tracking-wider">Top Board Results</p>
+            </div>
+
+            {/* Col 4 — Holistic Development */}
+            <div className="flex flex-col items-center text-center gap-2 py-8 px-4">
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: `${accent}15` }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: accent }}>
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <p className="font-extrabold text-lg" style={{ color: primary }}>Holistic Development</p>
+              <p className="text-xs text-gray-500 uppercase tracking-wider">Beyond Academics</p>
+            </div>
           </div>
         </section>
       )}
@@ -260,93 +268,136 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
       {/* ── About ── */}
       {about.show && (
         <section id="about" className="py-24 px-6" style={{ backgroundColor: "#f8fafc" }}>
-          <div className="max-w-7xl mx-auto">
-            {/* Section heading */}
-            <div className="text-center mb-14">
-              <p
-                className="text-xs font-bold uppercase tracking-[0.18em] mb-3"
-                style={{ color: accent }}
-              >
+          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+            {/* Left — image */}
+            <div className="relative aspect-[4/3]">
+              {data.gallery_items && data.gallery_items.length > 0 ? (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={data.gallery_items[0].image_url}
+                    alt={data.gallery_items[0].title}
+                    className="w-full h-full object-cover rounded-xl shadow-lg"
+                    loading="lazy"
+                  />
+                </>
+              ) : (
+                <div
+                  className="w-full h-full rounded-xl shadow-lg"
+                  style={{ background: `linear-gradient(135deg, ${primary}20 0%, ${accent}20 100%)` }}
+                />
+              )}
+              {/* Decorative accent bar */}
+              <div
+                className="absolute left-0 top-8 bottom-8 w-1 rounded-full"
+                style={{ backgroundColor: accent }}
+              />
+            </div>
+
+            {/* Right — content */}
+            <div>
+              {/* Eyebrow */}
+              <p className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: accent }}>
                 About Us
               </p>
+
+              {/* Heading */}
               <h2 className="text-3xl md:text-4xl font-extrabold leading-tight mb-4">
                 {about.heading ? (
-                  <span style={{ color: "#0f172a" }}>{about.heading}</span>
+                  <span style={{ color: primary }}>{about.heading}</span>
                 ) : (
                   <>
-                    <span style={{ color: "#0f172a" }}>Discover </span>
-                    <span style={{ color: accent }}>What Makes Us Different</span>
+                    <span style={{ color: primary }}>{"Building Tomorrow\u2019s "}</span>
+                    <span style={{ color: accent }}>Leaders</span>
                   </>
                 )}
               </h2>
-              <div className="w-10 h-0.5 mx-auto mb-5" style={{ backgroundColor: accent }} />
-              <p className="text-gray-500 max-w-2xl mx-auto text-base leading-relaxed">
-                {about.description ||
-                  `${name} is a premier CBSE-affiliated institution dedicated to academic excellence and the all-round development of every student.`}
-              </p>
-            </div>
 
-            {/* 3-card grid */}
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              {/* Divider */}
+              <div className="w-12 h-1 rounded-full mb-5" style={{ backgroundColor: accent }} />
+
+              {/* Description */}
+              <p className="text-gray-500 text-base leading-relaxed mb-8">
+                {about.description ||
+                  `${name} is a CBSE-affiliated institution committed to academic excellence, holistic student growth, and building future-ready citizens.`}
+              </p>
+
+              {/* Feature cards */}
+              <div className="flex flex-col gap-4">
+                {/* Card 1 */}
+                <div
+                  className="flex items-start gap-3 p-4 bg-white rounded-lg border-l-4 shadow-sm hover:shadow-md transition-shadow"
+                  style={{ borderLeftColor: accent }}
+                >
+                  <div
+                    className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: `${accent}15` }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: accent }}>
                       <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                       <path d="M6 12v5c3 3 9 3 12 0v-5" />
                     </svg>
-                  ),
-                  title: "Academic Excellence",
-                  desc: "Our CBSE-aligned curriculum combined with experienced faculty and modern infrastructure consistently delivers outstanding board results and prepares students for higher education.",
-                  link: "Learn More →",
-                  href: "#academics",
-                },
-                {
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  </div>
+                  <div>
+                    <p className="font-bold text-sm text-gray-900">Academic Excellence</p>
+                    <p className="text-xs text-gray-500 leading-relaxed mt-0.5">
+                      CBSE curriculum with smart classrooms and top board results.
+                    </p>
+                    <a href="#academics" className="text-xs font-bold mt-1 inline-block" style={{ color: accent }}>
+                      Learn More
+                    </a>
+                  </div>
+                </div>
+
+                {/* Card 2 */}
+                <div
+                  className="flex items-start gap-3 p-4 bg-white rounded-lg border-l-4 shadow-sm hover:shadow-md transition-shadow"
+                  style={{ borderLeftColor: accent }}
+                >
+                  <div
+                    className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: `${accent}15` }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: accent }}>
                       <circle cx="12" cy="12" r="10" />
                       <path d="M12 8v4l3 3" />
                     </svg>
-                  ),
-                  title: "Beyond the Classroom",
-                  desc: "From sports and performing arts to community service and technology clubs — we nurture every dimension of a student's personality through rich co-curricular programs.",
-                  link: "Explore Activities →",
-                  href: "#gallery",
-                },
-                {
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                  ),
-                  title: "A Safe, Caring Campus",
-                  desc: "We maintain a secure, inclusive, and nurturing environment where every child feels valued, respected, and empowered to explore their full potential every single day.",
-                  link: "Take a Campus Tour →",
-                  href: "#contact",
-                },
-              ].map(({ icon, title, desc, link, href }) => (
+                  </div>
+                  <div>
+                    <p className="font-bold text-sm text-gray-900">Beyond the Classroom</p>
+                    <p className="text-xs text-gray-500 leading-relaxed mt-0.5">
+                      Sports, arts, and clubs nurturing every dimension of personality.
+                    </p>
+                    <a href="#gallery" className="text-xs font-bold mt-1 inline-block" style={{ color: accent }}>
+                      Explore Activities
+                    </a>
+                  </div>
+                </div>
+
+                {/* Card 3 */}
                 <div
-                  key={title}
-                  className="bg-white rounded-xl border border-gray-100 p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                  className="flex items-start gap-3 p-4 bg-white rounded-lg border-l-4 shadow-sm hover:shadow-md transition-shadow"
+                  style={{ borderLeftColor: accent }}
                 >
-                  {/* Icon square */}
                   <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 flex-shrink-0"
+                    className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0"
                     style={{ backgroundColor: `${accent}15` }}
                   >
-                    <span style={{ color: accent }}>{icon}</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: accent }}>
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
                   </div>
-                  <h3 className="font-extrabold text-gray-900 text-lg mb-3">{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-5">{desc}</p>
-                  <a
-                    href={href}
-                    className="text-sm font-bold hover:underline transition-colors"
-                    style={{ color: accent }}
-                  >
-                    {link}
-                  </a>
+                  <div>
+                    <p className="font-bold text-sm text-gray-900">A Safe Learning Campus</p>
+                    <p className="text-xs text-gray-500 leading-relaxed mt-0.5">
+                      Secure, inclusive environment where every child feels valued.
+                    </p>
+                    <a href="#contact" className="text-xs font-bold mt-1 inline-block" style={{ color: accent }}>
+                      Campus Tour
+                    </a>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
@@ -354,7 +405,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── Academics ── */}
       {academics.show && (
-        <section id="academics" className="py-24 px-6 bg-gray-50">
+        <section id="academics" className="py-24 px-6 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-14">
               <p
@@ -366,68 +417,74 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
               <h2 className="text-3xl md:text-4xl font-extrabold mb-4" style={{ color: primary }}>
                 {academics.heading || "Academic Programs"}
               </h2>
-              <div className="w-10 h-0.5 mx-auto mb-4" style={{ backgroundColor: primary }} />
+              <div className="w-10 h-0.5 mx-auto mb-4" style={{ backgroundColor: accent }} />
               <p className="text-gray-500 max-w-2xl mx-auto text-base leading-relaxed">
                 {academics.description ||
-                  "A structured CBSE-aligned curriculum spanning Pre-Primary to Senior Secondary — built to develop knowledge, critical thinking, and character at every stage."}
+                  "A well-structured CBSE curriculum designed to develop knowledge, skills, and character at every stage."}
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
               {[
                 {
                   num: "01",
                   title: "Pre-Primary",
-                  range: "Nursery – KG",
-                  desc: "Play-based learning that sparks curiosity and builds foundational literacy and numeracy.",
+                  range: "Nursery-KG",
+                  desc: "Play-based learning that sparks curiosity and builds foundational literacy.",
                 },
                 {
                   num: "02",
                   title: "Primary",
-                  range: "Class I – V",
-                  desc: "Core subjects with activity-based methods to instil a love for learning.",
+                  range: "Class I-V",
+                  desc: "Core subjects with activity-based methods to foster love for learning.",
                 },
                 {
                   num: "03",
                   title: "Middle",
-                  range: "Class VI – VIII",
-                  desc: "Conceptual depth across Science, Mathematics, Social Studies, and Languages.",
+                  range: "Class VI-VIII",
+                  desc: "Conceptual depth across Science, Mathematics, Social Studies and Languages.",
                 },
                 {
                   num: "04",
                   title: "Secondary",
-                  range: "Class IX – X",
-                  desc: "Comprehensive CBSE board preparation with focus on analysis and exam skills.",
+                  range: "Class IX-X",
+                  desc: "CBSE board preparation with focus on analysis and exam skills.",
                 },
                 {
                   num: "05",
                   title: "Sr. Secondary",
-                  range: "Class XI – XII",
-                  desc: "Science, Commerce & Humanities streams preparing students for higher education.",
+                  range: "Class XI-XII",
+                  desc: "Science, Commerce and Humanities preparing students for higher education.",
                 },
               ].map(({ num, title, range, desc }) => (
                 <div
                   key={num}
-                  className="bg-white rounded-sm border border-gray-100 p-6 flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
-                  style={{ borderTop: `3px solid ${primary}` }}
+                  className="bg-white border border-gray-100 rounded-xl p-6 flex flex-col group hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  style={{ borderTop: `3px solid ${accent}` }}
                 >
                   <span
-                    className="text-4xl font-extrabold leading-none mb-4 block"
-                    style={{ color: `${primary}25` }}
+                    className="text-5xl font-extrabold leading-none mb-3 block"
+                    style={{ color: `${primary}20` }}
                   >
                     {num}
                   </span>
-                  <h3 className="font-extrabold text-gray-900 text-base mb-1 group-hover:text-current transition-colors" style={{ color: primary }}>
+                  <h3 className="font-extrabold text-base" style={{ color: primary }}>
                     {title}
                   </h3>
-                  <p
-                    className="text-xs font-bold uppercase tracking-widest mb-3"
-                    style={{ color: accent }}
+                  <span
+                    className="inline-block px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider text-white mt-1 mb-3"
+                    style={{ backgroundColor: accent }}
                   >
                     {range}
-                  </p>
+                  </span>
                   <p className="text-gray-500 text-sm leading-relaxed flex-1">{desc}</p>
-                  <div className="mt-5 w-6 h-0.5 rounded-full" style={{ backgroundColor: accent }} />
+                  <a
+                    href="#contact"
+                    className="text-xs font-bold mt-4 inline-block"
+                    style={{ color: accent }}
+                  >
+                    Explore Classes
+                  </a>
                 </div>
               ))}
             </div>
@@ -437,46 +494,53 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── Gallery ── */}
       {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
-        <section id="gallery" className="py-24 px-6 bg-white">
+        <section id="gallery" className="py-24 px-6" style={{ backgroundColor: "#f8fafc" }}>
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <p
                 className="text-xs font-bold uppercase tracking-[0.18em] mb-3"
                 style={{ color: accent }}
               >
-                Gallery
+                Our Gallery
               </p>
               <h2 className="text-3xl md:text-4xl font-extrabold" style={{ color: primary }}>
-                {gallery.heading || "School Life"}
+                {gallery.heading || "Moments That Matter"}
               </h2>
-              <div className="w-10 h-0.5 mx-auto mt-4" style={{ backgroundColor: primary }} />
+              <div className="w-10 h-0.5 mx-auto mt-4 mb-4" style={{ backgroundColor: accent }} />
+              <p className="text-gray-500 max-w-xl mx-auto text-base leading-relaxed">
+                {gallery.description || "A glimpse into campus life, events, and student achievements."}
+              </p>
             </div>
 
             {/* CSS-only category filter */}
             <input type="radio" name="gfilter" id="gf-all" defaultChecked className="hidden" />
+            <input type="radio" name="gfilter" id="gf-campus" className="hidden" />
             <input type="radio" name="gfilter" id="gf-events" className="hidden" />
             <input type="radio" name="gfilter" id="gf-sports" className="hidden" />
-            <input type="radio" name="gfilter" id="gf-academics" className="hidden" />
 
             <style>{`
               #gf-all:checked ~ .gfilter-labels label[for="gf-all"],
+              #gf-campus:checked ~ .gfilter-labels label[for="gf-campus"],
               #gf-events:checked ~ .gfilter-labels label[for="gf-events"],
-              #gf-sports:checked ~ .gfilter-labels label[for="gf-sports"],
-              #gf-academics:checked ~ .gfilter-labels label[for="gf-academics"] {
+              #gf-sports:checked ~ .gfilter-labels label[for="gf-sports"] {
                 color: #fff;
                 border-color: transparent;
+                background-color: var(--gf-primary);
               }
+              #gf-campus:checked ~ .gfilter-labels ~ .gallery-grid [data-category]:not([data-category="Campus"]) { display: none; }
               #gf-events:checked ~ .gfilter-labels ~ .gallery-grid [data-category]:not([data-category="Events"]) { display: none; }
               #gf-sports:checked ~ .gfilter-labels ~ .gallery-grid [data-category]:not([data-category="Sports"]) { display: none; }
-              #gf-academics:checked ~ .gfilter-labels ~ .gallery-grid [data-category]:not([data-category="Academics"]) { display: none; }
             `}</style>
 
-            <div className="gfilter-labels flex flex-wrap justify-center gap-3 mb-10">
+            <div
+              className="gfilter-labels flex flex-wrap justify-center gap-3 mb-10"
+              style={{ ["--gf-primary" as string]: primary } as React.CSSProperties}
+            >
               {[
                 { forId: "gf-all", label: "All" },
+                { forId: "gf-campus", label: "Campus" },
                 { forId: "gf-events", label: "Events" },
                 { forId: "gf-sports", label: "Sports" },
-                { forId: "gf-academics", label: "Academics" },
               ].map(({ forId, label }) => (
                 <label
                   key={forId}
@@ -489,12 +553,12 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
               ))}
             </div>
 
-            <div className="gallery-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="gallery-grid grid grid-cols-2 md:grid-cols-3 gap-3">
               {data.gallery_items.map((img) => (
                 <div
                   key={img.id}
                   data-category={img.category ?? undefined}
-                  className="aspect-square group relative overflow-hidden rounded-sm shadow-sm bg-gray-200"
+                  className="aspect-square group relative overflow-hidden rounded-lg shadow-sm bg-gray-200"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -521,14 +585,14 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
         </section>
       )}
 
-      {/* ── Admissions ── */}
+      {/* ── Admissions CTA ── */}
       {admissions.show && (
         <section
           id="admissions"
-          className="relative overflow-hidden py-24 px-6"
+          className="relative overflow-hidden py-20 px-6"
           style={{ background: `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)` }}
         >
-          {/* Decorative geometry */}
+          {/* Diagonal pattern overlay */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -536,82 +600,32 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
                 "repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 60px)",
             }}
           />
+          {/* Decorative circles */}
           <div className="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-white/5 pointer-events-none" />
           <div className="absolute -left-10 -bottom-10 w-60 h-60 rounded-full bg-white/5 pointer-events-none" />
 
-          <div className="relative z-10 max-w-5xl mx-auto text-white">
-            <div className="text-center mb-14">
-              <p className="text-white/60 text-xs font-bold uppercase tracking-[0.18em] mb-3">
-                Admissions
-              </p>
-              <h2 className="text-3xl md:text-5xl font-extrabold mb-4">
-                {admissions.heading || "Admissions Open 2025-26"}
-              </h2>
-              <div className="w-10 h-0.5 mx-auto mb-6" style={{ backgroundColor: accent }} />
-              <p className="text-white/75 text-base max-w-xl mx-auto leading-relaxed">
-                {admissions.description ||
-                  `Join ${name} and become part of a legacy of academic excellence. Seats are limited — apply early to secure your place.`}
-              </p>
-            </div>
-
-            {/* 4-step process */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-14">
-              {[
-                {
-                  step: "01",
-                  title: "Online Application",
-                  desc: "Fill out the admission form on our portal with complete student details.",
-                },
-                {
-                  step: "02",
-                  title: "Document Submission",
-                  desc: "Submit birth certificate, previous mark sheets, and passport photos.",
-                },
-                {
-                  step: "03",
-                  title: "Interaction & Assessment",
-                  desc: "A brief session with the child and parents by our academic team.",
-                },
-                {
-                  step: "04",
-                  title: "Confirmation",
-                  desc: "Receive your admission letter and complete the fee payment online.",
-                },
-              ].map(({ step, title, desc }, i) => (
-                <div key={step} className="flex flex-col items-center text-center relative">
-                  {/* Step number */}
-                  <div
-                    className="w-14 h-14 rounded-sm flex items-center justify-center font-extrabold text-lg mb-4 border-2 border-white/30 relative z-10"
-                    style={{ backgroundColor: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)" }}
-                  >
-                    <span style={{ color: accent }}>{step}</span>
-                  </div>
-                  {/* Connector line between steps */}
-                  {i < 3 && (
-                    <div
-                      className="hidden md:block absolute top-7 left-1/2 w-full h-px"
-                      style={{ backgroundColor: "rgba(255,255,255,0.15)", zIndex: 0 }}
-                    />
-                  )}
-                  <h3 className="font-extrabold text-sm mb-2 uppercase tracking-wide">{title}</h3>
-                  <p className="text-white/65 text-xs leading-relaxed">{desc}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div className="text-center">
-              <a
-                href="/login"
-                className="inline-block px-14 py-4 rounded-sm font-extrabold text-white text-sm shadow-2xl hover:opacity-90 active:scale-95 transition-all duration-150 uppercase tracking-widest"
-                style={{ backgroundColor: accent }}
-              >
-                Apply Now &rarr;
-              </a>
-              <p className="text-white/50 text-xs mt-4 uppercase tracking-widest">
-                Limited seats available · Academic Year 2025-26
-              </p>
-            </div>
+          <div className="relative z-10 max-w-3xl mx-auto text-center text-white">
+            <p className="text-white/60 text-xs font-bold uppercase tracking-[0.18em] mb-3">
+              Admissions
+            </p>
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4">
+              {admissions.heading || "Give Your Child a Brighter Future"}
+            </h2>
+            <div className="w-10 h-0.5 mx-auto mb-6" style={{ backgroundColor: accent }} />
+            <p className="text-white/75 text-base leading-relaxed mb-10">
+              {admissions.description ||
+                `Join ${name} — where every child is inspired to achieve, grow, and lead. Seats are limited. Apply early.`}
+            </p>
+            <a
+              href="/login"
+              className="inline-block px-14 py-4 rounded-sm font-extrabold text-white text-sm shadow-2xl hover:opacity-90 active:scale-95 transition-all duration-150 uppercase tracking-widest"
+              style={{ backgroundColor: accent }}
+            >
+              Apply Now
+            </a>
+            <p className="text-white/50 text-xs mt-4 uppercase tracking-widest">
+              Limited seats · Academic Year 2025-26
+            </p>
           </div>
         </section>
       )}
