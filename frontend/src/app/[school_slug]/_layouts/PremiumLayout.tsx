@@ -195,7 +195,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
             return (
               <HeroSlider
                 banners={banners}
-                overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.2) 100%)" }}
+                overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.05) 100%)" }}
                 className="min-h-[60vh] md:min-h-[95vh] flex flex-col"
               >
                 {heroContent}

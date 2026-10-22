@@ -222,7 +222,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
           return (
             <HeroSlider
               banners={banners}
-              overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%)" }}
+              overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.05) 100%)" }}
               className="min-h-[60vh] md:min-h-[90vh]"
             >
               {heroContent}

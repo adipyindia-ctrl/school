@@ -169,7 +169,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
           return (
             <HeroSlider
               banners={banners}
-              overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 45%, rgba(0,0,0,0.05) 100%)" }}
+              overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.0) 100%)" }}
               className="min-h-[60vh] md:min-h-[90vh]"
             >
               {heroContent}

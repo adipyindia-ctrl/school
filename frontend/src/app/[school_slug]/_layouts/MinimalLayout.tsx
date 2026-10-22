@@ -47,8 +47,8 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
           const hasBanner = banners.length > 0;
 
           const heroContent = (
-            <div className={`max-w-6xl mx-auto px-8 w-full relative z-10 flex items-center ${hasBanner ? "min-h-[88vh]" : "min-h-[88vh]"}`}>
-              <div className="max-w-2xl py-20">
+            <div className={`max-w-6xl mx-auto px-4 sm:px-8 w-full relative z-10 flex items-center ${hasBanner ? "min-h-[60vh] md:min-h-[88vh]" : "min-h-[60vh] md:min-h-[88vh]"}`}>
+              <div className="max-w-2xl py-12 md:py-20">
                 {/* Tag line */}
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-10 h-px" style={{ backgroundColor: hasBanner ? "rgba(255,255,255,0.55)" : primary }} />
@@ -62,7 +62,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
 
                 {/* School name / heading */}
                 <h1
-                  className="text-6xl md:text-7xl font-light leading-[1.05] mb-4"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] mb-4"
                   style={{ color: hasBanner ? "#ffffff" : primary }}
                 >
                   {hero.heading || branding.welcome_message || name}
@@ -81,7 +81,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
 
                 {/* Description */}
                 <p
-                  className="text-xl leading-relaxed mb-10 max-w-lg"
+                  className="text-base md:text-xl leading-relaxed mb-10 max-w-lg"
                   style={{ color: hasBanner ? "rgba(255,255,255,0.80)" : "#6b7280" }}
                 >
                   {hero.description || "A place where curiosity is encouraged, potential is realised, and every student matters."}
@@ -121,8 +121,8 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
             return (
               <HeroSlider
                 banners={banners}
-                overlayStyle={{ background: "rgba(0,0,0,0.50)" }}
-                className="min-h-[88vh]"
+                overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.05) 100%)" }}
+                className="min-h-[60vh] md:min-h-[88vh]"
               >
                 {heroContent}
               </HeroSlider>
@@ -130,7 +130,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
           }
 
           return (
-            <section className="relative min-h-[88vh] flex items-center overflow-hidden border-b border-gray-100">
+            <section className="relative min-h-[60vh] md:min-h-[88vh] flex items-center overflow-hidden border-b border-gray-100">
               {heroContent}
             </section>
           );
@@ -138,7 +138,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── Stats Row ── */}
         <section className="border-b border-gray-100">
-          <div className="max-w-6xl mx-auto px-8 py-8 grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8 py-6 md:py-8 grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100">
             {[
               { num: "1200+", label: "Students" },
               { num: "80+", label: "Faculty" },
@@ -155,15 +155,15 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── About ── */}
         {about.show && (
-          <section id="about" className="py-24 border-b border-gray-100">
-            <div className="max-w-6xl mx-auto px-8">
-              <div className="grid md:grid-cols-2 gap-20 items-start">
+          <section id="about" className="py-12 md:py-24 border-b border-gray-100">
+            <div className="max-w-6xl mx-auto px-4 sm:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-start">
 
                 {/* Left column */}
                 <div>
                   <p className="text-xs text-gray-400 tracking-[0.2em] uppercase mb-4">About Us</p>
                   <h2
-                    className="text-4xl font-light mb-6 leading-snug pl-4 border-l-4"
+                    className="text-3xl md:text-4xl font-light mb-6 leading-snug pl-4 border-l-4"
                     style={{ color: primary, borderColor: primary }}
                   >
                     {about.heading || "About Our School"}
@@ -231,12 +231,12 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── Academics ── */}
         {academics.show && (
-          <section id="academics" className="py-24 bg-gray-50 border-b border-gray-100">
-            <div className="max-w-6xl mx-auto px-8">
+          <section id="academics" className="py-12 md:py-24 bg-gray-50 border-b border-gray-100">
+            <div className="max-w-6xl mx-auto px-4 sm:px-8">
               <p className="text-xs text-gray-400 tracking-[0.2em] uppercase mb-4">Academics</p>
               <div className="flex items-end justify-between gap-8 mb-14 flex-wrap">
                 <h2
-                  className="text-4xl font-light pl-4 border-l-4"
+                  className="text-3xl md:text-4xl font-light pl-4 border-l-4"
                   style={{ color: primary, borderColor: primary }}
                 >
                   {academics.heading || "Academic Programs"}
@@ -245,7 +245,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
                   {academics.description || "A comprehensive curriculum designed to nurture intellectual curiosity and build a strong foundation."}
                 </p>
               </div>
-              <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
                 {[
                   { num: "01", title: "Pre-Primary", range: "Nursery – KG", desc: "Play-based learning that nurtures creativity and early development." },
                   { num: "02", title: "Primary", range: "Class I – V", desc: "Building foundational skills in literacy, numeracy, and science." },
@@ -276,12 +276,12 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── Gallery ── */}
         {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
-          <section id="gallery" className="py-24 border-b border-gray-100">
-            <div className="max-w-6xl mx-auto px-8">
+          <section id="gallery" className="py-12 md:py-24 border-b border-gray-100">
+            <div className="max-w-6xl mx-auto px-4 sm:px-8">
               <p className="text-xs text-gray-400 tracking-[0.2em] uppercase mb-4">Gallery</p>
               <div className="flex items-end justify-between gap-6 mb-10 flex-wrap">
                 <h2
-                  className="text-4xl font-light pl-4 border-l-4"
+                  className="text-3xl md:text-4xl font-light pl-4 border-l-4"
                   style={{ color: primary, borderColor: primary }}
                 >
                   {gallery.heading || "Our School"}
@@ -337,11 +337,11 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── Admissions ── */}
         {admissions.show && (
-          <section id="admissions" className="py-24 border-b border-gray-100">
-            <div className="max-w-6xl mx-auto px-8">
+          <section id="admissions" className="py-12 md:py-24 border-b border-gray-100">
+            <div className="max-w-6xl mx-auto px-4 sm:px-8">
               <p className="text-xs text-gray-400 tracking-[0.2em] uppercase mb-4">Admissions</p>
               <h2
-                className="text-4xl font-light mb-14 pl-4 border-l-4"
+                className="text-3xl md:text-4xl font-light mb-14 pl-4 border-l-4"
                 style={{ color: primary, borderColor: primary }}
               >
                 {admissions.heading || "Admission Process 2025–26"}
@@ -354,7 +354,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
                   className="hidden md:block absolute top-7 left-0 right-0 h-px"
                   style={{ backgroundColor: `${primary}20` }}
                 />
-                <div className="grid md:grid-cols-4 gap-8 relative">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 relative">
                   {[
                     { step: "01", title: "Apply Online", desc: "Complete the application form on our admissions portal." },
                     { step: "02", title: "Submit Documents", desc: "Upload birth certificate, previous report cards, and ID proof." },
@@ -399,11 +399,11 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── Contact ── */}
         {contact.show && (
-          <section id="contact" className="py-24 bg-gray-50">
-            <div className="max-w-6xl mx-auto px-8">
+          <section id="contact" className="py-12 md:py-24 bg-gray-50">
+            <div className="max-w-6xl mx-auto px-4 sm:px-8">
               <p className="text-xs text-gray-400 tracking-[0.2em] uppercase mb-4">Contact</p>
               <h2
-                className="text-4xl font-light mb-4 pl-4 border-l-4"
+                className="text-3xl md:text-4xl font-light mb-4 pl-4 border-l-4"
                 style={{ color: primary, borderColor: primary }}
               >
                 {contact.heading || "Get In Touch"}
@@ -414,7 +414,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
                 {address || city} &nbsp;·&nbsp; {phone || "—"} &nbsp;·&nbsp; {email || "—"}
               </p>
 
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 {/* Left 2 columns: contact cards */}
                 <div className="bg-white p-6 border border-gray-100 hover:shadow-md transition-all duration-200">
                   <p className="text-xs text-gray-400 uppercase tracking-wider mb-3">Address</p>
@@ -431,11 +431,8 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
                   )}
                 </div>
 
-                {/* Right column: map placeholder */}
-                <div
-                  className="relative flex flex-col"
-                  style={{ gridColumn: "3 / 4", gridRow: "1 / 3" } as React.CSSProperties}
-                >
+                {/* Third column: email card + map */}
+                <div className="relative flex flex-col" style={{} as React.CSSProperties}>
                   {/* Email card stacked above map */}
                   <div className="bg-white p-6 border border-gray-100 hover:shadow-md transition-all duration-200 mb-4">
                     <p className="text-xs text-gray-400 uppercase tracking-wider mb-3">Email</p>
@@ -451,7 +448,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572.8608563176817!2d82.52597947222179!3d26.427966480760162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3990928e2ecacf07%3A0x45812ae7e2c0ee77!2sDOYEN%20INTERNATIONAL%20SCHOOL!5e0!3m2!1sen!2sin!4v1792572714179!5m2!1sen!2sin"
                       width="100%"
-                      height="200"
+                      height="250"
                       style={{ border: 0, display: "block" }}
                       allowFullScreen
                       loading="lazy"

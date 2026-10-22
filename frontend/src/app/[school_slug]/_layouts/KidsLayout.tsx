@@ -132,7 +132,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
             return (
               <HeroSlider
                 banners={banners}
-                overlayStyle={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.55) 100%)" }}
+                overlayStyle={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.40) 100%)" }}
                 className="min-h-[88vh]"
               >
                 {heroContent}
