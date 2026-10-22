@@ -171,11 +171,11 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
       {hero.show && (() => {
         const heroContent = (
           <div
-            className="max-w-6xl mx-auto px-6 flex items-center justify-between gap-12 min-h-[90vh] py-20"
+            className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 min-h-[60vh] md:min-h-[90vh] py-12 md:py-20"
             style={{ fontFamily: "Georgia, serif" }}
           >
             {/* Left: text + CTAs */}
-            <div className="flex-1">
+            <div className="flex-1 w-full text-center md:text-left">
               <p
                 className="text-xs tracking-widest uppercase font-semibold mb-4"
                 style={{ color: accent }}
@@ -197,7 +197,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
                 {hero.description ||
                   `A tradition of excellence in education since ${established_year ?? "our founding"}. Committed to shaping future leaders with knowledge, integrity, and character.`}
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <a
                   href="#admissions"
                   className="px-8 py-3 font-semibold text-sm rounded hover:opacity-90 transition-opacity"
@@ -216,7 +216,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
 
             {/* Right: Admission Enquiry card */}
             <div
-              className="w-96 flex-shrink-0 bg-white rounded-lg shadow-2xl p-8"
+              className="hidden md:flex md:w-96 flex-shrink-0 bg-white rounded-lg shadow-2xl p-8"
               style={{ fontFamily: "Georgia, serif" }}
             >
               <h3 className="text-xl font-bold mb-2" style={{ color: primary, fontFamily: "Georgia, serif" }}>
@@ -270,7 +270,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
             <HeroSlider
               banners={banners}
               overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%)" }}
-              className="min-h-[90vh]"
+              className="min-h-[60vh] md:min-h-[90vh]"
             >
               {heroContent}
             </HeroSlider>
@@ -279,7 +279,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
 
         return (
           <div
-            className="min-h-[90vh] flex items-center"
+            className="min-h-[60vh] md:min-h-[90vh] flex items-center"
             style={{
               background: `linear-gradient(135deg, ${primary} 0%, ${primary}dd 60%, ${primary}99 100%)`,
               fontFamily: "Georgia, serif",
@@ -316,7 +316,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
       {about.show && (
         <section
           id="about"
-          className="py-20 px-6"
+          className="py-12 md:py-20 px-4 sm:px-6"
           style={{ backgroundColor: "#FAFAF7", fontFamily: "Georgia, serif" }}
         >
           <div className="max-w-6xl mx-auto">
@@ -328,7 +328,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
               {about.heading || `Welcome to ${name}`}
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
               {/* Left: image */}
               <div>
                 {data.gallery_items && data.gallery_items.length > 0 ? (
@@ -372,7 +372,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
                 </p>
 
                 {/* Feature grid */}
-                <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                   {[
                     { icon: <IconAward />, title: "Academic Excellence", sub: "Consistent top results and curriculum depth" },
                     { icon: <IconShield />, title: "Safe & Nurturing Campus", sub: "Secure environment for holistic growth" },
@@ -411,7 +411,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
       {academics.show && (
         <section
           id="academics"
-          className="py-20 px-6 bg-white"
+          className="py-12 md:py-20 px-4 sm:px-6 bg-white"
           style={{ fontFamily: "Georgia, serif" }}
         >
           <div className="max-w-6xl mx-auto">
@@ -435,7 +435,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
               </a>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {([
                 { num: "01", title: "Pre-Primary", tagline: "Play · Learn · Grow", range: "Nursery–KG" },
                 { num: "02", title: "Primary", tagline: "Think · Create · Achieve", range: "Class I–V" },
@@ -496,7 +496,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── SECTION 5: Campus Life ───────────────────────────────────────────── */}
       <section
-        className="py-20 px-6"
+        className="py-12 md:py-20 px-4 sm:px-6"
         style={{
           background: `linear-gradient(135deg, ${primary}08 0%, ${primary}12 100%)`,
           fontFamily: "Georgia, serif",
@@ -511,7 +511,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
             Life Beyond the Classroom
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-12 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-10">
             {/* Left */}
             <div>
               <p className="text-gray-700 leading-relaxed mb-6 text-base">
@@ -559,7 +559,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
       {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
         <section
           id="gallery"
-          className="py-20 px-6 bg-white"
+          className="py-12 md:py-20 px-4 sm:px-6 bg-white"
           style={{ fontFamily: "Georgia, serif" }}
         >
           <div className="max-w-6xl mx-auto">
@@ -629,7 +629,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── SECTION 7: Testimonials ─────────────────────────────────────────── */}
       <section
-        className="py-20 px-6"
+        className="py-12 md:py-20 px-4 sm:px-6"
         style={{ backgroundColor: "#F9F6F0", fontFamily: "Georgia, serif" }}
       >
         <div className="max-w-6xl mx-auto">
@@ -641,7 +641,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
             What Parents Say
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 quote: "The academic environment here is exceptional. My daughter has grown tremendously in both studies and character.",
@@ -701,7 +701,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── SECTION 8: CTA Band ─────────────────────────────────────────────── */}
       <section
-        className="py-16 px-6 text-center"
+        className="py-10 md:py-16 px-4 sm:px-6 text-center"
         style={{ backgroundColor: primary, fontFamily: "Georgia, serif" }}
       >
         <p className="text-xs tracking-widest uppercase font-semibold mb-3" style={{ color: accent }}>
@@ -726,7 +726,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
       {admissions.show && (
         <section
           id="admissions"
-          className="py-20 px-6"
+          className="py-12 md:py-20 px-4 sm:px-6"
           style={{
             background: `linear-gradient(135deg, ${primary}08 0%, ${primary}12 100%)`,
             fontFamily: "Georgia, serif",
@@ -741,7 +741,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
               {admissions.heading || "Admission Enquiry"}
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
               {/* Left: info */}
               <div>
                 <p className="text-gray-700 leading-relaxed mb-6">
@@ -829,7 +829,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
       {contact.show && (
         <section
           id="contact"
-          className="py-20 px-6 bg-white"
+          className="py-12 md:py-20 px-4 sm:px-6 bg-white"
           style={{ fontFamily: "Georgia, serif" }}
         >
           <div className="max-w-6xl mx-auto">
@@ -841,7 +841,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
               {contact.heading || "Contact Us"}
             </h2>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {/* Column 1: Info */}
               <div>
                 <p className="font-bold text-lg mb-5" style={{ color: primary }}>Visit Us</p>
