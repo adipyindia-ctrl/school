@@ -50,7 +50,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
           const hasBanner = banners.length > 0;
 
           const heroContent = (
-            <div className="max-w-3xl mx-auto relative z-10 py-12 px-4 sm:px-6 text-center w-full min-h-[60vh] md:min-h-[88vh] flex flex-col items-center justify-center">
+            <div className="max-w-3xl mx-auto relative z-10 py-12 px-4 sm:px-6 text-center w-full min-h-[100svh] md:min-h-[88vh] flex flex-col items-center justify-center">
 
               {/* School Name — large colorful heading */}
               <h1
@@ -133,7 +133,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
               <HeroSlider
                 banners={banners}
                 overlayStyle={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.40) 100%)" }}
-                className="min-h-[88vh]"
+                className="min-h-[100svh] md:min-h-[88vh]"
               >
                 {heroContent}
               </HeroSlider>
@@ -141,7 +141,7 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
           }
 
           return (
-            <section className="min-h-[88vh] flex items-center relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${bg1}18 0%, ${bg2}15 50%, ${bg3}18 100%)` }}>
+            <section className="min-h-[100svh] md:min-h-[88vh] flex items-center relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${bg1}18 0%, ${bg2}15 50%, ${bg3}18 100%)` }}>
               <div className="absolute top-10 left-10 w-40 h-40 rounded-full opacity-15 blur-2xl" style={{ backgroundColor: bg1 }} />
               <div className="absolute top-24 right-16 w-28 h-28 rounded-full opacity-25 blur-xl" style={{ backgroundColor: bg2 }} />
               <div className="absolute bottom-28 left-28 w-32 h-32 rounded-full opacity-20 blur-2xl" style={{ backgroundColor: bg3 }} />

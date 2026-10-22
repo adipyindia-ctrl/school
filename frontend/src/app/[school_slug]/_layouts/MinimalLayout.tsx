@@ -47,7 +47,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
           const hasBanner = banners.length > 0;
 
           const heroContent = (
-            <div className={`max-w-6xl mx-auto px-4 sm:px-8 w-full relative z-10 flex items-center ${hasBanner ? "min-h-[60vh] md:min-h-[88vh]" : "min-h-[60vh] md:min-h-[88vh]"}`}>
+            <div className={`max-w-6xl mx-auto px-4 sm:px-8 w-full relative z-10 flex items-center ${hasBanner ? "min-h-[100svh] md:min-h-[88vh]" : "min-h-[100svh] md:min-h-[88vh]"}`}>
               <div className="max-w-2xl py-12 md:py-20">
                 {/* Tag line */}
                 <div className="flex items-center gap-3 mb-8">
@@ -122,7 +122,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
               <HeroSlider
                 banners={banners}
                 overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.05) 100%)" }}
-                className="min-h-[60vh] md:min-h-[88vh]"
+                className="min-h-[100svh] md:min-h-[88vh]"
               >
                 {heroContent}
               </HeroSlider>
@@ -130,7 +130,7 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
           }
 
           return (
-            <section className="relative min-h-[60vh] md:min-h-[88vh] flex items-center overflow-hidden border-b border-gray-100">
+            <section className="relative min-h-[100svh] md:min-h-[88vh] flex items-center overflow-hidden border-b border-gray-100">
               {heroContent}
             </section>
           );

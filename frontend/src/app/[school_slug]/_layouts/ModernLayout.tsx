@@ -38,7 +38,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
         const hasBanner = banners.length > 0;
 
         const heroContent = (
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[60vh] md:min-h-[90vh] py-12 md:py-24">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[100svh] md:min-h-[90vh] py-12 md:py-24">
             {/* Left — accent pill + heading + CTAs */}
             <div className="text-center md:text-left">
               {/* CBSE pill */}
@@ -170,7 +170,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
             <HeroSlider
               banners={banners}
               overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.0) 100%)" }}
-              className="min-h-[60vh] md:min-h-[90vh]"
+              className="min-h-[100svh] md:min-h-[90vh]"
             >
               {heroContent}
             </HeroSlider>
