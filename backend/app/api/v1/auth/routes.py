@@ -26,12 +26,14 @@ COOKIE_MAX_AGE = 7 * 24 * 3600  # 7 days
 
 
 def _set_refresh_cookie(response: Response, raw_token: str) -> None:
+    import os
+    is_production = os.getenv("APP_ENV", "development") == "production"
     response.set_cookie(
         key=REFRESH_COOKIE,
         value=raw_token,
         httponly=True,
-        secure=False,  # Set True in production (HTTPS only)
-        samesite="lax",
+        secure=is_production,  # True in production (HTTPS), False locally
+        samesite="none" if is_production else "lax",
         max_age=COOKIE_MAX_AGE,
         path="/api/v1/auth",
     )
