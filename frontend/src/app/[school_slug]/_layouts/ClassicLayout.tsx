@@ -216,7 +216,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
 
             {/* Right: Admission Enquiry card */}
             <div
-              className="hidden md:flex md:w-96 flex-shrink-0 bg-white rounded-lg shadow-2xl p-8"
+              className="hidden md:flex md:flex-col md:w-80 lg:w-96 flex-shrink-0 bg-white rounded-lg shadow-2xl p-6 lg:p-8"
               style={{ fontFamily: "Georgia, serif" }}
             >
               <h3 className="text-xl font-bold mb-2" style={{ color: primary, fontFamily: "Georgia, serif" }}>
