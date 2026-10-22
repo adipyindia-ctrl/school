@@ -137,3 +137,9 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* School website pages — no body background bleeding */
+body {
+  margin: 0;
+  padding: 0;
+}

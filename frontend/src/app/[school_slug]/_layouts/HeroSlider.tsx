@@ -74,7 +74,7 @@ export function HeroSlider({
 
   return (
     <div
-      className={`relative overflow-hidden ${className}`}
+      className={`relative overflow-hidden w-screen max-w-[100vw] ${className}`}
       style={isCleanMode ? { height: "clamp(300px, 50vw, 600px)" } : undefined}
     >
       {/* Current slide image */}

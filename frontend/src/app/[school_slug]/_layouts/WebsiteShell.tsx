@@ -87,7 +87,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
       </nav>
 
       {/* Page content */}
-      <main>{children}</main>
+      <main className="w-full overflow-x-hidden">{children}</main>
 
       {/* Footer */}
       <footer style={{ backgroundColor: primary }} className="text-white">
