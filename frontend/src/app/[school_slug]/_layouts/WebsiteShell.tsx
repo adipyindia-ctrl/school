@@ -28,7 +28,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
 
   return (
     <div
-      className="overflow-x-hidden"
+      className="w-full"
       style={
         {
           fontFamily: branding.font_family || "Inter, sans-serif",
