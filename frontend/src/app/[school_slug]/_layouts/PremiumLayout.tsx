@@ -38,7 +38,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           const hasBanner = banners.length > 0;
 
           const heroContent = (
-            <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-24 min-h-[95vh] text-center">
+            <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-12 md:py-24 min-h-[60vh] md:min-h-[95vh] text-center">
               {/* Top thin gold line */}
               <div className="mb-8 flex items-center gap-4">
                 <div className="h-px w-16" style={{ backgroundColor: accent }} />
@@ -114,7 +114,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
               <HeroSlider
                 banners={banners}
                 overlayStyle={{ background: "rgba(0,0,0,0.70)" }}
-                className="min-h-[95vh] flex flex-col"
+                className="min-h-[60vh] md:min-h-[95vh] flex flex-col"
               >
                 {heroContent}
               </HeroSlider>
@@ -122,7 +122,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           }
 
           return (
-            <section className="relative min-h-[95vh] flex flex-col bg-black">
+            <section className="relative min-h-[60vh] md:min-h-[95vh] flex flex-col bg-black">
               <div
                 className="absolute inset-0"
                 style={{
@@ -141,7 +141,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── STATS ── */}
         {stats.show && (
-          <section className="py-16 px-6" style={{ backgroundColor: "#0a0a0a" }}>
+          <section className="py-10 md:py-16 px-4 sm:px-6" style={{ backgroundColor: "#0a0a0a" }}>
             <div className="max-w-5xl mx-auto">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-zinc-800/60">
                 {[
@@ -171,10 +171,10 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           <section id="about" className="bg-zinc-950">
             {/* Top editorial quote block */}
             <div
-              className="py-20 px-6 border-t border-b"
+              className="py-12 md:py-20 px-4 sm:px-6 border-t border-b"
               style={{ borderColor: `${accent}20` }}
             >
-              <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+              <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
                 {/* Left — school story with gold accent border */}
                 <div
                   className="pl-8 border-l-2"
@@ -244,7 +244,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
             </div>
 
             {/* Facilities row */}
-            <div className="py-16 px-6">
+            <div className="py-10 md:py-16 px-4 sm:px-6">
               <div className="max-w-6xl mx-auto">
                 <p
                   className="text-xs uppercase tracking-[0.35em] mb-8 text-center font-light"
@@ -279,7 +279,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── ACADEMICS ── */}
         {academics.show && (
-          <section id="academics" className="py-28 px-6 bg-zinc-900">
+          <section id="academics" className="py-14 md:py-28 px-4 sm:px-6 bg-zinc-900">
             <div className="max-w-6xl mx-auto">
               {/* Section header */}
               <div className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -304,7 +304,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
               </div>
 
               {/* Grade cards */}
-              <div className="grid md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {[
                   {
                     num: "01",
@@ -367,7 +367,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── GALLERY ── */}
         {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
-          <section id="gallery" className="py-28 px-6 bg-zinc-950">
+          <section id="gallery" className="py-14 md:py-28 px-4 sm:px-6 bg-zinc-950">
             <div className="max-w-6xl mx-auto">
               {/* Header */}
               <div className="text-center mb-14">
@@ -427,12 +427,12 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── ADMISSIONS ── */}
         {admissions.show && (
-          <section id="admissions" className="py-28 px-6 bg-zinc-900">
+          <section id="admissions" className="py-14 md:py-28 px-4 sm:px-6 bg-zinc-900">
             <div className="max-w-6xl mx-auto">
               {/* Gold top accent line */}
               <div className="h-px w-full mb-20" style={{ backgroundColor: `${accent}35` }} />
 
-              <div className="grid md:grid-cols-2 gap-16 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
                 {/* Left */}
                 <div>
                   <p
@@ -513,7 +513,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── CONTACT ── */}
         {contact.show && (
-          <section id="contact" className="py-28 px-6 bg-zinc-950">
+          <section id="contact" className="py-14 md:py-28 px-4 sm:px-6 bg-zinc-950">
             <div className="max-w-6xl mx-auto">
               {/* Header */}
               <div className="text-center mb-16">
@@ -536,7 +536,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
               </div>
 
               {/* Cards + Map */}
-              <div className="grid md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 {/* Left — 3 contact cards stacked */}
                 <div className="md:col-span-2 flex flex-col gap-4">
                   {/* Address */}
