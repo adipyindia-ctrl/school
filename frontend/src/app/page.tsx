@@ -14,7 +14,7 @@ async function fetchSchoolData(slug: string): Promise<SchoolWebsiteData | null> 
   try {
     const apiBase = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000") + "/api/v1";
     const res = await fetch(`${apiBase}/public/school/${slug}`, {
-      next: { revalidate: 300 }, // cache for 5 min
+      next: { revalidate: 0 }, // always fresh — admin changes show instantly
     });
     if (!res.ok) return null;
     const json = await res.json();
@@ -32,7 +32,7 @@ async function getDefaultSlug(): Promise<string | null> {
   // 2. Auto-discover first active school from backend
   try {
     const apiBase = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000") + "/api/v1";
-    const res = await fetch(`${apiBase}/public/schools`, { next: { revalidate: 60 } });
+    const res = await fetch(`${apiBase}/public/schools`, { next: { revalidate: 0 } });
     if (res.ok) {
       const json = await res.json();
       const schools: { slug: string; status: string }[] = json.data ?? [];

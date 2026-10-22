@@ -261,10 +261,32 @@ function WebsiteSettingsTab() {
 
 // ── Layout Template Tab ───────────────────────────────────────────────────────
 
+async function triggerRevalidate(slug?: string) {
+  try {
+    await fetch("/api/revalidate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      // No secret sent from client — this is an internal same-origin call.
+      // REVALIDATE_SECRET is server-only and must never be exposed to the browser.
+      body: JSON.stringify({ slug }),
+    });
+  } catch {
+    // non-critical — page will still update on next load
+  }
+}
+
 function LayoutTemplateTab() {
   const qc = useQueryClient();
   const { data: settings, isLoading } = useQuery({ queryKey: ["website-settings"], queryFn: getWebsiteSettings });
-  const updateMutation = useMutation({ mutationFn: updateWebsiteSettings, onSuccess: () => qc.invalidateQueries({ queryKey: ["website-settings"] }) });
+  const { tenant } = useTenantStore();
+  const updateMutation = useMutation({
+    mutationFn: updateWebsiteSettings,
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["website-settings"] });
+      // Instantly bust the public site cache so layout change is visible right away
+      triggerRevalidate(tenant?.slug);
+    },
+  });
   if (isLoading) return <div className="h-32 bg-muted animate-pulse rounded-lg" />;
   return (
     <div className="space-y-4 max-w-2xl">
@@ -289,7 +311,13 @@ function WebsiteStatusTab() {
   const qc = useQueryClient();
   const { tenant } = useTenantStore();
   const { data: settings, isLoading } = useQuery({ queryKey: ["website-settings"], queryFn: getWebsiteSettings });
-  const updateMutation = useMutation({ mutationFn: updateWebsiteSettings, onSuccess: () => qc.invalidateQueries({ queryKey: ["website-settings"] }) });
+  const updateMutation = useMutation({
+    mutationFn: updateWebsiteSettings,
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["website-settings"] });
+      triggerRevalidate(tenant?.slug);
+    },
+  });
   if (isLoading) return <div className="h-32 bg-muted animate-pulse rounded-lg" />;
   return (
     <div className="max-w-2xl space-y-4">

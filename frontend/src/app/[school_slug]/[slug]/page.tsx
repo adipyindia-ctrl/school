@@ -18,7 +18,7 @@ async function fetchPage(schoolSlug: string, pageSlug: string) {
       `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/api/v1`;
     const res = await fetch(
       `${apiBase}/public/school/${schoolSlug}/pages/${pageSlug}`,
-      { next: { revalidate: 300 } },
+      { next: { revalidate: 0 } },
     );
     if (!res.ok) return null;
     const json = await res.json();
@@ -33,7 +33,7 @@ async function fetchSchoolData(slug: string) {
     const apiBase =
       `${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/api/v1`;
     const res = await fetch(`${apiBase}/public/school/${slug}`, {
-      next: { revalidate: 300 },
+      next: { revalidate: 0 },
     });
     if (!res.ok) return null;
     const json = await res.json();
