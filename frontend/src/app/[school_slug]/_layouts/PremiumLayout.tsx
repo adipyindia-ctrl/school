@@ -218,7 +218,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
 
         {/* ── 2. STATS BAR ── */}
         {stats.show && (
-          <section className="bg-zinc-900">
+          <section className="hidden md:block bg-zinc-900">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
                 {[
@@ -243,7 +243,146 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           </section>
         )}
 
-        {/* ── 3. ABOUT ── */}
+        {/* ── 3. ACADEMICS ── */}
+        {academics.show && (
+          <section id="academics" className="bg-zinc-900 py-12 md:py-24 px-4 sm:px-6">
+            <div className="max-w-6xl mx-auto">
+              <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>OUR ACADEMICS</p>
+
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+                <h2
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
+                  style={{ fontFamily: "'Georgia', serif" }}
+                >
+                  {academics.heading || "Academic Programs"}
+                </h2>
+                <div className="md:text-right">
+                  <p className="text-zinc-400 text-sm max-w-sm mb-2">
+                    {academics.description ||
+                      "Comprehensive education from Pre-Primary through Senior Secondary, designed for every stage of your child's growth."}
+                  </p>
+                  <a href="#contact" className="text-sm font-semibold" style={{ color: accent }}>View All Programs →</a>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {[
+                  { num: "01", title: "Pre-Primary", range: "Nursery–KG", tagline: "Play · Learn · Grow" },
+                  { num: "02", title: "Primary", range: "Class I–V", tagline: "Think · Create · Achieve" },
+                  { num: "03", title: "Middle School", range: "Class VI–VIII", tagline: "Explore · Debate · Read" },
+                  { num: "04", title: "Secondary", range: "Class IX–X", tagline: "Analyse · Perform · Excel" },
+                  { num: "05", title: "Sr. Secondary", range: "Class XI–XII", tagline: "Focus · Prepare · Succeed" },
+                ].map(({ num, title, range, tagline }, idx) => {
+                  const thumbUrl =
+                    data.gallery_items && data.gallery_items.length > 0
+                      ? data.gallery_items[idx % data.gallery_items.length].image_url
+                      : null;
+                  return (
+                    <div
+                      key={num}
+                      className="relative bg-zinc-950 p-5 border border-zinc-800 hover:border-zinc-600 hover:-translate-y-1 transition"
+                      style={{ borderTop: `3px solid ${accent}` }}
+                    >
+                      <span
+                        className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-black"
+                        style={{ backgroundColor: accent }}
+                      >
+                        {num}
+                      </span>
+
+                      {thumbUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={thumbUrl} alt={title} className="w-full h-24 object-cover mb-3" loading="lazy" />
+                      ) : (
+                        <div
+                          className="w-full h-24 mb-3"
+                          style={{ background: `linear-gradient(135deg, #18181b 0%, ${accent}22 100%)` }}
+                        />
+                      )}
+
+                      <p className="text-white text-sm font-semibold">{title}</p>
+                      <p className="text-zinc-500 text-xs mb-1">{range}</p>
+                      <p className="italic text-xs mb-3" style={{ color: accent }}>{tagline}</p>
+                      <a href="#contact" className="text-xs font-semibold" style={{ color: accent }}>Explore Classes →</a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ── 4. GALLERY ── */}
+        {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
+          <section id="gallery" className="bg-zinc-900 py-12 md:py-24 px-4 sm:px-6">
+            <div className="max-w-6xl mx-auto">
+              <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>OUR GALLERY</p>
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+                <h2
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
+                  style={{ fontFamily: "'Georgia', serif" }}
+                >
+                  {gallery.heading || "Moments That Matter"}
+                </h2>
+                <a
+                  href="#gallery"
+                  className="text-sm font-semibold border px-4 py-2 inline-block flex-shrink-0"
+                  style={{ borderColor: accent, color: accent }}
+                >
+                  View All Photos →
+                </a>
+              </div>
+
+              <p className="text-zinc-400 text-sm max-w-lg mb-8">
+                {gallery.description || `A glimpse into the vibrant life at ${name}.`}
+              </p>
+
+              {/* Filter tabs — CSS-only presentational */}
+              <div className="flex flex-wrap gap-3 mb-8">
+                {["All", "Events", "Sports", "Academics"].map((cat) => (
+                  <span
+                    key={cat}
+                    className="px-5 py-2 text-xs uppercase tracking-widest cursor-default select-none"
+                    style={{
+                      backgroundColor: cat === "All" ? accent : "transparent",
+                      color: cat === "All" ? "#000" : accent,
+                      border: `1px solid ${accent}`,
+                    }}
+                  >
+                    {cat}
+                  </span>
+                ))}
+              </div>
+
+              {/* Image grid */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+                {data.gallery_items.map((img) => (
+                  <div
+                    key={img.id}
+                    className="aspect-[4/3] overflow-hidden bg-zinc-950 relative group"
+                    style={{ border: `1px solid ${accent}18` }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.image_url}
+                      alt={img.title}
+                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+                      {img.category && (
+                        <p className="text-xs uppercase tracking-widest mb-1" style={{ color: accent }}>{img.category}</p>
+                      )}
+                      <p className="text-white text-sm font-semibold">{img.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ── 5. ABOUT ── */}
         {about.show && (
           <section id="about" className="bg-zinc-950 py-12 md:py-24 px-4 sm:px-6">
             <div className="max-w-6xl mx-auto">
@@ -313,76 +452,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           </section>
         )}
 
-        {/* ── 4. ACADEMICS ── */}
-        {academics.show && (
-          <section id="academics" className="bg-zinc-900 py-12 md:py-24 px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>OUR ACADEMICS</p>
-
-              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-                <h2
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
-                  style={{ fontFamily: "'Georgia', serif" }}
-                >
-                  {academics.heading || "Academic Programs"}
-                </h2>
-                <div className="md:text-right">
-                  <p className="text-zinc-400 text-sm max-w-sm mb-2">
-                    {academics.description ||
-                      "Comprehensive education from Pre-Primary through Senior Secondary, designed for every stage of your child's growth."}
-                  </p>
-                  <a href="#contact" className="text-sm font-semibold" style={{ color: accent }}>View All Programs →</a>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {[
-                  { num: "01", title: "Pre-Primary", range: "Nursery–KG", tagline: "Play · Learn · Grow" },
-                  { num: "02", title: "Primary", range: "Class I–V", tagline: "Think · Create · Achieve" },
-                  { num: "03", title: "Middle School", range: "Class VI–VIII", tagline: "Explore · Debate · Read" },
-                  { num: "04", title: "Secondary", range: "Class IX–X", tagline: "Analyse · Perform · Excel" },
-                  { num: "05", title: "Sr. Secondary", range: "Class XI–XII", tagline: "Focus · Prepare · Succeed" },
-                ].map(({ num, title, range, tagline }, idx) => {
-                  const thumbUrl =
-                    data.gallery_items && data.gallery_items.length > 0
-                      ? data.gallery_items[idx % data.gallery_items.length].image_url
-                      : null;
-                  return (
-                    <div
-                      key={num}
-                      className="relative bg-zinc-950 p-5 border border-zinc-800 hover:border-zinc-600 hover:-translate-y-1 transition"
-                      style={{ borderTop: `3px solid ${accent}` }}
-                    >
-                      <span
-                        className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-black"
-                        style={{ backgroundColor: accent }}
-                      >
-                        {num}
-                      </span>
-
-                      {thumbUrl ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={thumbUrl} alt={title} className="w-full h-24 object-cover mb-3" loading="lazy" />
-                      ) : (
-                        <div
-                          className="w-full h-24 mb-3"
-                          style={{ background: `linear-gradient(135deg, #18181b 0%, ${accent}22 100%)` }}
-                        />
-                      )}
-
-                      <p className="text-white text-sm font-semibold">{title}</p>
-                      <p className="text-zinc-500 text-xs mb-1">{range}</p>
-                      <p className="italic text-xs mb-3" style={{ color: accent }}>{tagline}</p>
-                      <a href="#contact" className="text-xs font-semibold" style={{ color: accent }}>Explore Classes →</a>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* ── 5. CAMPUS LIFE ── */}
+        {/* ── 6. CAMPUS LIFE ── */}
         <section className="bg-zinc-950 py-12 md:py-24 px-4 sm:px-6">
           <div className="max-w-6xl mx-auto">
             <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>CAMPUS LIFE</p>
@@ -434,76 +504,6 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
             </div>
           </div>
         </section>
-
-        {/* ── 6. GALLERY ── */}
-        {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
-          <section id="gallery" className="bg-zinc-900 py-12 md:py-24 px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-              <p className="text-xs tracking-[0.3em] uppercase mb-4 font-semibold" style={{ color: accent }}>OUR GALLERY</p>
-              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-                <h2
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
-                  style={{ fontFamily: "'Georgia', serif" }}
-                >
-                  {gallery.heading || "Moments That Matter"}
-                </h2>
-                <a
-                  href="#gallery"
-                  className="text-sm font-semibold border px-4 py-2 inline-block flex-shrink-0"
-                  style={{ borderColor: accent, color: accent }}
-                >
-                  View All Photos →
-                </a>
-              </div>
-
-              <p className="text-zinc-400 text-sm max-w-lg mb-8">
-                {gallery.description || `A glimpse into the vibrant life at ${name}.`}
-              </p>
-
-              {/* Filter tabs — CSS-only presentational */}
-              <div className="flex flex-wrap gap-3 mb-8">
-                {["All", "Events", "Sports", "Academics"].map((cat) => (
-                  <span
-                    key={cat}
-                    className="px-5 py-2 text-xs uppercase tracking-widest cursor-default select-none"
-                    style={{
-                      backgroundColor: cat === "All" ? accent : "transparent",
-                      color: cat === "All" ? "#000" : accent,
-                      border: `1px solid ${accent}`,
-                    }}
-                  >
-                    {cat}
-                  </span>
-                ))}
-              </div>
-
-              {/* Image grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
-                {data.gallery_items.map((img) => (
-                  <div
-                    key={img.id}
-                    className="aspect-[4/3] overflow-hidden bg-zinc-950 relative group"
-                    style={{ border: `1px solid ${accent}18` }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={img.image_url}
-                      alt={img.title}
-                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
-                      {img.category && (
-                        <p className="text-xs uppercase tracking-widest mb-1" style={{ color: accent }}>{img.category}</p>
-                      )}
-                      <p className="text-white text-sm font-semibold">{img.title}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
 
         {/* ── 7. TESTIMONIALS ── */}
         <section className="bg-zinc-950 py-12 md:py-24 px-4 sm:px-6">
@@ -690,6 +690,25 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
+        )}
+
+        {/* ── Mobile/Tablet only Stats — just before footer ── */}
+        {stats.show && (
+          <section className="md:hidden bg-zinc-900 py-8 px-4">
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { num: `${established_year ?? "—"}+`, label: "Years of Excellence" },
+                { num: "1000+", label: "Students Enrolled" },
+                { num: "50+", label: "Expert Faculty" },
+                { num: "100%", label: "Success Rate" },
+              ].map(({ num, label }) => (
+                <div key={label} className="text-center py-5 px-3 border border-zinc-800 rounded-lg">
+                  <p className="text-2xl font-bold mb-1" style={{ color: accent, fontFamily: "'Georgia', serif" }}>{num}</p>
+                  <p className="text-zinc-400 text-xs uppercase tracking-wider">{label}</p>
+                </div>
+              ))}
             </div>
           </section>
         )}
