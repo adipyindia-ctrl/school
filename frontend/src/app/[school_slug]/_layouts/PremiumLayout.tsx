@@ -149,7 +149,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
 
           const heroContent = (
             <div
-              className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 min-h-[100svh] md:min-h-[95vh] flex flex-col items-start justify-center text-left py-12 md:py-24"
+              className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 h-[220px] md:min-h-[95vh] hidden md:flex flex-col items-start justify-center text-left py-4 md:py-24"
               style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
             >
               {/* Eyebrow */}
@@ -196,7 +196,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
               <HeroSlider
                 banners={banners}
                 overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.05) 100%)" }}
-                className="min-h-[100svh] md:min-h-[95vh] flex flex-col"
+                className="h-[220px] md:min-h-[95vh] flex flex-col"
               >
                 {heroContent}
               </HeroSlider>
@@ -204,7 +204,7 @@ export function PremiumLayout({ data }: { data: SchoolWebsiteData }) {
           }
 
           return (
-            <section className="relative min-h-[100svh] md:min-h-[95vh] flex flex-col bg-zinc-950">
+            <section className="relative h-[220px] md:min-h-[95vh] flex flex-col bg-zinc-950">
               <div
                 className="absolute inset-0"
                 style={{

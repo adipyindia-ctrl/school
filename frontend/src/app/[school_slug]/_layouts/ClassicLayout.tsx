@@ -171,7 +171,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
       {hero.show && (() => {
         const heroContent = (
           <div
-            className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 min-h-[100svh] md:min-h-[90vh] py-12 md:py-20"
+            className="max-w-6xl mx-auto px-4 sm:px-6 hidden md:flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 h-[220px] md:min-h-[90vh] py-4 md:py-20"
             style={{ fontFamily: "Georgia, serif" }}
           >
             {/* Left: text + CTAs */}
@@ -223,7 +223,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
             <HeroSlider
               banners={banners}
               overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.05) 100%)" }}
-              className="min-h-[100svh] md:min-h-[90vh]"
+              className="h-[220px] md:min-h-[90vh]"
             >
               {heroContent}
             </HeroSlider>
@@ -232,7 +232,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
 
         return (
           <div
-            className="relative min-h-[100svh] md:min-h-[90vh] flex items-center"
+            className="relative h-[220px] md:min-h-[90vh] flex items-center"
             style={{
               background: `linear-gradient(135deg, ${primary} 0%, ${primary}dd 60%, ${primary}99 100%)`,
               fontFamily: "Georgia, serif",
@@ -244,7 +244,7 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
       })()}
 
       {/* ── SECTION 2: Stats Bar ─────────────────────────────────────────────── */}
-      <section className="bg-white shadow-md border-b" style={{ fontFamily: "Georgia, serif" }}>
+      <section className="hidden md:block bg-white shadow-md border-b" style={{ fontFamily: "Georgia, serif" }}>
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4">
           {[
             { icon: <IconAward />, num: `${established_year ? new Date().getFullYear() - established_year : 20}+`, label: "Years of Excellence" },
@@ -282,8 +282,8 @@ export function ClassicLayout({ data }: { data: SchoolWebsiteData }) {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-              {/* Left: image */}
-              <div>
+              {/* Left: image — order-2 on mobile */}
+              <div className="order-2 md:order-1">
                 {data.gallery_items && data.gallery_items.length > 0 ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img

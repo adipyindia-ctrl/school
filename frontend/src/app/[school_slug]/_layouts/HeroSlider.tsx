@@ -74,8 +74,8 @@ export function HeroSlider({
 
   return (
     <div
-      className={`relative overflow-hidden w-screen max-w-[100vw] ${className}`}
-      style={isCleanMode ? { height: "clamp(300px, 50vw, 600px)" } : undefined}
+      className={`relative overflow-hidden w-full ${className}`}
+      style={isCleanMode ? { aspectRatio: "16/7" } : undefined}
     >
       {/* Current slide image */}
       <div className="absolute inset-0" style={{ zIndex: 1 }}>
@@ -84,7 +84,7 @@ export function HeroSlider({
           key={banners[current].id}
           src={optimizeUrl(banners[current].image_url)}
           alt={banners[current].title ?? "Banner"}
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-top"
           loading="eager"
           decoding="async"
         />

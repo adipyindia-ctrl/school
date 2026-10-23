@@ -129,6 +129,13 @@
   }
 }
 
+/* Remove body background bleed on school website pages */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 /* Hide scrollbar but keep scroll functionality */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

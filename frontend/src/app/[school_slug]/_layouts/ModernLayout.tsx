@@ -38,7 +38,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
         const hasBanner = banners.length > 0;
 
         const heroContent = (
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center min-h-[100svh] md:min-h-[90vh] py-12 md:py-24">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full hidden md:grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center h-[220px] md:min-h-[90vh] py-4 md:py-24">
             {/* Left — accent pill + heading + CTAs */}
             <div className="text-center md:text-left">
               {/* CBSE pill */}
@@ -170,7 +170,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
             <HeroSlider
               banners={banners}
               overlayStyle={{ background: "linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.0) 100%)" }}
-              className="min-h-[100svh] md:min-h-[90vh]"
+              className="h-[220px] md:min-h-[90vh]"
             >
               {heroContent}
             </HeroSlider>
@@ -196,7 +196,7 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
 
       {/* ── Stats Bar ── */}
       {stats.show && (
-        <section className="bg-white border-b border-gray-100 shadow-sm py-8 overflow-x-hidden">
+        <section className="hidden md:block bg-white border-b border-gray-100 shadow-sm py-8 overflow-x-hidden">
           <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-100">
             {/* Col 1 — Established */}
             <div className="flex flex-col items-center text-center gap-2 py-8 px-4">
@@ -269,8 +269,8 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
       {about.show && (
         <section id="about" className="py-12 md:py-24 px-4 sm:px-6" style={{ backgroundColor: "#f8fafc" }}>
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-            {/* Left — image */}
-            <div className="relative aspect-[4/3]">
+            {/* Left — image (order-2 on mobile = shows after text) */}
+            <div className="relative aspect-[4/3] order-2 md:order-1">
               {data.gallery_items && data.gallery_items.length > 0 ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -294,8 +294,8 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
               />
             </div>
 
-            {/* Right — content */}
-            <div>
+            {/* Right — content (order-1 on mobile = shows before image) */}
+            <div className="order-1 md:order-2">
               {/* Eyebrow */}
               <p className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: accent }}>
                 About Us
@@ -750,6 +750,25 @@ export function ModernLayout({ data }: { data: SchoolWebsiteData }) {
                 />
               </div>
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Mobile-only Stats — shown just before footer ── */}
+      {stats.show && (
+        <section className="md:hidden bg-white border-t border-gray-100 py-6 px-4">
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { num: `${established_year ? new Date().getFullYear() - established_year : 20}+`, label: "Years of Excellence" },
+              { num: "1000+", label: "Students Enrolled" },
+              { num: "50+", label: "Expert Faculty" },
+              { num: "100%", label: "Success Rate" },
+            ].map(({ num, label }) => (
+              <div key={label} className="text-center p-3 rounded-lg bg-gray-50 border border-gray-100">
+                <p className="text-2xl font-extrabold mb-0.5" style={{ color: primary }}>{num}</p>
+                <p className="text-xs text-gray-500 font-medium">{label}</p>
+              </div>
+            ))}
           </div>
         </section>
       )}

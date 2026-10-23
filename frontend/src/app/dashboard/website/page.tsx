@@ -229,6 +229,9 @@ function WebsiteSettingsTab() {
   return (
     <Tabs defaultValue="layout">
       <TabsList className="mb-6">
+        <TabsTrigger value="logo">
+          <Globe className="mr-2 h-4 w-4" />School Logo
+        </TabsTrigger>
         <TabsTrigger value="layout">
           <Settings2 className="mr-2 h-4 w-4" />Layout Template
         </TabsTrigger>
@@ -243,6 +246,9 @@ function WebsiteSettingsTab() {
         </TabsTrigger>
       </TabsList>
 
+      <TabsContent value="logo">
+        <SchoolLogoTab />
+      </TabsContent>
       <TabsContent value="layout">
         <LayoutTemplateTab />
       </TabsContent>
@@ -256,6 +262,139 @@ function WebsiteSettingsTab() {
         <SeoSettingsTab />
       </TabsContent>
     </Tabs>
+  );
+}
+
+// ── School Logo Tab ───────────────────────────────────────────────────────────
+
+function SchoolLogoTab() {
+  const qc = useQueryClient();
+  const [logoUrl, setLogoUrl] = useState("");
+  const [preview, setPreview] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+
+  // Fetch current branding to show existing logo
+  const { data: branding } = useQuery({
+    queryKey: ["branding"],
+    queryFn: async () => {
+      const res = await import("@/lib/api").then(m => m.default.get("/settings/branding"));
+      return res.data.data;
+    },
+  });
+
+  const saveMutation = useMutation({
+    mutationFn: async (logo_url: string) => {
+      const api = (await import("@/lib/api")).default;
+      return api.patch("/settings/branding", { logo_url });
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["branding"] });
+      setLogoUrl("");
+      setPreview(null);
+    },
+  });
+
+  // Convert file to base64
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const dataUrl = ev.target?.result as string;
+      setLogoUrl(dataUrl);
+      setPreview(dataUrl);
+      setUploading(false);
+    };
+    reader.onerror = () => setUploading(false);
+    reader.readAsDataURL(file);
+    e.target.value = "";
+  };
+
+  const handleSave = () => {
+    const url = logoUrl.trim();
+    if (!url) return;
+    saveMutation.mutate(url);
+  };
+
+  const handleRemove = () => {
+    saveMutation.mutate("");
+  };
+
+  return (
+    <Card className="max-w-lg">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-sm font-semibold">School Logo</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <p className="text-xs text-muted-foreground">
+          Upload your school logo — it will appear in the navbar of your public website before the school name.
+        </p>
+
+        {/* Current logo */}
+        {branding?.logo_url && !preview && (
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-muted-foreground">Current Logo</p>
+            <div className="flex items-center gap-4 p-3 border rounded-lg bg-muted/30">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={branding.logo_url} alt="School Logo" className="h-14 w-14 object-contain rounded-lg bg-white p-1 border" />
+              <div className="flex-1">
+                <p className="text-xs text-muted-foreground">Logo is set and showing on website navbar</p>
+              </div>
+              <Button size="sm" variant="outline" className="text-xs text-destructive border-destructive hover:bg-destructive/5"
+                onClick={handleRemove} disabled={saveMutation.isPending}>
+                Remove
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* URL input */}
+        <div className="space-y-1.5">
+          <Label htmlFor="logo-url">Logo URL</Label>
+          <Input id="logo-url" placeholder="https://example.com/logo.png"
+            value={logoUrl.startsWith("data:") ? "" : logoUrl}
+            onChange={(e) => { setLogoUrl(e.target.value); setPreview(e.target.value.trim() || null); }} />
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-2">
+          <div className="flex-1 h-px bg-border" />
+          <span className="text-xs text-muted-foreground">or upload from device</span>
+          <div className="flex-1 h-px bg-border" />
+        </div>
+
+        {/* File upload */}
+        <label className="flex items-center justify-center gap-2 p-3 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted/50 transition-colors text-sm text-muted-foreground">
+          {uploading ? <><Loader2 className="h-4 w-4 animate-spin" />Processing...</> : <><Plus className="h-4 w-4" />Choose Logo Image (PNG, SVG, JPG)</>}
+          <input type="file" accept="image/*" className="hidden" onChange={handleFileUpload} />
+        </label>
+
+        {logoUrl.startsWith("data:") && <p className="text-xs text-green-600 font-medium">✓ Image selected from device</p>}
+
+        {/* Preview */}
+        {preview && (
+          <div className="flex items-center gap-4 p-3 border rounded-lg bg-muted/20">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={preview} alt="Logo Preview" className="h-14 w-14 object-contain rounded-lg bg-white p-1 border"
+              onError={() => setPreview(null)} />
+            <div>
+              <p className="text-xs font-medium">Preview</p>
+              <p className="text-xs text-muted-foreground">This is how it will look in the navbar</p>
+            </div>
+          </div>
+        )}
+
+        {/* Save button */}
+        <Button className="w-full" disabled={!logoUrl.trim() || saveMutation.isPending} onClick={handleSave}>
+          {saveMutation.isPending ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Saving...</> : "Save Logo"}
+        </Button>
+
+        <p className="text-xs text-muted-foreground text-center">
+          Recommended: Square PNG or SVG, min 128×128px, transparent background
+        </p>
+      </CardContent>
+    </Card>
   );
 }
 

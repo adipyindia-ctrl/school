@@ -28,7 +28,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
 
   return (
     <div
-      className="w-full"
+      className="w-full min-w-0 block"
       style={
         {
           fontFamily: branding.font_family || "Inter, sans-serif",
