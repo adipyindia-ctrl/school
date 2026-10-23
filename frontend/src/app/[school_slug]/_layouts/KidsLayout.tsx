@@ -273,6 +273,63 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
           </section>
         )}
 
+        {/* ── Gallery ── */}
+        {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
+          <section id="gallery" className="py-10 md:py-14 px-4 sm:px-6 bg-white">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-center text-3xl font-black mb-2" style={{ color: bg1 }}>
+                {gallery.heading || "Our Happy Moments 📸 🎉"}
+              </h2>
+              <p className="text-center text-gray-500 text-sm mb-6">
+                {gallery.description || "A glimpse of the joy, learning, and fun inside our school!"}
+              </p>
+
+              {/* CSS-only category filter */}
+              <div className="flex flex-wrap justify-center gap-3 mb-8">
+                {["All", "Events", "Sports", "Activities"].map((cat) => (
+                  <label
+                    key={cat}
+                    className="cursor-pointer px-5 py-2 rounded-full text-sm font-bold border-2 transition-all duration-200 select-none"
+                    style={{
+                      borderColor: bg1,
+                      color: bg1,
+                      background: "white",
+                    }}
+                  >
+                    <input type="radio" name="gallery-filter" value={cat} className="sr-only" defaultChecked={cat === "All"} />
+                    {cat}
+                  </label>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                {data.gallery_items.map((img, index) => (
+                  <div
+                    key={img.id}
+                    className="aspect-square relative group overflow-hidden rounded-2xl border-4 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
+                    style={{ borderColor: galleryBorderColors[index % galleryBorderColors.length] }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.image_url}
+                      alt={img.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1 p-3">
+                      {img.category && (
+                        <span className="text-xs font-black uppercase tracking-wider" style={{ color: galleryBorderColors[index % galleryBorderColors.length] }}>
+                          {img.category}
+                        </span>
+                      )}
+                      <p className="text-white text-sm font-black text-center">{img.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* ── About ── */}
         {about.show && (
           <section
@@ -349,63 +406,6 @@ export function KidsLayout({ data }: { data: SchoolWebsiteData }) {
                   >
                     {item}
                   </span>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* ── Gallery ── */}
-        {gallery.show && data.gallery_items && data.gallery_items.length > 0 && (
-          <section id="gallery" className="py-10 md:py-14 px-4 sm:px-6 bg-white">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-center text-3xl font-black mb-2" style={{ color: bg1 }}>
-                {gallery.heading || "Our Happy Moments 📸 🎉"}
-              </h2>
-              <p className="text-center text-gray-500 text-sm mb-6">
-                {gallery.description || "A glimpse of the joy, learning, and fun inside our school!"}
-              </p>
-
-              {/* CSS-only category filter */}
-              <div className="flex flex-wrap justify-center gap-3 mb-8">
-                {["All", "Events", "Sports", "Activities"].map((cat) => (
-                  <label
-                    key={cat}
-                    className="cursor-pointer px-5 py-2 rounded-full text-sm font-bold border-2 transition-all duration-200 select-none"
-                    style={{
-                      borderColor: bg1,
-                      color: bg1,
-                      background: "white",
-                    }}
-                  >
-                    <input type="radio" name="gallery-filter" value={cat} className="sr-only" defaultChecked={cat === "All"} />
-                    {cat}
-                  </label>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                {data.gallery_items.map((img, index) => (
-                  <div
-                    key={img.id}
-                    className="aspect-square relative group overflow-hidden rounded-2xl border-4 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
-                    style={{ borderColor: galleryBorderColors[index % galleryBorderColors.length] }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={img.image_url}
-                      alt={img.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1 p-3">
-                      {img.category && (
-                        <span className="text-xs font-black uppercase tracking-wider" style={{ color: galleryBorderColors[index % galleryBorderColors.length] }}>
-                          {img.category}
-                        </span>
-                      )}
-                      <p className="text-white text-sm font-black text-center">{img.title}</p>
-                    </div>
-                  </div>
                 ))}
               </div>
             </div>

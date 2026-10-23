@@ -153,82 +153,6 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
           </div>
         </section>
 
-        {/* ── About ── */}
-        {about.show && (
-          <section id="about" className="py-12 md:py-24 border-b border-gray-100">
-            <div className="max-w-6xl mx-auto px-4 sm:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-start">
-
-                {/* Left column */}
-                <div>
-                  <p className="text-xs text-gray-400 tracking-[0.2em] uppercase mb-4">About Us</p>
-                  <h2
-                    className="text-3xl md:text-4xl font-light mb-6 leading-snug pl-4 border-l-4"
-                    style={{ color: primary, borderColor: primary }}
-                  >
-                    {about.heading || "About Our School"}
-                  </h2>
-                  <p className="text-gray-500 text-base leading-relaxed mb-10">
-                    {about.description ||
-                      `${name} offers an outstanding educational environment with dedicated teachers, modern facilities, and a curriculum designed to inspire lifelong learning. Located in ${city}, ${state}, we serve hundreds of students across all grades.`}
-                  </p>
-
-                  {/* Mission statement — large italic typographic blockquote */}
-                  <blockquote className="mb-10">
-                    <p
-                      className="text-2xl font-light italic leading-snug"
-                      style={{ color: primary }}
-                    >
-                      &ldquo;Inspiring curiosity. Building character. Preparing tomorrow&rsquo;s citizens.&rdquo;
-                    </p>
-                    <div className="mt-4 w-10 h-px" style={{ backgroundColor: primary }} />
-                  </blockquote>
-
-                  {/* Why Choose Us — dash-accented list */}
-                  <div>
-                    <p className="text-xs text-gray-400 tracking-[0.2em] uppercase mb-5">Why Choose Us</p>
-                    <ul className="space-y-4">
-                      {[
-                        { label: "Inquiry-Based Learning", desc: "Students learn through exploration, questioning, and hands-on discovery." },
-                        { label: "Inclusive Environment", desc: "A diverse, welcoming community where every learner thrives." },
-                        { label: "Technology Integration", desc: "Digital tools and smart classrooms woven into daily curriculum." },
-                        { label: "Proven Track Record", desc: "Consistent board results and co-curricular achievements year after year." },
-                      ].map(({ label, desc }) => (
-                        <li key={label} className="flex gap-4">
-                          <span className="mt-1.5 w-4 h-px flex-shrink-0" style={{ backgroundColor: primary, display: "inline-block" as React.CSSProperties["display"] }} />
-                          <div>
-                            <span className="text-sm font-semibold text-gray-800">{label}</span>
-                            <span className="text-sm text-gray-400"> — {desc}</span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Right column — 4 info cards */}
-                <div className="grid grid-cols-2 gap-3 pt-10">
-                  {([
-                    ["Board", data.school_type.toUpperCase()],
-                    ["City", city],
-                    ["Phone", phone || "—"],
-                    ["Email", email ? email.split("@")[0] + "@..." : "—"],
-                  ] as [string, string][]).map(([l, v]) => (
-                    <div
-                      key={l}
-                      className="p-5 bg-gray-50 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-                    >
-                      <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">{l}</p>
-                      <p className="text-sm font-medium truncate" style={{ color: primary }}>{v}</p>
-                    </div>
-                  ))}
-                </div>
-
-              </div>
-            </div>
-          </section>
-        )}
-
         {/* ── Academics ── */}
         {academics.show && (
           <section id="academics" className="py-12 md:py-24 bg-gray-50 border-b border-gray-100">
@@ -330,6 +254,82 @@ export function MinimalLayout({ data }: { data: SchoolWebsiteData }) {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ── About ── */}
+        {about.show && (
+          <section id="about" className="py-12 md:py-24 border-b border-gray-100">
+            <div className="max-w-6xl mx-auto px-4 sm:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-start">
+
+                {/* Left column */}
+                <div>
+                  <p className="text-xs text-gray-400 tracking-[0.2em] uppercase mb-4">About Us</p>
+                  <h2
+                    className="text-3xl md:text-4xl font-light mb-6 leading-snug pl-4 border-l-4"
+                    style={{ color: primary, borderColor: primary }}
+                  >
+                    {about.heading || "About Our School"}
+                  </h2>
+                  <p className="text-gray-500 text-base leading-relaxed mb-10">
+                    {about.description ||
+                      `${name} offers an outstanding educational environment with dedicated teachers, modern facilities, and a curriculum designed to inspire lifelong learning. Located in ${city}, ${state}, we serve hundreds of students across all grades.`}
+                  </p>
+
+                  {/* Mission statement — large italic typographic blockquote */}
+                  <blockquote className="mb-10">
+                    <p
+                      className="text-2xl font-light italic leading-snug"
+                      style={{ color: primary }}
+                    >
+                      &ldquo;Inspiring curiosity. Building character. Preparing tomorrow&rsquo;s citizens.&rdquo;
+                    </p>
+                    <div className="mt-4 w-10 h-px" style={{ backgroundColor: primary }} />
+                  </blockquote>
+
+                  {/* Why Choose Us — dash-accented list */}
+                  <div>
+                    <p className="text-xs text-gray-400 tracking-[0.2em] uppercase mb-5">Why Choose Us</p>
+                    <ul className="space-y-4">
+                      {[
+                        { label: "Inquiry-Based Learning", desc: "Students learn through exploration, questioning, and hands-on discovery." },
+                        { label: "Inclusive Environment", desc: "A diverse, welcoming community where every learner thrives." },
+                        { label: "Technology Integration", desc: "Digital tools and smart classrooms woven into daily curriculum." },
+                        { label: "Proven Track Record", desc: "Consistent board results and co-curricular achievements year after year." },
+                      ].map(({ label, desc }) => (
+                        <li key={label} className="flex gap-4">
+                          <span className="mt-1.5 w-4 h-px flex-shrink-0" style={{ backgroundColor: primary, display: "inline-block" as React.CSSProperties["display"] }} />
+                          <div>
+                            <span className="text-sm font-semibold text-gray-800">{label}</span>
+                            <span className="text-sm text-gray-400"> — {desc}</span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Right column — 4 info cards */}
+                <div className="grid grid-cols-2 gap-3 pt-10">
+                  {([
+                    ["Board", data.school_type.toUpperCase()],
+                    ["City", city],
+                    ["Phone", phone || "—"],
+                    ["Email", email ? email.split("@")[0] + "@..." : "—"],
+                  ] as [string, string][]).map(([l, v]) => (
+                    <div
+                      key={l}
+                      className="p-5 bg-gray-50 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      <p className="text-xs text-gray-400 mb-1 uppercase tracking-wider">{l}</p>
+                      <p className="text-sm font-medium truncate" style={{ color: primary }}>{v}</p>
+                    </div>
+                  ))}
+                </div>
+
               </div>
             </div>
           </section>
