@@ -54,7 +54,7 @@ export function WebsiteShell({ data, children }: WebsiteShellProps) {
                 className="h-10 w-10 object-contain rounded-lg bg-white p-0.5"
               />
             )}
-            <a href="/" className="text-white font-bold text-xl hover:opacity-90 transition-opacity shadow-md">
+            <a href="/" className="text-white font-bold text-sm sm:text-xl hover:opacity-90 transition-opacity shadow-md truncate max-w-[180px] sm:max-w-none">
               {name}
             </a>
           </div>
